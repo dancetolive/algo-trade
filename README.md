@@ -16,7 +16,8 @@ stratejinin gerçek sınavı geçmiş test değil, ileriye dönük kâğıt işl
 Gerekenler: Python 3.11 veya üstü, git, yaklaşık 10 GB boş disk (tüm veri için).
 
 ```powershell
-cd C:\Users\Admin\Desktop\0-craft\19-trade
+git clone https://github.com/dancetolive/algo-trade.git
+cd algo-trade
 python -m venv .venv
 .venv\Scripts\python -m pip install --upgrade pip
 .venv\Scripts\python -m pip install -e ".[dev]"
