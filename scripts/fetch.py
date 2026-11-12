@@ -121,18 +121,21 @@ def _write_outputs(args, kind: str, market: str, interval: str, symbols: list[st
     failed = set(skip)
     totals = {"daily_patches": 0, "hole_days_left": 0, "dead_bars_removed": 0, "extra_segments": 0}
     written = 0
-    for position, symbol in enumerate(symbols, 1):
-        if symbol in skip:
-            continue
-        try:
-            if kind == "funding":
-                named, info = _build_funding(symbol, raw_root)
-            else:
-                named, info = _build_klines(market, interval, symbol, raw_root, repair=not args.no_repair)
-        except Exception as exc:  # noqa: BLE001 - one bad archive must not stop the batch
+    todo = [s for s in symbols if s not in skip]
+
+    def build(symbol: str):
+        if kind == "funding":
+            return _build_funding(symbol, raw_root)
+        return _build_klines(market, interval, symbol, raw_root, repair=not args.no_repair)
+
+    # Parsing and hole-patching run in threads; files and the manifest are written here.
+    for position, result in _run_pool([lambda s=s: build(s) for s in todo], args.workers, "build"):
+        symbol = todo[position]
+        if isinstance(result, Exception):
             failed.add(symbol)
-            print(f"  ! build failed for {symbol}: {exc}", file=sys.stderr)
+            print(f"  ! build failed for {symbol}: {result}", file=sys.stderr)
             continue
+        named, info = result
         # drop whatever an earlier build left for this ticker, then write the current instruments
         for stale in [out_dir / f"{symbol}.parquet", *out_dir.glob(f"{symbol}__*.parquet")]:
             stale.unlink(missing_ok=True)
@@ -145,8 +148,6 @@ def _write_outputs(args, kind: str, market: str, interval: str, symbols: list[st
         for key in ("daily_patches", "hole_days_left", "dead_bars_removed"):
             totals[key] += info.get(key, 0)
         totals["extra_segments"] += max(info.get("segments", 1) - 1, 0)
-        if position % 200 == 0:
-            print(f"  build: {position}/{len(symbols)}", flush=True)
     manifest_path.write_text(json.dumps(manifest, indent=0, sort_keys=True))
     print(f"  wrote {written} parquet files to {out_dir}; {len(failed)} symbols failed", flush=True)
     if kind != "funding":
@@ -244,6 +245,7 @@ def main() -> int:
     rebuild.add_argument("--interval", required=True, help="1d, 1h, 1m, ... or 'funding'")
     rebuild.add_argument("--symbols", default="", help="optional comma list; default: everything on disk")
     rebuild.add_argument("--no-repair", action="store_true", help="do not patch holes from the daily archives")
+    rebuild.add_argument("--workers", type=int, default=6)
 
     args = parser.parse_args()
     if args.command == "symbols":
