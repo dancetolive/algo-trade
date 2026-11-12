@@ -131,3 +131,45 @@ def test_resample_uses_first_open_and_last_close():
     assert daily["high"].tolist() == [23.5, 47.5]
     assert daily["low"].tolist() == [-0.5, 23.5]
     assert daily["volume"].tolist() == [24.0, 24.0]
+
+
+def _bars(times, volume):
+    index = pd.DatetimeIndex(times, tz="UTC", name="open_time")
+    return pd.DataFrame({"open": 1.0, "high": 1.0, "low": 1.0, "close": 1.0, "volume": volume}, index=index)
+
+
+def test_missing_days_reports_short_holes_only():
+    days = pd.date_range("2022-02-01", "2022-04-30", freq="1D")
+    keep = [d for d in days if not (pd.Timestamp("2022-02-26") <= d <= pd.Timestamp("2022-02-28"))]
+    keep = [d for d in keep if not (pd.Timestamp("2022-03-10") <= d <= pd.Timestamp("2022-04-05"))]  # 27 days: not a hole
+    index = pd.DatetimeIndex(keep, tz="UTC")
+    found = vision.missing_days(index, "1d")
+    assert [str(d) for d in found] == ["2022-02-26", "2022-02-27", "2022-02-28"]
+    hours = pd.date_range("2024-01-01", "2024-01-03 23:00", freq="1h", tz="UTC")
+    hours = hours.delete(slice(30, 40))  # ten hours missing inside 2 January
+    assert [str(d) for d in vision.missing_days(hours, "1h")] == ["2024-01-02"]
+    assert vision.missing_days(hours[:1], "1h") == []
+
+
+def test_dead_runs_are_removed_but_thin_trading_is_kept():
+    hours = pd.date_range("2024-01-01", periods=100, freq="1h", tz="UTC")
+    volume = np.ones(100)
+    volume[10:13] = 0  # three quiet hours: a thin market, kept
+    volume[40:70] = 0  # thirty hours without a trade: not trading, removed
+    frame, removed = vision.drop_dead_runs(_bars(hours, volume), "1h")
+    assert removed == 30 and len(frame) == 70
+    assert frame.index[39] == hours[39] and frame.index[40] == hours[70]
+    days = pd.date_range("2024-01-01", periods=5, freq="1D", tz="UTC")
+    frame, removed = vision.drop_dead_runs(_bars(days, [5, 0, 3, 0, 0]), "1d")
+    assert removed == 3 and list(frame["volume"]) == [5, 3]  # a whole day without a trade is always dead
+    frame, removed = vision.drop_dead_runs(_bars(days, [1, 1, 1, 1, 1]), "1d")
+    assert removed == 0 and len(frame) == 5
+
+
+def test_unlisted_download_rejects_unsafe_keys(tmp_path):
+    for key in ("../x.zip", "data/../x.zip", "/etc/passwd"):
+        with pytest.raises(ValueError):
+            vision.download_unlisted(key, tmp_path)
+    assert vision.daily_kline_key("um", "BTCUSDT", "1d", pd.Timestamp("2022-02-26").date()) == (
+        "data/futures/um/daily/klines/BTCUSDT/1d/BTCUSDT-1d-2022-02-26.zip"
+    )

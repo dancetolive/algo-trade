@@ -6,6 +6,13 @@ Examples (run from anywhere; paths are resolved from --root):
     python -I scripts/fetch.py klines --market spot --interval 1d --symbols @usdt
     python -I scripts/fetch.py klines --market um --interval 1m --symbols BTCUSDT,ETHUSDT --since 2020-01
     python -I scripts/fetch.py funding --symbols @usdt
+    python -I scripts/fetch.py rebuild --market um --interval 1d      # re-derive parquet from local archives
+
+What "build" does for candles, per symbol: merge the monthly archives; look for
+short holes (the monthly files of some symbols lack a few days that the daily
+files do contain) and patch them from the daily archives; then remove runs of
+zero-volume bars lasting a day or more (halted and delisted markets), so that a
+market that is not trading has no bar at all.
 """
 
 from __future__ import annotations
@@ -64,14 +71,90 @@ def cmd_symbols(args) -> int:
     return 0
 
 
+def _build_klines(market: str, interval: str, symbol: str, raw_root: Path, repair: bool):
+    """Merge, patch and clean one symbol's candles. Returns (frame, info)."""
+    monthly = sorted((raw_root / vision.klines_prefix(market, symbol, interval)).glob("*.zip"))
+    frame = vision.build_klines(monthly)
+    holes = vision.missing_days(frame.index, interval)
+    if repair:
+        for day in holes:
+            vision.download_unlisted(vision.daily_kline_key(market, symbol, interval, day), raw_root)
+    daily = sorted((raw_root / vision.daily_klines_prefix(market, symbol, interval)).glob("*.zip"))
+    if daily:
+        frame = vision.build_klines(monthly + daily)
+    still_missing = vision.missing_days(frame.index, interval)
+    frame, dead = vision.drop_dead_runs(frame, interval)
+    info = {
+        "months": len(monthly),
+        "daily_patches": len(daily),
+        "hole_days_found": len(holes),
+        "hole_days_left": len(still_missing),
+        "dead_bars_removed": dead,
+    }
+    return frame, info
+
+
+def _build_funding(symbol: str, raw_root: Path):
+    paths = sorted((raw_root / vision.funding_prefix(symbol)).glob("*.zip"))
+    return vision.build_funding(paths), {"months": len(paths)}
+
+
+def _write_outputs(args, kind: str, market: str, interval: str, symbols: list[str], skip: set[str]) -> int:
+    """Build one parquet file per symbol from the local archives and update the manifest."""
+    root: Path = args.root
+    raw_root = root / "data" / "raw"
+    meta_dir = root / "data" / "meta"
+    out_dir = root / "data" / "parquet" / market / interval
+    out_dir.mkdir(parents=True, exist_ok=True)
+    meta_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = meta_dir / f"manifest_{market}_{interval}.json"
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    failed = set(skip)
+    totals = {"daily_patches": 0, "hole_days_left": 0, "dead_bars_removed": 0}
+    written = 0
+    for position, symbol in enumerate(symbols, 1):
+        if symbol in skip:
+            continue
+        try:
+            if kind == "funding":
+                frame, info = _build_funding(symbol, raw_root)
+            else:
+                frame, info = _build_klines(market, interval, symbol, raw_root, repair=not args.no_repair)
+        except Exception as exc:  # noqa: BLE001 - one bad archive must not stop the batch
+            failed.add(symbol)
+            print(f"  ! build failed for {symbol}: {exc}", file=sys.stderr)
+            continue
+        target = out_dir / f"{symbol}.parquet"
+        if frame.empty:
+            target.unlink(missing_ok=True)
+            manifest.pop(symbol, None)
+            continue
+        frame.to_parquet(target)
+        written += 1
+        manifest[symbol] = {"rows": int(len(frame)), "first": frame.index[0].isoformat(), "last": frame.index[-1].isoformat(), **info}
+        for key in totals:
+            totals[key] += info.get(key, 0)
+        if position % 200 == 0:
+            print(f"  build: {position}/{len(symbols)}", flush=True)
+    manifest_path.write_text(json.dumps(manifest, indent=0, sort_keys=True))
+    print(f"  wrote {written} parquet files to {out_dir}; {len(failed)} symbols failed", flush=True)
+    if kind != "funding":
+        print(
+            f"  patched from daily archives: {totals['daily_patches']} files; hole days still missing: "
+            f"{totals['hole_days_left']}; zero-volume bars removed: {totals['dead_bars_removed']}",
+            flush=True,
+        )
+    if failed:
+        print("  failed symbols: " + ", ".join(sorted(failed)), file=sys.stderr)
+    return 1 if failed else 0
+
+
 def _fetch_dataset(args, kind: str) -> int:
     root: Path = args.root
     raw_root = root / "data" / "raw"
     meta_dir = root / "data" / "meta"
     market = "um" if kind == "funding" else args.market
     interval = "funding" if kind == "funding" else args.interval
-    out_dir = root / "data" / "parquet" / market / interval
-    out_dir.mkdir(parents=True, exist_ok=True)
     symbols = _resolve_symbols(args.symbols, market, meta_dir)
     print(f"{kind} {market} {interval}: {len(symbols)} symbols", flush=True)
 
@@ -102,33 +185,26 @@ def _fetch_dataset(args, kind: str) -> int:
             failed.add(symbol)
             print(f"  ! download failed for {remote.key}: {result}", file=sys.stderr)
 
-    # 3. build one parquet file per symbol
-    manifest = {}
-    builder = vision.build_funding if kind == "funding" else vision.build_klines
-    for symbol in sorted(listing):
-        if symbol in failed:
-            continue
-        paths = [raw_root / remote.key for remote in listing[symbol]]
-        try:
-            frame = builder(paths)
-        except Exception as exc:  # noqa: BLE001 - one bad archive must not stop the batch
-            failed.add(symbol)
-            print(f"  ! parse failed for {symbol}: {exc}", file=sys.stderr)
-            continue
-        if frame.empty:
-            continue
-        frame.to_parquet(out_dir / f"{symbol}.parquet")
-        manifest[symbol] = {
-            "rows": int(len(frame)),
-            "first": frame.index[0].isoformat(),
-            "last": frame.index[-1].isoformat(),
-            "months": len(paths),
-        }
-    (meta_dir / f"manifest_{market}_{interval}.json").write_text(json.dumps(manifest, indent=0))
-    print(f"  wrote {len(manifest)} parquet files to {out_dir}; {len(failed)} symbols failed", flush=True)
-    if failed:
-        print("  failed symbols: " + ", ".join(sorted(failed)), file=sys.stderr)
-    return 1 if failed else 0
+    # 3. build
+    return _write_outputs(args, kind, market, interval, sorted(listing), failed)
+
+
+def cmd_rebuild(args) -> int:
+    """Re-derive parquet from the archives already on disk (no listing, no monthly downloads)."""
+    raw_root = args.root / "data" / "raw"
+    kind = "funding" if args.interval == "funding" else "klines"
+    market = "um" if kind == "funding" else args.market
+    if kind == "funding":
+        base = raw_root / vision.MARKET_ROOT["um"] / "fundingRate"
+        symbols = sorted(p.name for p in base.iterdir() if p.is_dir()) if base.is_dir() else []
+    else:
+        base = raw_root / vision.MARKET_ROOT[market] / "klines"
+        symbols = sorted(p.name for p in base.iterdir() if (p / args.interval).is_dir()) if base.is_dir() else []
+    if args.symbols:
+        wanted = {s.strip().upper() for s in args.symbols.split(",") if s.strip()}
+        symbols = [s for s in symbols if s in wanted]
+    print(f"rebuild {market} {args.interval}: {len(symbols)} symbols", flush=True)
+    return _write_outputs(args, kind, market, args.interval, symbols, set())
 
 
 def main() -> int:
@@ -149,10 +225,19 @@ def main() -> int:
         p.add_argument("--since", default="2017-01", help="first month, YYYY-MM")
         p.add_argument("--until", default="2026-10", help="last month, YYYY-MM")
         p.add_argument("--workers", type=int, default=16)
+        p.add_argument("--no-repair", action="store_true", help="do not patch holes from the daily archives")
+
+    rebuild = sub.add_parser("rebuild", help="rebuild parquet from local archives")
+    rebuild.add_argument("--market", choices=["spot", "um"], default="um")
+    rebuild.add_argument("--interval", required=True, help="1d, 1h, 1m, ... or 'funding'")
+    rebuild.add_argument("--symbols", default="", help="optional comma list; default: everything on disk")
+    rebuild.add_argument("--no-repair", action="store_true", help="do not patch holes from the daily archives")
 
     args = parser.parse_args()
     if args.command == "symbols":
         return cmd_symbols(args)
+    if args.command == "rebuild":
+        return cmd_rebuild(args)
     return _fetch_dataset(args, "funding" if args.command == "funding" else "klines")
 
 

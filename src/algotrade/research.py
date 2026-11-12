@@ -41,6 +41,7 @@ class Venue:
     allow_short: bool
     max_gross: float
     min_trade_notional: float
+    maintenance_margin: float | None = None
 
     def sim_config(self, **overrides) -> SimConfig:
         base = dict(
@@ -48,6 +49,7 @@ class Venue:
             allow_short=self.allow_short,
             max_gross=self.max_gross,
             min_trade_notional=self.min_trade_notional,
+            maintenance_margin=self.maintenance_margin,
         )
         base.update(overrides)
         return SimConfig(**base)
@@ -62,6 +64,7 @@ class Venue:
             allow_short=self.allow_short,
             max_gross=self.max_gross,
             min_trade_notional=self.min_trade_notional,
+            maintenance_margin=self.maintenance_margin,
         )
 
 
@@ -71,7 +74,8 @@ VENUES = {
     # Lira-quoted spot on local venues: taker fees of about 0.22-0.28% and wider spreads.
     "spot_dear": Venue("spot_dear", "spot", fee_bps=25.0, slippage_bps=10.0, allow_short=False, max_gross=1.0, min_trade_notional=10.0),
     # USDT-margined perpetuals at taker fees of about 0.05%; funding is charged separately.
-    "perp": Venue("perp", "um", fee_bps=5.0, slippage_bps=3.0, allow_short=True, max_gross=2.0, min_trade_notional=10.0),
+    # The maintenance margin is deliberately above the exchange's lowest tiers (0.4-2.5%).
+    "perp": Venue("perp", "um", fee_bps=5.0, slippage_bps=3.0, allow_short=True, max_gross=2.0, min_trade_notional=10.0, maintenance_margin=0.025),
 }
 
 
@@ -105,6 +109,7 @@ def score(result: SimResult, min_bars: int = 30) -> dict[str, dict]:
             avg_net=float(result.net[mask].mean()),
             time_in_market=float((result.gross[mask] > 0.01).mean()),
             psr=stats.probabilistic_sharpe(r),
+            funding_missing_bars=int(result.funding_missing),
             start=str(index[mask][0]),
             end=str(index[mask][-1]),
         )
@@ -156,6 +161,11 @@ def run_trial(
     Returns ``(record, result)``; ``record["metrics"]["design"]["sharpe"]`` etc.
     Pass ``log=False`` only for smoke tests, never to hide a configuration.
     """
+    if venue.market == "um" and (funding is None or high is None or low is None):
+        raise ValueError(
+            "perpetual trials need funding (research.perp_funding) and high / low; "
+            "without them funding costs and liquidations would silently be ignored"
+        )
     config = venue.sim_config(initial_equity=initial_equity, **sim_overrides)
     result = simulate(open_, close, target_weights, config, funding=funding, high=high, low=low)
     record = {
@@ -264,11 +274,16 @@ def ever_liquid(market: str, top_n: int, start=None, end=None, **universe_kwargs
 
 
 def perp_funding(index: pd.DatetimeIndex, symbols: list[str]) -> pd.DataFrame:
-    """Funding rates of USDT perpetuals summed into the bars of ``index`` (ready for ``simulate``)."""
+    """Funding rates of USDT perpetuals summed into the bars of ``index`` (ready for ``simulate``).
+
+    Cells are NaN where the archive has no funding record for the symbol (before
+    its first record, after its last, or no file at all). The simulator charges
+    nothing there and counts those position-bars in ``SimResult.funding_missing``.
+    """
     from .backtest import align_funding
 
     raw = store.load_funding(symbols)
-    return align_funding(raw, index).reindex(columns=symbols).fillna(0.0)
+    return align_funding(raw, index).reindex(columns=symbols)
 
 
 def buy_and_hold(open_: pd.DataFrame, close: pd.DataFrame, symbol: str, venue: Venue, initial_equity: float = 2_000.0) -> SimResult:

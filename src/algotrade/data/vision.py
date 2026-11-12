@@ -9,6 +9,7 @@ payload is parsed with explicit column names and numeric dtypes.
 
 from __future__ import annotations
 
+import datetime as dt
 import hashlib
 import html
 import io
@@ -20,6 +21,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterator
 
+import numpy as np
 import pandas as pd
 import requests
 from requests.adapters import HTTPAdapter
@@ -30,6 +32,15 @@ FILE_URL = "https://data.binance.vision"
 MARKET_ROOT = {
     "spot": "data/spot/monthly",
     "um": "data/futures/um/monthly",
+}
+# The same data cut into one file per day; used to patch holes in the monthly files.
+DAILY_ROOT = {
+    "spot": "data/spot/daily",
+    "um": "data/futures/um/daily",
+}
+INTERVAL_SECONDS = {
+    "1m": 60, "3m": 180, "5m": 300, "15m": 900, "30m": 1800,
+    "1h": 3600, "2h": 7200, "4h": 14400, "6h": 21600, "8h": 28800, "12h": 43200, "1d": 86400,
 }
 
 KLINE_COLUMNS = [
@@ -170,6 +181,14 @@ def klines_prefix(market: str, symbol: str, interval: str) -> str:
     return f"{MARKET_ROOT[market]}/klines/{symbol}/{interval}/"
 
 
+def daily_klines_prefix(market: str, symbol: str, interval: str) -> str:
+    return f"{DAILY_ROOT[market]}/klines/{symbol}/{interval}/"
+
+
+def daily_kline_key(market: str, symbol: str, interval: str, day: dt.date) -> str:
+    return f"{daily_klines_prefix(market, symbol, interval)}{symbol}-{interval}-{day:%Y-%m-%d}.zip"
+
+
 def funding_prefix(symbol: str) -> str:
     return f"{MARKET_ROOT['um']}/fundingRate/{symbol}/"
 
@@ -205,6 +224,76 @@ def download(remote: RemoteFile, raw_root: Path, attempts: int = 3) -> Path:
             return dest
         time.sleep(2.0)
     raise IOError(f"{remote.key}: {problem}")
+
+
+def download_unlisted(key: str, raw_root: Path) -> Path | None:
+    """Fetch an object that was not obtained from a listing; ``None`` if it does not exist.
+
+    Integrity is checked against the archive's own ``.CHECKSUM`` (SHA-256) file.
+    """
+    if not _SAFE_KEY.match(key) or ".." in key:
+        raise ValueError(f"unexpected object key: {key!r}")
+    dest = raw_root / key
+    if dest.exists() and dest.stat().st_size > 0:
+        return dest
+    try:
+        content = _get(f"{FILE_URL}/{key}").content
+    except NotFound:
+        return None
+    try:
+        expected = _get(f"{FILE_URL}/{key}.CHECKSUM").text.split()[0].lower()
+    except (NotFound, IndexError):
+        expected = ""
+    if expected and hashlib.sha256(content).hexdigest() != expected:
+        raise IOError(f"{key}: SHA-256 does not match the archive's checksum file")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_name(dest.name + ".part")
+    tmp.write_bytes(content)
+    tmp.replace(dest)
+    return dest
+
+
+def missing_days(index: pd.DatetimeIndex, interval: str, max_gap_days: float = 10.0) -> list[dt.date]:
+    """UTC dates that lack bars inside a series, for gaps short enough to be archive holes.
+
+    Longer gaps are left alone: they are real absences (delisting and relisting),
+    not defects of the monthly files.
+    """
+    if len(index) < 2:
+        return []
+    step = pd.Timedelta(seconds=INTERVAL_SECONDS[interval])
+    spacing = index[1:] - index[:-1]
+    days: set[dt.date] = set()
+    for k in np.flatnonzero(np.asarray(spacing > step)):
+        start, stop = index[k] + step, index[k + 1]  # the missing bars lie in [start, stop)
+        if stop - start > pd.Timedelta(days=max_gap_days):
+            continue
+        day = start.normalize()
+        while day < stop:
+            days.add(day.date())
+            day += pd.Timedelta(days=1)
+    return sorted(days)
+
+
+def drop_dead_runs(frame: pd.DataFrame, interval: str, dead_after_hours: float = 24.0) -> tuple[pd.DataFrame, int]:
+    """Remove bars of a market that is not trading.
+
+    The archive keeps emitting flat, zero-volume bars for halted and delisted
+    markets (for years, in the case of delisted perpetuals). A run of zero-volume
+    bars lasting ``dead_after_hours`` or more is removed, so that such a market
+    has *no* bar there and every consumer sees it as untradeable. Isolated
+    zero-volume bars of a thin but functioning market are kept.
+    """
+    zero = (frame["volume"] <= 0).to_numpy()
+    if not zero.any():
+        return frame, 0
+    min_bars = max(1, int(np.ceil(dead_after_hours * 3600 / INTERVAL_SECONDS[interval])))
+    edges = np.flatnonzero(np.diff(np.concatenate(([False], zero, [False])).astype(np.int8)))
+    dead = np.zeros(len(frame), dtype=bool)
+    for start, stop in zip(edges[0::2], edges[1::2]):
+        if stop - start >= min_bars:
+            dead[start:stop] = True
+    return frame[~dead], int(dead.sum())
 
 
 def _read_single_member(path: Path) -> bytes:

@@ -106,3 +106,20 @@ def test_buy_and_hold_benchmark():
     expected = 1000 * (1 - 0.0015) + (1000 / entry) * (close["AUSDT"].iloc[-1] - entry)
     assert result.equity.iloc[-1] == pytest.approx(expected)
     assert result.turnover.iloc[2:].sum() == 0.0
+
+
+def test_perpetual_trials_require_funding_and_extremes(tmp_path):
+    open_, close = panel(n=200)
+    weights = pd.DataFrame(0.5, index=close.index, columns=close.columns)
+    perp = research.VENUES["perp"]
+    with pytest.raises(ValueError, match="perpetual trials need funding"):
+        research.run_trial("p", "x", {}, weights, open_, close, perp, registry=tmp_path)
+    high, low = np.maximum(open_, close), np.minimum(open_, close)
+    funding = pd.DataFrame(0.0001, index=close.index, columns=close.columns)
+    funding.iloc[:50] = np.nan  # no funding data for the first 50 bars
+    record, result = research.run_trial(
+        "p", "x", {}, weights, open_, close, perp, funding=funding, high=high, low=low, registry=tmp_path
+    )
+    assert result.config.maintenance_margin == 0.025
+    assert record["metrics"]["design"]["funding_missing_bars"] == result.funding_missing == 2 * 49
+    assert record["metrics"]["design"]["funding_per_year"] > 0
