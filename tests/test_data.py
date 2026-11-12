@@ -173,3 +173,68 @@ def test_unlisted_download_rejects_unsafe_keys(tmp_path):
     assert vision.daily_kline_key("um", "BTCUSDT", "1d", pd.Timestamp("2022-02-26").date()) == (
         "data/futures/um/daily/klines/BTCUSDT/1d/BTCUSDT-1d-2022-02-26.zip"
     )
+
+
+def test_holdout_lock_tests_the_close_of_the_bar(tmp_path, monkeypatch):
+    monkeypatch.setenv("ALGOTRADE_DATA", str(tmp_path))
+    monkeypatch.delenv("ALGOTRADE_ALLOW_HOLDOUT", raising=False)
+    weeks = pd.date_range("2025-06-02", periods=6, freq="7D", tz="UTC")  # Mondays; 30 June opens before the cut-off
+    _write_symbol(tmp_path, "spot", "1w", "AAAUSDT", weeks, np.arange(6, dtype=float))
+    frame = store.load_klines("spot", "1w", "AAAUSDT")
+    assert frame.index.max() == pd.Timestamp("2025-06-23", tz="UTC")  # the 30 June bar closes on 7 July: withheld
+    assert store.bar_length("4h") == pd.Timedelta(hours=4) and store.bar_length("1w") == pd.Timedelta(days=7)
+    with pytest.raises(ValueError):
+        store.bar_length("1M")
+
+
+def test_funding_loader_maps_segments_and_includes_the_boundary_payment(tmp_path, monkeypatch):
+    monkeypatch.setenv("ALGOTRADE_DATA", str(tmp_path))
+    monkeypatch.delenv("ALGOTRADE_ALLOW_HOLDOUT", raising=False)
+    folder = tmp_path / "um" / "funding"
+    folder.mkdir(parents=True)
+    stamps = pd.to_datetime(["2025-06-30 16:00:00.004", "2025-07-01 00:00:00.010", "2025-07-01 08:00:00.002"], utc=True)
+    pd.DataFrame(
+        {"funding_interval_hours": 8, "funding_rate": [0.001, 0.002, 0.003]},
+        index=pd.DatetimeIndex(stamps, name="calc_time"),
+    ).to_parquet(folder / "AAAUSDT.parquet")
+    rates = store.load_funding(["AAAUSDT", "AAAUSDT__1", "ZZZUSDT"])
+    assert list(rates.columns) == ["AAAUSDT", "AAAUSDT__1"]  # the segment reads its ticker's file; ZZZ has none
+    assert rates["AAAUSDT"].tolist() == [0.001, 0.002]  # the payment at the cut-off instant is included, later ones not
+    assert store.base_symbol("AAAUSDT__12") == "AAAUSDT"
+
+
+def test_resample_honours_offsets_and_a_fixed_grid():
+    index = pd.date_range("2024-01-01", periods=96, freq="1h", tz="UTC")
+    hourly = pd.DataFrame({"open": 1.0, "high": 1.0, "low": 1.0, "close": np.arange(96.0), "volume": 1.0}, index=index)
+    shifted = store.resample_bars(hourly, "1D", offset="8h")
+    assert shifted.index[1] == pd.Timestamp("2024-01-01 08:00", tz="UTC")
+    assert shifted["close"].iloc[1] == 31.0  # the bar 08:00 -> 08:00 closes with the 07:00 hourly bar of the next day
+    three_a = store.resample_bars(hourly, "3D")
+    three_b = store.resample_bars(hourly.iloc[24:], "3D")
+    assert set(three_b.index) <= set(three_a.index)  # same buckets whatever the first row is
+
+
+def test_bars_stamped_off_the_grid_are_snapped():
+    stamps = pd.to_datetime(["2018-02-09 08:00:00.000", "2018-02-09 09:28:14.789", "2018-02-09 10:28:14.789"], utc=True)
+    frame = _bars(stamps, [1, 1, 1])
+    snapped = vision.snap_to_grid(frame, "1h")
+    assert list(snapped.index) == list(pd.to_datetime(["2018-02-09 08:00", "2018-02-09 09:00", "2018-02-09 10:00"], utc=True))
+    assert vision.snap_to_grid(snapped, "1h") is snapped
+
+
+def test_history_is_cut_into_instruments():
+    days = pd.date_range("2022-01-01", periods=10, freq="1D", tz="UTC")
+    frame = _bars(days, 1.0)
+    assert len(vision.split_instruments(frame, "1d")) == 1
+
+    relisted = frame.drop(frame.index[3:5])  # a two-day halt: still one instrument
+    assert len(vision.split_instruments(relisted, "1d")) == 1
+    long_gap = pd.concat([frame.iloc[:3], _bars(pd.date_range("2022-03-01", periods=4, freq="1D", tz="UTC"), 1.0)])
+    pieces = vision.split_instruments(long_gap, "1d")
+    assert [len(p) for p in pieces] == [3, 4]
+
+    redenominated = frame.copy()
+    redenominated.iloc[6:, redenominated.columns.get_indexer(["open", "high", "low", "close"])] = 0.001
+    pieces = vision.split_instruments(redenominated, "1d")
+    assert [len(p) for p in pieces] == [6, 4]
+    assert pieces[1]["close"].iloc[0] == 0.001

@@ -337,3 +337,41 @@ def test_holdings_round_down_to_whole_lots():
     assert res.weights.iloc[2]["A"] == pytest.approx(0.2)  # 260 rounds down to two lots
     assert res.turnover.iloc[3] == 0.0  # already at the nearest attainable holding
     assert res.equity.iloc[-1] == pytest.approx(1000.0)
+
+
+def test_decisions_on_moves_coarse_decisions_to_the_bar_that_closes_with_them():
+    from algotrade.backtest import decisions_on
+
+    hours = pd.date_range("2024-01-01", periods=72, freq="1h", tz="UTC")
+    days = pd.date_range("2024-01-01", periods=3, freq="1D", tz="UTC")
+    daily = pd.DataFrame({"A": [1.0, 0.0, 0.5]}, index=days)
+    moved = decisions_on(daily, "1D", hours)
+    # the 1 January bar is complete at 2 January 00:00 = the close of the 23:00 hourly bar
+    assert list(moved.index) == [hours[23], hours[47], hours[71]]
+    assert moved["A"].tolist() == [1.0, 0.0, 0.5]
+
+    # a jump inside 1 January must not be earned by a decision made from 1 January's daily bar
+    o = pd.DataFrame({"A": [100.0] * 24 + [200.0] * 48}, index=hours)
+    c = o.shift(-1).fillna(200.0)
+    honest = simulate(o, c, moved[["A"]].iloc[:1], SimConfig(costs=FREE))
+    assert honest.equity.iloc[-1] == pytest.approx(1000.0)
+    leaky = simulate(o, c, daily.iloc[:1], SimConfig(costs=FREE))  # the trap: daily labels used as hourly ones
+    assert leaky.equity.iloc[-1] == pytest.approx(2000.0)
+
+
+def test_reopening_at_a_redenominated_price_is_not_a_loss():
+    # three missing days, then the ticker trades at 1/1000 of the old price (1 old = 1000 new)
+    o = frame({"A": [27.0, 27.0, 27.0, np.nan, np.nan, np.nan, 0.027, 0.027]})
+    res = simulate(o, o, once(o.index, {"A": 1.0}), SimConfig(costs=FREE, delist_slippage_bps=100))
+    assert res.equity.iloc[3] == pytest.approx(990.0)  # settled at the last close, not carried into a -99.9% "move"
+    assert res.equity.iloc[-1] == pytest.approx(990.0)
+
+
+def test_funding_stamped_inside_a_hole_is_paid_by_the_bar_before_it():
+    index = pd.DatetimeIndex(["2024-01-01", "2024-01-02", "2024-01-06", "2024-01-07"], tz="UTC")
+    stamps = pd.to_datetime(["2024-01-02 08:00", "2024-01-03 08:00", "2024-01-04 08:00", "2024-01-06 08:00"], utc=True)
+    funding = pd.DataFrame({"A": [1.0, 2.0, 4.0, 8.0]}, index=stamps)
+    aligned = align_funding(funding, index)
+    assert aligned["A"].iloc[1] == 7.0  # its own payment plus the two inside the hole
+    assert aligned["A"].iloc[2] == 8.0
+    assert np.isnan(aligned["A"].iloc[0]) and np.isnan(aligned["A"].iloc[3])

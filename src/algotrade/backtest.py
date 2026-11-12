@@ -8,6 +8,14 @@ taken at the CLOSE of bar ``t`` and may therefore use every value in rows
 that decision at the OPEN of bar ``t + exec_delay`` (default: the next bar), pays
 costs on the traded notional, and earns the open-to-close move of that bar.
 
+Decisions made on coarser bars
+------------------------------
+A daily bar labelled 2024-01-01 is complete only at 2024-01-02 00:00. If weights
+computed on daily bars are passed as they are to a simulation on hourly bars,
+the label is read as "close of the 00:00 hourly bar" and the decision is filled
+23 hours before the information existed. Always move such weights with
+:func:`decisions_on` first.
+
 Accounting
 ----------
 Equity moves by ``units * price change``, minus trading costs, minus funding.
@@ -29,9 +37,10 @@ choice of the strategy:
   its last close, cannot be changed, pays no funding, still counts towards the
   gross-exposure cap, and the whole move across the halt is booked when the
   market reopens;
-* it never comes back, or only after a longer absence (a relisting under the
-  same ticker): a delisting. The position is settled at the last close at an
-  extra ``delist_slippage_bps`` and stays closed.
+* it never comes back, comes back only after a longer absence (a relisting under
+  the same ticker), or comes back at a price more than ``max_reopen_ratio`` times
+  away (a redenomination or a reused ticker): a delisting. The position is
+  settled at the last close at an extra ``delist_slippage_bps`` and stays closed.
 
 Solvency
 --------
@@ -73,6 +82,7 @@ class SimConfig:
     exec_delay: int = 1  # bars between the decision and its fill; must be >= 1
     delist_slippage_bps: float = 100.0  # extra cost when a held market disappears for good
     max_halt_days: float = 7.0  # a longer absence (or one that never ends) is a delisting
+    max_reopen_ratio: float = 5.0  # reopening further away than this is a different instrument
     maintenance_margin: float | None = None  # e.g. 0.025; None tests for bankruptcy only
     liquidation_fee_bps: float = 100.0
     lot_step: dict | None = None  # symbol -> order size step in units; holdings round towards zero
@@ -100,6 +110,22 @@ class SimResult:
         return self.weights.sum(axis=1)
 
 
+def decisions_on(weights: pd.DataFrame, bar, index: pd.DatetimeIndex) -> pd.DataFrame:
+    """Move decisions made on coarser bars onto a finer bar index, without look-ahead.
+
+    ``weights`` is indexed by the open times of bars of length ``bar`` (for
+    example "1D"), so row t is known only at ``t + bar``. It is re-labelled to the
+    last bar of ``index`` that opens before ``t + bar``; that bar closes at
+    ``t + bar``, and the simulator fills the decision at the following open.
+    Rows that would land before the first fine bar are dropped.
+    """
+    known_at = weights.index + pd.Timedelta(bar)
+    position = index.searchsorted(known_at, side="left") - 1
+    keep = position >= 0
+    out = weights[keep].set_axis(index[position[keep]])
+    return out[~out.index.duplicated(keep="last")]
+
+
 def align_funding(funding: pd.DataFrame, index: pd.DatetimeIndex) -> pd.DataFrame:
     """Sum funding rates into the bar during which the position was carried.
 
@@ -107,6 +133,8 @@ def align_funding(funding: pd.DataFrame, index: pd.DatetimeIndex) -> pd.DataFram
     ``s``. It is assigned to the bar with ``open < s <= open + bar length``, i.e.
     a payment exactly on a bar boundary belongs to the bar that just ended,
     because the simulator's position during that bar is the one held at ``s``.
+    A payment stamped inside a hole of the bar index goes to the bar before the
+    hole (that bar's position is the one carried through it).
 
     Bars before a symbol's first record and after its last one are NaN ("no
     data"), which the simulator reports instead of silently charging nothing;
@@ -119,7 +147,8 @@ def align_funding(funding: pd.DataFrame, index: pd.DatetimeIndex) -> pd.DataFram
     stamps = funding.index
     position = index.searchsorted(stamps, side="left") - 1
     valid = position >= 0
-    valid[valid] &= stamps[valid] <= index[position[valid]] + step
+    last_bar = position == len(index) - 1
+    valid[last_bar] &= np.asarray(stamps[last_bar] <= index[-1] + step)
     values = funding.to_numpy(dtype=float)
     result = np.full(out.shape, np.nan)
     for k in range(values.shape[1]):
@@ -134,8 +163,15 @@ def align_funding(funding: pd.DataFrame, index: pd.DatetimeIndex) -> pd.DataFram
     return pd.DataFrame(result, index=index, columns=funding.columns)
 
 
-def _terminal_gaps(live: np.ndarray, index: pd.DatetimeIndex, max_halt_days: float) -> np.ndarray:
-    """True where a market has no bar and does not return within ``max_halt_days``."""
+def _terminal_gaps(
+    live: np.ndarray,
+    index: pd.DatetimeIndex,
+    max_halt_days: float,
+    open_: np.ndarray | None = None,
+    close: np.ndarray | None = None,
+    max_reopen_ratio: float = 5.0,
+) -> np.ndarray:
+    """True where a market has no bar and will not resume as the same instrument."""
     n, m = live.shape
     terminal = np.zeros((n, m), dtype=bool)
     stamps = (index.tz_convert(None) if index.tz is not None else index).to_numpy()
@@ -146,7 +182,11 @@ def _terminal_gaps(live: np.ndarray, index: pd.DatetimeIndex, max_halt_days: flo
             continue
         edges = np.flatnonzero(np.diff(np.concatenate(([False], dead, [False])).astype(np.int8)))
         for start, stop in zip(edges[0::2], edges[1::2]):
-            if stop >= n or stamps[stop] - stamps[start] > limit:
+            ends = stop >= n or stamps[stop] - stamps[start] > limit
+            if not ends and start > 0 and open_ is not None and close is not None:
+                ratio = open_[stop, j] / close[start - 1, j]
+                ends = not (1.0 / max_reopen_ratio <= ratio <= max_reopen_ratio)
+            if ends:
                 terminal[start:stop, j] = True
     return terminal
 
@@ -213,7 +253,7 @@ def simulate(
     cost_rate = config.costs.rate
     delist_rate = config.delist_slippage_bps / 1e4
     liq_rate = config.liquidation_fee_bps / 1e4
-    terminal = _terminal_gaps(live_all, index, config.max_halt_days)
+    terminal = _terminal_gaps(live_all, index, config.max_halt_days, O, C, config.max_reopen_ratio)
     lot = np.zeros(m)
     if config.lot_step:
         for k, name in enumerate(columns):

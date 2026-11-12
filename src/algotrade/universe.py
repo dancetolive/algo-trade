@@ -31,8 +31,15 @@ GOLD = {"PAXG", "XAUT", "XAU"}
 _MULTIPLIER = re.compile(r"^(1000000|1000|1M)(?=[A-Z0-9])")
 
 
+_SEGMENT = re.compile(r"__\d+$")
+
+
 def base_asset(symbol: str) -> str:
-    """Base asset of a USDT symbol, without the futures size prefix (1000PEPE -> PEPE)."""
+    """Base asset of a USDT symbol, without the futures size prefix (1000PEPE -> PEPE).
+
+    Earlier instrument segments of a ticker (``LUNAUSDT__1``) share its base asset.
+    """
+    symbol = _SEGMENT.sub("", symbol)
     if not symbol.endswith(QUOTE):
         raise ValueError(f"not a {QUOTE} symbol: {symbol}")
     base = symbol[: -len(QUOTE)]

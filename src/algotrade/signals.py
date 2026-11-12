@@ -21,7 +21,13 @@ def ewm_volatility(close: pd.DataFrame, halflife: float, periods: float, min_per
 
 
 def past_return(close: pd.DataFrame, lookback: int, skip: int = 0) -> pd.DataFrame:
-    """Return from t - lookback - skip to t - skip (skip the most recent bars)."""
+    """Return from t - lookback - skip to t - skip (skip the most recent bars).
+
+    Rows are bars of the panel's index: a symbol without a bar on either end of
+    the window gets NaN.
+    """
+    if lookback < 1 or skip < 0:
+        raise ValueError("lookback must be >= 1 and skip >= 0 (a negative skip would read the future)")
     return close.shift(skip) / close.shift(skip + lookback) - 1.0
 
 

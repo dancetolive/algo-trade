@@ -257,20 +257,32 @@ def overfitting_report(track: str, chosen: str, segment: str = "design", venue: 
     return _jsonable(report)
 
 
-def ever_liquid(market: str, top_n: int, start=None, end=None, **universe_kwargs) -> list[str]:
-    """Coins that were among the ``top_n`` most liquid at any time in the window.
+def liquid_membership(market: str, top_n: int, start=None, end=None, **universe_kwargs) -> pd.DataFrame:
+    """Point-in-time membership of the ``top_n`` most liquid coins (daily rows x symbols).
 
-    Decided from daily bars. Use it to choose which symbols to load at finer
-    intervals (1h, 1m) without pulling the whole exchange into memory. It is a
-    superset for loading only: membership on a given day must still come from
-    :func:`algotrade.universe.top_liquid`.
+    Ranks are always taken over the FULL daily universe of the market, so the
+    result does not depend on which symbols you later choose to load. Columns are
+    the symbols that are members on at least one day. Row t is known at the CLOSE
+    of daily bar t; to use it on intraday bars, move it first with
+    :func:`algotrade.backtest.decisions_on` (bar "1D") and forward-fill.
     """
     from . import universe
 
     names = universe.coin_symbols(store.symbols(market, "1d"))
     volume = store.load_panel(market, "1d", names, fields=("quote_volume",), start=start, end=end)["quote_volume"]
     member = universe.top_liquid(volume, top_n, **universe_kwargs)
-    return sorted(member.columns[member.any()])
+    return member.loc[:, member.any()]
+
+
+def ever_liquid(market: str, top_n: int, start=None, end=None, **universe_kwargs) -> list[str]:
+    """Coins that were among the ``top_n`` most liquid at any time in the window.
+
+    Use it to choose which symbols to load at finer intervals (1h, 1m) without
+    pulling the whole exchange into memory. For the membership on a given day
+    use :func:`liquid_membership`; do not recompute ranks on the loaded subset,
+    which would let fallen coins back in.
+    """
+    return sorted(liquid_membership(market, top_n, start, end, **universe_kwargs).columns)
 
 
 def perp_funding(index: pd.DatetimeIndex, symbols: list[str]) -> pd.DataFrame:

@@ -109,3 +109,63 @@ def test_volatility_target_scales_and_clips():
     assert weights["A"].tolist() == [0.5, -0.5]
     assert weights["B"].iloc[0] == 1.0  # 0.2 / 0.05 = 4, clipped
     assert np.isnan(weights["B"].iloc[1])  # no volatility estimate -> no position
+
+
+def test_lookahead_check_catches_a_peek_that_drops_its_own_last_row():
+    panel = random_panel()
+
+    def peek_then_dropna(p):
+        ahead = p["close"]["C0USDT"].pct_change().shift(-1)
+        return (ahead > 0).astype(float).where(ahead.notna()).dropna().to_frame("C0USDT") * 0.5
+
+    assert check_no_lookahead(peek_then_dropna, panel)
+
+
+def test_lookahead_check_catches_columns_chosen_with_hindsight():
+    panel = random_panel()
+
+    def survivors_only(p):
+        close = p["close"]
+        keep = close.columns[close.notna().sum() >= 390]  # only knowable at the end of the sample
+        return pd.DataFrame(1.0 / max(len(keep), 1), index=close.index, columns=keep)
+
+    assert check_no_lookahead(survivors_only, panel)
+
+
+def test_lookahead_check_catches_a_peek_on_rebalance_rows_only():
+    panel = random_panel(n=400)
+
+    def monthly_peek(p):
+        close = p["close"][["C0USDT", "C3USDT"]]
+        ahead = close.shift(-1) / close - 1.0  # next bar's return
+        weights = (ahead.rank(axis=1) == 2).astype(float)
+        rows = np.arange(len(close)) % 30 == 0
+        return weights[rows]
+
+    for seed in range(5):
+        assert check_no_lookahead(monthly_peek, panel, seed=seed), seed
+
+    def monthly_honest(p):
+        close = p["close"][["C0USDT", "C3USDT"]]
+        back = close / close.shift(1) - 1.0
+        weights = (back.rank(axis=1) == 2).astype(float)
+        rows = np.arange(len(close)) % 30 == 0
+        return weights[rows]
+
+    assert check_no_lookahead(monthly_honest, panel) == []
+
+
+def test_lookahead_check_refuses_frames_on_different_indexes():
+    panel = random_panel()
+    daily = panel["close"].iloc[::7]
+    with pytest.raises(ValueError, match="common bar index"):
+        check_no_lookahead(strategy, {**panel, "weekly": daily})
+
+
+def test_earlier_instrument_segments_share_the_base_asset():
+    assert universe.base_asset("LUNAUSDT__1") == "LUNA"
+    table = universe.classify(["LUNAUSDT", "LUNAUSDT__1", "USDCUSDT__2", "BTCUSDT"])
+    assert table.loc["LUNAUSDT__1", "kind"] == "coin"
+    assert table.loc["USDCUSDT__2", "kind"] == "stable"
+    with pytest.raises(ValueError):
+        signals.past_return(pd.DataFrame({"A": [1.0, 2.0]}), lookback=5, skip=-1)

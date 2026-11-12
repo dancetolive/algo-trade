@@ -8,11 +8,14 @@ Examples (run from anywhere; paths are resolved from --root):
     python -I scripts/fetch.py funding --symbols @usdt
     python -I scripts/fetch.py rebuild --market um --interval 1d      # re-derive parquet from local archives
 
-What "build" does for candles, per symbol: merge the monthly archives; look for
-short holes (the monthly files of some symbols lack a few days that the daily
-files do contain) and patch them from the daily archives; then remove runs of
-zero-volume bars lasting a day or more (halted and delisted markets), so that a
-market that is not trading has no bar at all.
+What "build" does for candles, per symbol: merge the monthly archives; snap
+open times to the interval grid; look for short holes (the monthly files of some
+symbols lack a few days that the daily files do contain) and patch them from the
+daily archives; remove runs of zero-volume bars lasting a day or more (halted and
+delisted markets), so that a market that is not trading has no bar at all; and
+cut the history into separate instruments where the ticker was relisted,
+redenominated or reused (SYMBOL keeps the latest one, SYMBOL__1, SYMBOL__2, ...
+hold the earlier ones).
 """
 
 from __future__ import annotations
@@ -72,31 +75,37 @@ def cmd_symbols(args) -> int:
 
 
 def _build_klines(market: str, interval: str, symbol: str, raw_root: Path, repair: bool):
-    """Merge, patch and clean one symbol's candles. Returns (frame, info)."""
+    """Merge, patch, clean and segment one symbol's candles. Returns ({name: frame}, info)."""
     monthly = sorted((raw_root / vision.klines_prefix(market, symbol, interval)).glob("*.zip"))
-    frame = vision.build_klines(monthly)
+    frame = vision.snap_to_grid(vision.build_klines(monthly), interval)
     holes = vision.missing_days(frame.index, interval)
     if repair:
         for day in holes:
             vision.download_unlisted(vision.daily_kline_key(market, symbol, interval, day), raw_root)
     daily = sorted((raw_root / vision.daily_klines_prefix(market, symbol, interval)).glob("*.zip"))
     if daily:
-        frame = vision.build_klines(monthly + daily)
+        frame = vision.snap_to_grid(vision.build_klines(monthly + daily), interval)
     still_missing = vision.missing_days(frame.index, interval)
     frame, dead = vision.drop_dead_runs(frame, interval)
+    pieces = vision.split_instruments(frame, interval) if len(frame) else []
+    named = {}
+    for number, piece in enumerate(pieces, 1):
+        named[symbol if number == len(pieces) else f"{symbol}__{number}"] = piece
     info = {
         "months": len(monthly),
         "daily_patches": len(daily),
         "hole_days_found": len(holes),
         "hole_days_left": len(still_missing),
         "dead_bars_removed": dead,
+        "segments": len(pieces),
     }
-    return frame, info
+    return named, info
 
 
 def _build_funding(symbol: str, raw_root: Path):
     paths = sorted((raw_root / vision.funding_prefix(symbol)).glob("*.zip"))
-    return vision.build_funding(paths), {"months": len(paths)}
+    frame = vision.build_funding(paths)
+    return ({symbol: frame} if len(frame) else {}), {"months": len(paths)}
 
 
 def _write_outputs(args, kind: str, market: str, interval: str, symbols: list[str], skip: set[str]) -> int:
@@ -110,30 +119,32 @@ def _write_outputs(args, kind: str, market: str, interval: str, symbols: list[st
     manifest_path = meta_dir / f"manifest_{market}_{interval}.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
     failed = set(skip)
-    totals = {"daily_patches": 0, "hole_days_left": 0, "dead_bars_removed": 0}
+    totals = {"daily_patches": 0, "hole_days_left": 0, "dead_bars_removed": 0, "extra_segments": 0}
     written = 0
     for position, symbol in enumerate(symbols, 1):
         if symbol in skip:
             continue
         try:
             if kind == "funding":
-                frame, info = _build_funding(symbol, raw_root)
+                named, info = _build_funding(symbol, raw_root)
             else:
-                frame, info = _build_klines(market, interval, symbol, raw_root, repair=not args.no_repair)
+                named, info = _build_klines(market, interval, symbol, raw_root, repair=not args.no_repair)
         except Exception as exc:  # noqa: BLE001 - one bad archive must not stop the batch
             failed.add(symbol)
             print(f"  ! build failed for {symbol}: {exc}", file=sys.stderr)
             continue
-        target = out_dir / f"{symbol}.parquet"
-        if frame.empty:
-            target.unlink(missing_ok=True)
-            manifest.pop(symbol, None)
-            continue
-        frame.to_parquet(target)
-        written += 1
-        manifest[symbol] = {"rows": int(len(frame)), "first": frame.index[0].isoformat(), "last": frame.index[-1].isoformat(), **info}
-        for key in totals:
+        # drop whatever an earlier build left for this ticker, then write the current instruments
+        for stale in [out_dir / f"{symbol}.parquet", *out_dir.glob(f"{symbol}__*.parquet")]:
+            stale.unlink(missing_ok=True)
+        for name in [k for k in manifest if k == symbol or k.startswith(f"{symbol}__")]:
+            del manifest[name]
+        for name, frame in named.items():
+            frame.to_parquet(out_dir / f"{name}.parquet")
+            written += 1
+            manifest[name] = {"rows": int(len(frame)), "first": frame.index[0].isoformat(), "last": frame.index[-1].isoformat(), **info}
+        for key in ("daily_patches", "hole_days_left", "dead_bars_removed"):
             totals[key] += info.get(key, 0)
+        totals["extra_segments"] += max(info.get("segments", 1) - 1, 0)
         if position % 200 == 0:
             print(f"  build: {position}/{len(symbols)}", flush=True)
     manifest_path.write_text(json.dumps(manifest, indent=0, sort_keys=True))
@@ -141,7 +152,8 @@ def _write_outputs(args, kind: str, market: str, interval: str, symbols: list[st
     if kind != "funding":
         print(
             f"  patched from daily archives: {totals['daily_patches']} files; hole days still missing: "
-            f"{totals['hole_days_left']}; zero-volume bars removed: {totals['dead_bars_removed']}",
+            f"{totals['hole_days_left']}; zero-volume bars removed: {totals['dead_bars_removed']}; "
+            f"earlier instruments split off: {totals['extra_segments']}",
             flush=True,
         )
     if failed:

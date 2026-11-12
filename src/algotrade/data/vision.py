@@ -296,6 +296,44 @@ def drop_dead_runs(frame: pd.DataFrame, interval: str, dead_after_hours: float =
     return frame[~dead], int(dead.sum())
 
 
+def snap_to_grid(frame: pd.DataFrame, interval: str) -> pd.DataFrame:
+    """Floor open times to the interval's grid and keep one bar per slot.
+
+    After its outage of February 2018 the exchange stamped 43 hourly spot bars at
+    hh:28:14.789 and the like, a different millisecond for each symbol; left as
+    they are, every symbol would be "missing" on every other symbol's rows.
+    """
+    snapped = frame.index.floor(pd.Timedelta(seconds=INTERVAL_SECONDS[interval]))
+    if snapped.equals(frame.index):
+        return frame
+    frame = frame.copy()
+    frame.index = snapped
+    frame.index.name = "open_time"
+    return frame[~frame.index.duplicated(keep="last")]
+
+
+def split_instruments(
+    frame: pd.DataFrame, interval: str, max_gap_days: float = 7.0, max_ratio: float = 5.0
+) -> list[pd.DataFrame]:
+    """Cut a ticker's history wherever it stops being one instrument.
+
+    A cut is made where bars are absent for more than ``max_gap_days`` (a
+    perpetual delisted and later relisted) or where a bar opens more than
+    ``max_ratio`` times away from the previous close (a redenomination, or the
+    ticker reused for another asset: in a market that trades around the clock
+    consecutive bars otherwise join seamlessly). Returns the pieces in time order.
+    """
+    if len(frame) < 2:
+        return [frame]
+    step = pd.Timedelta(seconds=INTERVAL_SECONDS[interval])
+    absent = np.asarray((frame.index[1:] - frame.index[:-1]) - step > pd.Timedelta(days=max_gap_days))
+    ratio = frame["open"].to_numpy(dtype=float)[1:] / frame["close"].to_numpy(dtype=float)[:-1]
+    jump = ~((ratio >= 1.0 / max_ratio) & (ratio <= max_ratio))
+    cuts = (np.flatnonzero(absent | jump) + 1).tolist()
+    bounds = [0, *cuts, len(frame)]
+    return [frame.iloc[a:b] for a, b in zip(bounds[:-1], bounds[1:])]
+
+
 def _read_single_member(path: Path) -> bytes:
     with zipfile.ZipFile(path) as archive:
         members = archive.infolist()
