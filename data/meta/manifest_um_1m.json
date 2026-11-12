@@ -1,50 +1,90 @@
 {
 "BNBUSDT": {
-"rows": 3536159,
+"daily_patches": 0,
+"dead_bars_removed": 0,
 "first": "2020-02-10T08:01:00+00:00",
+"hole_days_found": 0,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 81
+"months": 81,
+"rows": 3536159,
+"segments": 1
 },
 "BTCUSDT": {
-"rows": 3594240,
+"daily_patches": 0,
+"dead_bars_removed": 0,
 "first": "2020-01-01T00:00:00+00:00",
+"hole_days_found": 0,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3594240,
+"segments": 1
 },
 "DOGEUSDT": {
-"rows": 3318660,
+"daily_patches": 0,
+"dead_bars_removed": 0,
 "first": "2020-07-10T09:00:00+00:00",
+"hole_days_found": 0,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 76
+"months": 76,
+"rows": 3318660,
+"segments": 1
 },
 "ETHUSDT": {
-"rows": 3594240,
+"daily_patches": 0,
+"dead_bars_removed": 0,
 "first": "2020-01-01T00:00:00+00:00",
+"hole_days_found": 0,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3594240,
+"segments": 1
 },
 "PAXGUSDT": {
-"rows": 840330,
+"daily_patches": 0,
+"dead_bars_removed": 0,
 "first": "2025-03-27T10:30:00+00:00",
+"hole_days_found": 0,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 20
+"months": 20,
+"rows": 840330,
+"segments": 1
 },
 "SOLUSDT": {
-"rows": 3216540,
+"daily_patches": 5,
+"dead_bars_removed": 0,
 "first": "2020-09-14T07:00:00+00:00",
+"hole_days_found": 5,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 74
+"months": 74,
+"rows": 3223740,
+"segments": 1
 },
 "XAUUSDT": {
-"rows": 467515,
+"daily_patches": 0,
+"dead_bars_removed": 0,
 "first": "2025-12-11T08:05:00+00:00",
+"hole_days_found": 0,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 11
+"months": 11,
+"rows": 467515,
+"segments": 1
 },
 "XRPUSDT": {
-"rows": 3579339,
+"daily_patches": 5,
+"dead_bars_removed": 0,
 "first": "2020-01-06T08:21:00+00:00",
+"hole_days_found": 5,
+"hole_days_left": 0,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3586539,
+"segments": 1
 }
 }

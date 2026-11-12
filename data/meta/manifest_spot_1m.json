@@ -1,44 +1,79 @@
 {
 "BNBUSDT": {
-"rows": 3591914,
+"daily_patches": 15,
+"dead_bars_removed": 0,
 "first": "2020-01-01T00:00:00+00:00",
+"hole_days_found": 15,
+"hole_days_left": 15,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3591914,
+"segments": 1
 },
 "BTCUSDT": {
-"rows": 3591915,
+"daily_patches": 15,
+"dead_bars_removed": 0,
 "first": "2020-01-01T00:00:00+00:00",
+"hole_days_found": 15,
+"hole_days_left": 15,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3591915,
+"segments": 1
 },
 "DOGEUSDT": {
-"rows": 3591914,
+"daily_patches": 15,
+"dead_bars_removed": 0,
 "first": "2020-01-01T00:00:00+00:00",
+"hole_days_found": 15,
+"hole_days_left": 15,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3591914,
+"segments": 1
 },
 "ETHUSDT": {
-"rows": 3591914,
+"daily_patches": 15,
+"dead_bars_removed": 0,
 "first": "2020-01-01T00:00:00+00:00",
+"hole_days_found": 15,
+"hole_days_left": 15,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3591914,
+"segments": 1
 },
 "PAXGUSDT": {
-"rows": 3246496,
+"daily_patches": 10,
+"dead_bars_removed": 0,
 "first": "2020-08-28T12:00:00+00:00",
+"hole_days_found": 10,
+"hole_days_left": 10,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 75
+"months": 75,
+"rows": 3246497,
+"segments": 1
 },
 "SOLUSDT": {
-"rows": 3271335,
+"daily_patches": 11,
+"dead_bars_removed": 0,
 "first": "2020-08-11T06:00:00+00:00",
+"hole_days_found": 11,
+"hole_days_left": 11,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 75
+"months": 75,
+"rows": 3271336,
+"segments": 1
 },
 "XRPUSDT": {
-"rows": 3591915,
+"daily_patches": 15,
+"dead_bars_removed": 0,
 "first": "2020-01-01T00:00:00+00:00",
+"hole_days_found": 15,
+"hole_days_left": 15,
 "last": "2026-10-31T23:59:00+00:00",
-"months": 82
+"months": 82,
+"rows": 3591915,
+"segments": 1
 }
 }
