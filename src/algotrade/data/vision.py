@@ -178,7 +178,9 @@ def list_symbols(market: str) -> list[str]:
     return list_dirs(f"{MARKET_ROOT[market]}/klines/")
 
 
-_SAFE_KEY = re.compile(r"^data/[A-Za-z0-9_./-]+$")
+# Word characters (including non-ASCII: some listed tickers are written in Chinese),
+# dots, dashes and slashes only; no backslashes, control characters or absolute paths.
+_SAFE_KEY = re.compile(r"^data/[\w./-]+$")
 
 
 def download(remote: RemoteFile, raw_root: Path, attempts: int = 3) -> Path:
