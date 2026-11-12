@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Market data is reproducible with scripts/fetch.py; keep it out of git.
+data/raw/
+data/parquet/
+*.part
+
+# Secrets never belong in the repo.
+.env
+*.key
