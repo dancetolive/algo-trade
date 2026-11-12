@@ -247,6 +247,30 @@ def overfitting_report(track: str, chosen: str, segment: str = "design", venue: 
     return _jsonable(report)
 
 
+def ever_liquid(market: str, top_n: int, start=None, end=None, **universe_kwargs) -> list[str]:
+    """Coins that were among the ``top_n`` most liquid at any time in the window.
+
+    Decided from daily bars. Use it to choose which symbols to load at finer
+    intervals (1h, 1m) without pulling the whole exchange into memory. It is a
+    superset for loading only: membership on a given day must still come from
+    :func:`algotrade.universe.top_liquid`.
+    """
+    from . import universe
+
+    names = universe.coin_symbols(store.symbols(market, "1d"))
+    volume = store.load_panel(market, "1d", names, fields=("quote_volume",), start=start, end=end)["quote_volume"]
+    member = universe.top_liquid(volume, top_n, **universe_kwargs)
+    return sorted(member.columns[member.any()])
+
+
+def perp_funding(index: pd.DatetimeIndex, symbols: list[str]) -> pd.DataFrame:
+    """Funding rates of USDT perpetuals summed into the bars of ``index`` (ready for ``simulate``)."""
+    from .backtest import align_funding
+
+    raw = store.load_funding(symbols)
+    return align_funding(raw, index).reindex(columns=symbols).fillna(0.0)
+
+
 def buy_and_hold(open_: pd.DataFrame, close: pd.DataFrame, symbol: str, venue: Venue, initial_equity: float = 2_000.0) -> SimResult:
     """Benchmark: buy ``symbol`` at the first possible open and never trade again."""
     weights = pd.DataFrame(np.nan, index=close.index, columns=[symbol])
