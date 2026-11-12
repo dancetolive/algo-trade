@@ -88,18 +88,33 @@ def segments(index: pd.DatetimeIndex) -> dict[str, np.ndarray]:
     }
 
 
-def score(result: SimResult, min_bars: int = 30) -> dict[str, dict]:
-    """Per-segment statistics of a simulation, including trading intensity."""
+def daily_returns(returns: pd.Series) -> pd.Series:
+    """Per-bar returns compounded into UTC calendar days (unchanged for daily bars)."""
+    if len(returns) < 2 or stats.periods_per_year(returns.index) <= 366.0:
+        return returns
+    days = returns.index.floor("D")
+    return (1.0 + returns).groupby(days).prod() - 1.0
+
+
+def score(result: SimResult, min_days: int = 30) -> dict[str, dict]:
+    """Per-segment statistics of a simulation, including trading intensity.
+
+    Return statistics (Sharpe, volatility, drawdown, ...) are always computed on
+    daily returns, so results on 1-minute, hourly and daily bars are comparable;
+    intraday bars are compounded into UTC days first.
+    """
     index = result.returns.index
     periods = stats.periods_per_year(index)
     equity_before = result.equity.shift(1).fillna(result.config.initial_equity)
+    daily = daily_returns(result.returns)
+    daily_masks = segments(daily.index)
     out: dict[str, dict] = {}
     for name, mask in segments(index).items():
-        if mask.sum() < min_bars:
+        r = daily[daily_masks[name]]
+        if len(r) < min_days:
             continue
-        r = result.returns[mask]
         years = mask.sum() / periods
-        row = stats.summary(r, periods)
+        row = stats.summary(r, 365.25)
         safe_equity = equity_before[mask].where(equity_before[mask] > 0)
         row.update(
             turnover_per_year=float(result.turnover[mask].sum() / years),
@@ -110,6 +125,7 @@ def score(result: SimResult, min_bars: int = 30) -> dict[str, dict]:
             time_in_market=float((result.gross[mask] > 0.01).mean()),
             psr=stats.probabilistic_sharpe(r),
             funding_missing_bars=int(result.funding_missing),
+            intraday_max_drawdown=stats.max_drawdown(result.returns[mask]),
             start=str(index[mask][0]),
             end=str(index[mask][-1]),
         )
@@ -186,7 +202,7 @@ def run_trial(
         sequence = sum(1 for _ in ledger.open()) if ledger.exists() else 0
         digest = hashlib.sha1(json.dumps([name, record["params"], record["venue"], record["sim"]], sort_keys=True).encode()).hexdigest()[:10]
         record["trial_id"] = f"{sequence:04d}-{digest}"
-        result.returns.to_frame("return").to_parquet(folder / "returns" / f"{record['trial_id']}.parquet")
+        daily_returns(result.returns).to_frame("return").to_parquet(folder / "returns" / f"{record['trial_id']}.parquet")
         with ledger.open("a") as handle:
             handle.write(json.dumps(record) + "\n")
     return record, result
@@ -209,7 +225,7 @@ def load_trials(track: str, registry: Path | None = None) -> pd.DataFrame:
 
 
 def trial_returns(track: str, segment: str | None = "design", venue: str | None = None, registry: Path | None = None) -> pd.DataFrame:
-    """Per-bar returns of every logged trial (columns = trial ids), cut to a segment."""
+    """Daily returns of every logged trial (columns = trial ids), cut to a segment."""
     folder = (registry or registry_root()) / track
     table = load_trials(track, registry)
     if table.empty:

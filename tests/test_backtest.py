@@ -375,3 +375,10 @@ def test_funding_stamped_inside_a_hole_is_paid_by_the_bar_before_it():
     assert aligned["A"].iloc[1] == 7.0  # its own payment plus the two inside the hole
     assert aligned["A"].iloc[2] == 8.0
     assert np.isnan(aligned["A"].iloc[0]) and np.isnan(aligned["A"].iloc[3])
+
+
+def test_costs_can_differ_by_symbol():
+    o = frame({"S": [100.0] * 3, "P": [100.0] * 3})
+    cfg = SimConfig(costs=Costs(10, 5), cost_bps={"P": 8.0}, allow_short=True, max_gross=1.0)
+    res = simulate(o, o, once(o.index, {"S": 0.5, "P": -0.5}), cfg, high=o, low=o)
+    assert res.costs.iloc[1] == pytest.approx(500 * 0.0015 + 500 * 0.0008)

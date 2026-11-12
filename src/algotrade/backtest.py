@@ -86,6 +86,7 @@ class SimConfig:
     maintenance_margin: float | None = None  # e.g. 0.025; None tests for bankruptcy only
     liquidation_fee_bps: float = 100.0
     lot_step: dict | None = None  # symbol -> order size step in units; holdings round towards zero
+    cost_bps: dict | None = None  # symbol -> per-side cost in bp (fee + slippage), overriding ``costs``
 
 
 @dataclass
@@ -250,7 +251,11 @@ def simulate(
     margin = config.maintenance_margin or 0.0
 
     n, m = C.shape
-    cost_rate = config.costs.rate
+    cost_rate = np.full(m, config.costs.rate)
+    if config.cost_bps:
+        for k, name in enumerate(columns):
+            if name in config.cost_bps:
+                cost_rate[k] = float(config.cost_bps[name]) / 1e4
     delist_rate = config.delist_slippage_bps / 1e4
     liq_rate = config.liquidation_fee_bps / 1e4
     terminal = _terminal_gaps(live_all, index, config.max_halt_days, O, C, config.max_reopen_ratio)
@@ -283,8 +288,9 @@ def simulate(
         # 1. A held market that has stopped for good is settled at its last close, at a penalty.
         gone = (units != 0) & terminal[i]
         if gone.any():
-            notional = float(np.sum(np.abs(units[gone]) * last_close[gone]))
-            cost = notional * (cost_rate + delist_rate)
+            gone_notional = np.abs(units[gone]) * last_close[gone]
+            notional = float(gone_notional.sum())
+            cost = float(np.sum(gone_notional * (cost_rate[gone] + delist_rate)))
             equity -= cost
             cost_i += cost
             traded_i += notional
@@ -329,7 +335,7 @@ def simulate(
             traded = float(np.abs(delta).sum())
             if traded > 0:
                 units = wanted
-                cost = traded * cost_rate
+                cost = float(np.sum(np.abs(delta) * cost_rate))
                 equity -= cost
                 cost_i += cost
                 traded_i += traded

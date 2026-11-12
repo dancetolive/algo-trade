@@ -123,3 +123,20 @@ def test_perpetual_trials_require_funding_and_extremes(tmp_path):
     assert result.config.maintenance_margin == 0.025
     assert record["metrics"]["design"]["funding_missing_bars"] == result.funding_missing == 2 * 49
     assert record["metrics"]["design"]["funding_per_year"] > 0
+
+
+def test_intraday_results_are_scored_and_logged_on_daily_returns(tmp_path):
+    rng = np.random.default_rng(7)
+    index = pd.date_range("2023-06-01", periods=24 * 250, freq="1h", tz="UTC")
+    close = pd.DataFrame({"AUSDT": 100 * np.exp(np.cumsum(rng.normal(0, 0.004, len(index))))}, index=index)
+    open_ = close.shift(1).fillna(close)
+    weights = pd.DataFrame(1.0, index=index, columns=["AUSDT"])
+    record, result = research.run_trial("h", "hold", {}, weights, open_, close, research.VENUES["spot"], registry=tmp_path)
+    design = record["metrics"]["design"]
+    assert design["bars"] == 214  # days, not hours (1 June to 31 December 2023)
+    daily = research.daily_returns(result.returns)
+    assert len(daily) == 250
+    assert np.prod(1 + daily) == pytest.approx(np.prod(1 + result.returns))
+    assert design["intraday_max_drawdown"] <= design["max_drawdown"] <= 0
+    stored = research.trial_returns("h", None, registry=tmp_path)
+    assert len(stored) == 250

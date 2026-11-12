@@ -12,3 +12,6 @@ data/parquet/
 # Secrets never belong in the repo.
 .env
 *.key
+
+# Per-trial return series are reproducible; the ledgers (trials.jsonl) are kept.
+reports/trials/*/returns/
