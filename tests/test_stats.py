@@ -94,3 +94,81 @@ def test_bootstrap_interval_brackets_the_estimate():
     assert ci["p_positive"] > 0.9
     again = stats.bootstrap_sharpe_ci(r, periods=365.25, n_boot=500, seed=1)
     assert again == ci
+
+
+def ar1(rng, n, phi, scale=0.01):
+    noise = rng.normal(0, 1, n + 200)
+    x = np.empty(n + 200)
+    x[0] = noise[0]
+    for i in range(1, n + 200):
+        x[i] = phi * x[i - 1] + noise[i]
+    return scale * x[200:]
+
+
+def test_serial_correlation_is_measured_and_deflates_the_sharpe():
+    rng = np.random.default_rng(0)
+    iid = rng.normal(0.0005, 0.01, 2000)
+    assert stats.autocorr_inflation(iid) < 1.4
+    smooth = 0.0004 + ar1(rng, 2000, 0.8, scale=0.002)  # a carry-like, strongly autocorrelated stream
+    q = stats.autocorr_inflation(smooth)
+    assert q > 4
+    index = pd.date_range("2020-01-01", periods=2000, freq="1D", tz="UTC")
+    s = stats.summary(pd.Series(smooth, index=index))
+    assert s["sharpe_adj"] == pytest.approx(s["sharpe"] / np.sqrt(q))
+    assert s["vol_adj"] == pytest.approx(s["vol"] * np.sqrt(q))
+    # the same stream judged from monthly returns agrees with the adjusted figure, not the raw one
+    monthly = pd.Series(smooth, index=index).groupby(np.arange(2000) // 30).apply(lambda c: np.prod(1 + c) - 1)
+    monthly_sharpe = stats.sharpe(monthly, 365.25 / 30)
+    assert abs(s["sharpe_adj"] - monthly_sharpe) < abs(s["sharpe"] - monthly_sharpe)
+    # under the null, autocorrelated noise must not look significant more often than chance allows
+    hits = [stats.probabilistic_sharpe(ar1(np.random.default_rng(k), 1500, 0.8)) > 0.95 for k in range(200)]
+    assert np.mean(hits) < 0.12
+
+
+def test_thin_records_are_not_certified():
+    one_win = np.zeros(547)
+    one_win[100] = 0.05
+    assert np.isnan(stats.probabilistic_sharpe(one_win))
+    assert np.isnan(stats.deflated_sharpe(one_win, 20, 1 / 547))
+    with pytest.raises(ValueError, match="too thin"):
+        stats.bootstrap_sharpe_ci(one_win, 365.25)
+    few = np.zeros(547)
+    few[:40] = 0.01  # forty winners and not a single loss: still not a record one can judge
+    assert np.isnan(stats.probabilistic_sharpe(few))
+
+
+def test_constant_series_have_no_sharpe():
+    for n in (5, 10, 365, 1000):
+        assert np.isnan(stats.sharpe(np.full(n, 0.001), 365.25))
+    assert np.isnan(stats.probabilistic_sharpe(np.full(1000, 0.001)))
+    rng = np.random.default_rng(4)
+    noise = pd.DataFrame(rng.normal(0, 0.01, (2000, 20)))
+    base = stats.pbo_cscv(noise)["pbo"]
+    with_cash = noise.copy()
+    with_cash[20] = 0.0001  # a fixed-yield column must not hijack the selection
+    assert stats.pbo_cscv(with_cash)["pbo"] == pytest.approx(base, abs=0.08)
+    holed = noise.copy()
+    holed.iloc[5, 3] = np.nan
+    with pytest.raises(ValueError, match="NaN"):
+        stats.pbo_cscv(holed)
+
+
+def test_holes_do_not_shorten_the_years():
+    days = pd.date_range("2020-01-01", periods=1461, freq="1D", tz="UTC")
+    kept = days[:500].append(days[900:])  # a 400-day halt
+    r = pd.Series(0.001, index=kept) + np.random.default_rng(1).normal(0, 0.01, len(kept))
+    s = stats.summary(r)
+    assert s["years"] == pytest.approx(4.0, abs=0.01)
+    assert stats.periods_per_year(kept) == pytest.approx(365.25)
+    assert stats.effective_periods(kept) == pytest.approx(len(kept) / 4.0, rel=0.01)
+
+
+def test_bootstrap_scales_to_long_series_and_picks_longer_blocks_for_persistent_returns():
+    rng = np.random.default_rng(3)
+    long = rng.normal(0.00001, 0.001, 300_000)
+    ci = stats.bootstrap_sharpe_ci(long, periods=525_960, n_boot=40, seed=2)
+    assert ci["low"] < ci["high"]
+    assert stats.automatic_block_length(rng.normal(0, 0.01, 1500)) < 6
+    assert stats.automatic_block_length(ar1(rng, 1500, 0.8)) > 12
+    persistent = stats.bootstrap_sharpe_ci(0.0005 + ar1(rng, 1500, 0.8), 365.25, n_boot=200, seed=1)
+    assert persistent["mean_block"] > 12

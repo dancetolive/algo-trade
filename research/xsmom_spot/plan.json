@@ -1,0 +1,68 @@
+{
+  "track": "xsmom_spot",
+  "written_utc": "2026-11-12T15:46:00Z",
+  "written_before_any_simulation": true,
+  "seen_before_writing": "Only data shape and quality on the DESIGN segment (universe sizes over time, missing bars, extreme daily moves, list of ended instruments). No strategy or benchmark of this track had been simulated. The ledger of research/baseline (which already holds design and validation numbers of the BTC/ETH trend rule) was read.",
+  "question": "Does ranking the liquid spot coins against each other (relative strength) add anything over holding them (equal-weight basket of the same universe, buy and hold BTC) or over the trend baseline (research/baseline)?",
+  "hypotheses": {
+    "H1_momentum": "Holding the top K coins by past 14 to 56 day return beats the equal-weight basket of the same point-in-time universe after costs. Prior: weak. Roughly one chance in three that the design-sample active return has t > 2, and less that it survives validation.",
+    "H2_reversal": "Holding the bottom K coins (losers) by past 7 day return beats the basket (short-horizon reversal). Prior: about one in five after costs, long only; it also buys falling knives (LUNA, FTT are in the data).",
+    "H3_skip_day": "Skipping the most recent day changes little for lookbacks of 28 days and more; it may matter for 7 days.",
+    "H4_market_filter": "Going to cash while BTC is below its 100 or 200 day average improves Sharpe and drawdown a lot, but the same filter helps the basket and the trend baseline just as much. Ranking must therefore be judged against the basket WITH THE SAME FILTER, not against the unfiltered basket.",
+    "H5_concentration": "K = 3 is carried by one or two explosive coins; K = 10 converges to the basket.",
+    "H6_costs": "Weekly rebalancing on a 7 day lookback turns over more than 40 times a year (cost above 6% a year at 15 bp per side); daily rebalancing is worse and not worth it.",
+    "H7_universe": "Top-50 adds smaller, more explosive names: higher raw return, more fragile, more dependent on single coins.",
+    "H8_survivorship": "A survivors-only universe (the coins that are liquid at the END of the window, applied backwards) inflates every number; shown once as a warning."
+  },
+  "fixed_choices_not_tuned": {
+    "data": "Binance spot, daily bars, USDT pairs classified as 'coin'.",
+    "universe": "research.liquid_membership('spot', 30) and (..., 50): point-in-time, ranked over the whole market, delisted coins included. A member becomes a ranking candidate once it has 92 daily bars of history, so that every lookback (7 to 90 days, with or without the skipped day) ranks exactly the same candidates.",
+    "minimum_breadth": "No position unless at least 10 candidates exist.",
+    "window": "All simulations run on a common window starting 2018-09-01 (first month with at least 10 candidates; BTC 200-day average exists from 2018-03). Signals are computed on the full history from 2017-08-17 and then cut. DESIGN = 2018-09-01 .. 2023-12-31.",
+    "timing": "Decision at the close of a daily bar, filled at the next open. Weekly = decision at the close of the Sunday bar (Monday 00:00 UTC), filled at Monday's open; no decision on the other days (positions drift). The market filter is evaluated on the same schedule as the ranking.",
+    "weights": "Fully invested in the K selected coins when invested (sum of weights = 1), otherwise cash (USDT). Equal weights, or inverse EWMA volatility (half-life 20 days) normalised to 1.",
+    "venue": "research.VENUES['spot']: 10 bp fee + 5 bp slippage per side, long only, gross <= 1, minimum trade USD 10. Initial equity USD 2,000.",
+    "rebalance_band": "0.02 for the strategies (as in the brief). 0.005 for the equal-weight baskets, because a basket of 30 to 60 names has weights of 1.7 to 3.3% and a 2-point band would stop it from ever buying a new member.",
+    "weekday_of_weekly_rebalance": "Sunday close. Sensitivity to the weekday is checked only after the freeze, on the frozen configurations."
+  },
+  "grid_dimensions": {
+    "universe": [30, 50],
+    "lookback_days": [7, 14, 28, 56, 90],
+    "skip_most_recent_day": [0, 1],
+    "top_k": [3, 5, 10],
+    "weighting": ["equal", "inverse_vol"],
+    "schedule": ["weekly", "daily"],
+    "direction": ["momentum", "reversal"],
+    "market_filter_btc_sma_days": [0, 100, 200]
+  },
+  "why_not_the_full_grid": "The full factorial is 2*5*2*3*2*2*2*3 = 1,440 cells. The plan is a centre-and-spokes design of at most about 60 logged trials around the centre cell (universe 30, K 5, equal weight, weekly, no skip).",
+  "planned_stages": [
+    {"stage": 1, "what": "Signal and direction at the centre cell, no market filter", "cells": "momentum: 5 lookbacks x skip {0,1} = 10; reversal: 5 lookbacks x skip 0 = 5, plus reversal 7 days with skip 1 = 1", "trials": 16},
+    {"stage": 2, "what": "Market filter at the centre cell (skip 0)", "cells": "momentum: 5 lookbacks x filter {100, 200} = 10; reversal: lookbacks {7, 14, 28} x filter 200 = 3", "trials": 13},
+    {"stage": 3, "what": "Number of holdings and weighting, at the centre L* of the best momentum lookback plateau from stages 1-2 (plateau = mean design Sharpe of a lookback and its neighbours, averaged over filter none/100/200)", "cells": "K {3, 10} x filter {none, better of 100/200} = 4; inverse-vol at K 5 x filter {none, better} = 2; inverse-vol at K 10 with the better filter = 1", "trials": 7},
+    {"stage": 4, "what": "Universe top-50, weekly, equal weight, skip 0, momentum", "cells": "5 lookbacks x K 5 without filter = 5; L* with the better filter at K 5 and K 10 = 2", "trials": 7},
+    {"stage": 5, "what": "Daily rebalancing for comparison (universe 30, K 5, equal weight)", "cells": "momentum lookbacks {7, 28, 90} without filter = 3; reversal 7 days with skip 0 and skip 1 = 2; momentum L* with the better filter = 1", "trials": 6},
+    {"stage": 6, "what": "Reserve: fill in the neighbourhood (adjacent lookbacks, K, weighting, filter, universe) of the candidate configurations before freezing, so every frozen configuration has simulated neighbours on each axis", "trials": "at most 10"}
+  ],
+  "planned_trials_before_freeze": "49 planned + at most 10 reserve = at most 59",
+  "benchmarks": {
+    "list": [
+      "Equal-weight basket of all candidates of the same universe on the same schedule, with the same market filter (none / 100 / 200)",
+      "Buy and hold BTC from 2018-09-01",
+      "research/baseline blend_50_100_200 (BTC + ETH, mean of close > SMA 50/100/200), same window, same venue"
+    ],
+    "logging": "Benchmarks are not configurations of the ranking rule; like the benchmark in research/baseline they are simulated through research.run_trial with log=False and reported in full in results.json. The survivors-only warning run is treated the same way (it is deliberately contaminated and must not enter the PBO matrix). Every configuration of the ranking rule, including the robustness variants of the frozen ones, is logged."
+  },
+  "selection_rules_fixed_in_advance": [
+    "Primary evidence: design Sharpe net of costs, read on plateaus (a cell is judged by the mean of itself and its lookback neighbours), together with the active return against the equal-weight basket with the same filter and schedule (annualised mean and t-statistic of daily return differences).",
+    "Prefer lower turnover and K >= 5 when the evidence is otherwise similar; prefer round parameters; never pick an isolated best cell.",
+    "At most three frozen configurations: (i) the plateau centre of pure ranking without market filter, (ii) the plateau centre with a market filter (the only one a small account could actually hold), (iii) either a reversal configuration, if reversal shows a plateau on design, or a variant of (ii) along the axis that looked most uncertain.",
+    "If nothing beats the basket with the same filter on design, the best representative is still frozen and run on validation, so that the negative result is documented with out-of-sample numbers."
+  ],
+  "verdict_rules_fixed_in_advance": {
+    "promising": "On validation the frozen configuration (a) beats the equal-weight basket with the same filter and (b) beats the trend baseline, in Sharpe and CAGR, and (c) stays positive with doubled costs and with a 2-bar execution delay, and (d) does not depend on a single coin or on the weekday of the rebalance.",
+    "marginal": "Positive and better than the same-filter basket on validation, but not better than the trend baseline, or fragile on (c) or (d).",
+    "reject": "Anything else."
+  },
+  "after_the_freeze": "Each frozen configuration is run once on the full window (names starting 'final_'), then with doubled costs, exec_delay = 2, USD 500 and USD 5,000, without its single best coin, without rebalance band, and on the six other weekdays. Nothing is changed after validation numbers are seen."
+}

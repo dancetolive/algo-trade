@@ -114,7 +114,7 @@ def score(result: SimResult, min_days: int = 30) -> dict[str, dict]:
         if len(r) < min_days:
             continue
         years = mask.sum() / periods
-        row = stats.summary(r, 365.25)
+        row = stats.summary(r)
         safe_equity = equity_before[mask].where(equity_before[mask] > 0)
         row.update(
             turnover_per_year=float(result.turnover[mask].sum() / years),
@@ -224,8 +224,25 @@ def load_trials(track: str, registry: Path | None = None) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("trial_id")
 
 
-def trial_returns(track: str, segment: str | None = "design", venue: str | None = None, registry: Path | None = None) -> pd.DataFrame:
-    """Daily returns of every logged trial (columns = trial ids), cut to a segment."""
+def trial_returns(
+    track: str,
+    segment: str | None = "design",
+    venue: str | None = None,
+    registry: Path | None = None,
+    align: str = "flat",
+) -> pd.DataFrame:
+    """Daily returns of every logged trial (columns = trial ids), cut to a segment.
+
+    Trials need not cover the same days (a coin listed later, a market that
+    starts in 2020). The window is the span from the earliest first day to the
+    latest last day among the trials, and with ``align="flat"`` a trial has a
+    return of 0 on the days it was not running: it was in cash. That keeps every
+    trial on one window that does not move when another trial is logged, at the
+    price of diluting late starters. ``align="strict"`` raises instead if the
+    trials do not all cover the same days.
+    """
+    if align not in ("flat", "strict"):
+        raise ValueError("align must be 'flat' or 'strict'")
     folder = (registry or registry_root()) / track
     table = load_trials(track, registry)
     if table.empty:
@@ -235,38 +252,61 @@ def trial_returns(track: str, segment: str | None = "design", venue: str | None 
     columns = {}
     for trial_id in table.index:
         columns[trial_id] = pd.read_parquet(folder / "returns" / f"{trial_id}.parquet")["return"]
-    frame = pd.DataFrame(columns).dropna(how="any")
+    frame = pd.DataFrame(columns).sort_index()
     if segment is not None and len(frame):
         frame = frame[segments(frame.index)[segment]]
+    frame = frame.dropna(how="all")
+    if frame.isna().any().any():
+        if align == "strict":
+            partial = [str(c) for c in frame.columns[frame.isna().any()]]
+            raise ValueError(f"trials do not cover the same days: {partial[:6]}")
+        frame = frame.fillna(0.0)
     return frame
 
 
-def overfitting_report(track: str, chosen: str, segment: str = "design", venue: str | None = None, registry: Path | None = None) -> dict:
+def overfitting_report(
+    track: str,
+    chosen: str,
+    segment: str = "design",
+    venue: str | None = None,
+    registry: Path | None = None,
+    align: str = "flat",
+) -> dict:
     """Trial count, PBO and deflated Sharpe for ``chosen`` among a track's logged trials.
 
-    Only trials on the same venue and bar index are comparable; pass ``venue`` to
-    select them. Duplicate configurations are kept: they were tried.
+    Only trials on the same venue are comparable; pass ``venue`` to select them.
+    Duplicate configurations are kept: they were tried. All figures refer to the
+    window ``first``..``last`` of the report (see :func:`trial_returns`).
+    ``chosen_sharpe_adj`` is corrected for serial correlation and is the figure
+    to quote; PSR and the deflated Sharpe are NaN when the chosen trial has too
+    few active or losing days to be judged.
     """
-    matrix = trial_returns(track, segment, venue, registry)
+    matrix = trial_returns(track, segment, venue, registry, align)
     if chosen not in matrix.columns:
         raise KeyError(f"{chosen} is not among the comparable trials of {track}")
-    usable = matrix.loc[:, matrix.std() > 0]
+    periods = stats.effective_periods(matrix.index)
+    usable = matrix.loc[:, np.isfinite(stats.trial_sharpes(matrix))]
     sharpes = stats.trial_sharpes(usable)
-    sharpes = sharpes[np.isfinite(sharpes)]
     n_trials = int(matrix.shape[1])
+    picked = stats.summary(matrix[chosen], periods)
     report = {
         "track": track,
         "segment": segment,
         "trials": n_trials,
         "bars": int(len(matrix)),
+        "first": str(matrix.index[0]),
+        "last": str(matrix.index[-1]),
         "chosen": chosen,
-        "chosen_sharpe": stats.sharpe(matrix[chosen], stats.periods_per_year(matrix.index)),
+        "chosen_sharpe": picked["sharpe"],
+        "chosen_sharpe_adj": picked["sharpe_adj"],
+        "autocorr_inflation": picked["autocorr_inflation"],
+        "active_days": picked["active_bars"],
         "psr": stats.probabilistic_sharpe(matrix[chosen]),
     }
     if len(sharpes) >= 2:
         variance = float(np.var(sharpes, ddof=1))
         report["deflated_sharpe"] = stats.deflated_sharpe(matrix[chosen], n_trials, variance)
-        report["expected_max_sharpe_annualised"] = stats.expected_max_sharpe(n_trials, variance) * np.sqrt(stats.periods_per_year(matrix.index))
+        report["expected_max_sharpe_annualised"] = stats.expected_max_sharpe(n_trials, variance) * np.sqrt(periods)
     if usable.shape[1] >= 2 and len(usable) >= 40:
         blocks = 10 if len(usable) >= 200 else 4
         report.update({f"pbo_{k}": v for k, v in stats.pbo_cscv(usable, n_blocks=blocks).items()})

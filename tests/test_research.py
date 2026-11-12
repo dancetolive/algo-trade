@@ -140,3 +140,22 @@ def test_intraday_results_are_scored_and_logged_on_daily_returns(tmp_path):
     assert design["intraday_max_drawdown"] <= design["max_drawdown"] <= 0
     stored = research.trial_returns("h", None, registry=tmp_path)
     assert len(stored) == 250
+
+
+def test_a_late_starting_trial_does_not_move_the_window_of_the_others(tmp_path):
+    open_, close = panel(seed=3)
+    venue = research.VENUES["spot"]
+    weights = pd.DataFrame(0.5, index=close.index, columns=close.columns)
+    first, _ = research.run_trial("w", "early", {}, weights, open_, close, venue, registry=tmp_path)
+    second, _ = research.run_trial("w", "early2", {}, weights * [1.0, 0.0], open_, close, venue, registry=tmp_path)
+    before = research.overfitting_report("w", first["trial_id"], registry=tmp_path)
+    late = slice(200, None)  # a strategy that only exists from day 200 on
+    research.run_trial("w", "late", {}, weights.iloc[late], open_.iloc[late], close.iloc[late], venue, registry=tmp_path)
+    after = research.overfitting_report("w", first["trial_id"], registry=tmp_path)
+    assert after["bars"] == before["bars"] == 365
+    assert after["chosen_sharpe"] == pytest.approx(before["chosen_sharpe"])
+    assert after["trials"] == 3
+    matrix = research.trial_returns("w", "design", registry=tmp_path)
+    assert (matrix.iloc[:200, 2] == 0).all()  # the late trial was in cash before it started
+    with pytest.raises(ValueError, match="same days"):
+        research.trial_returns("w", "design", registry=tmp_path, align="strict")
