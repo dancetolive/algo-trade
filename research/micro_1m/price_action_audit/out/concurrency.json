@@ -1,0 +1,30 @@
+{
+ "design": {
+  "events": 48947,
+  "events_per_day": 33.54824092738337,
+  "open_positions_time_average": 5.591368165230582,
+  "open_positions_max": 68,
+  "open_positions_at_entry_median": 8.0,
+  "p90": 21.0,
+  "p99": 40.0,
+  "share_of_time_flat": 0.12846275072383337,
+  "net_long_positions_max": 68,
+  "net_short_positions_max": 38,
+  "share_of_total_gross_earned_while_more_than_10_open": 1.0255938179174378,
+  "share_of_events_with_more_than_10_open": 0.38312869021594786
+ },
+ "validation": {
+  "events": 13248,
+  "events_per_day": 24.22792931691817,
+  "open_positions_time_average": 4.037977963027874,
+  "open_positions_max": 43,
+  "open_positions_at_entry_median": 6.0,
+  "p90": 17.0,
+  "p99": 30.0,
+  "share_of_time_flat": 0.1861077667880783,
+  "net_long_positions_max": 43,
+  "net_short_positions_max": 31,
+  "share_of_total_gross_earned_while_more_than_10_open": 0.7215529574444974,
+  "share_of_events_with_more_than_10_open": 0.2677385265700483
+ }
+}

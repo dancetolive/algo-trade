@@ -1,0 +1,446 @@
+{
+ "resting_orders_design": [
+  {
+   "definition": "move5_abs2pct_dn",
+   "h": 15,
+   "signals": 7965,
+   "taker_gross_bp": 40.422492093267365,
+   "taker_net_bp": 26.679868113355248,
+   "order_alive_min": 1,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.97338355304457,
+   "gross_bp_if_filled": 38.24037222687424,
+   "gross_bp_of_unfilled_signals": 120.2242624901818,
+   "net_bp_per_signal": 28.589027730691278
+  },
+  {
+   "definition": "move5_abs2pct_dn",
+   "h": 15,
+   "signals": 7965,
+   "taker_gross_bp": 40.422492093267365,
+   "taker_net_bp": 26.679868113355248,
+   "order_alive_min": 1,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.7981167608286253,
+   "gross_bp_if_filled": 37.17868348563848,
+   "gross_bp_of_unfilled_signals": 92.92699222362499,
+   "net_bp_per_signal": 22.594336587345115
+  },
+  {
+   "definition": "move5_abs2pct_dn",
+   "h": 15,
+   "signals": 7965,
+   "taker_gross_bp": 40.422492093267365,
+   "taker_net_bp": 26.679868113355248,
+   "order_alive_min": 5,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.9863151286880101,
+   "gross_bp_if_filled": 38.445675609766056,
+   "gross_bp_of_unfilled_signals": 182.89836635369164,
+   "net_bp_per_signal": 29.170775592005292
+  },
+  {
+   "definition": "move5_abs2pct_dn",
+   "h": 15,
+   "signals": 7965,
+   "taker_gross_bp": 40.422492093267365,
+   "taker_net_bp": 26.679868113355248,
+   "order_alive_min": 5,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.890646578782172,
+   "gross_bp_if_filled": 35.92591835159629,
+   "gross_bp_of_unfilled_signals": 158.78477979499053,
+   "net_bp_per_signal": 24.095852452758827
+  },
+  {
+   "definition": "move1_z8_dn",
+   "h": 15,
+   "signals": 5008,
+   "taker_gross_bp": 44.17247165396549,
+   "taker_net_bp": 30.92486782009967,
+   "order_alive_min": 1,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.9690495207667732,
+   "gross_bp_if_filled": 43.222635638852275,
+   "gross_bp_of_unfilled_signals": 73.91153088844541,
+   "net_bp_per_signal": 33.53303729140377
+  },
+  {
+   "definition": "move1_z8_dn",
+   "h": 15,
+   "signals": 5008,
+   "taker_gross_bp": 44.17247165396549,
+   "taker_net_bp": 30.92486782009967,
+   "order_alive_min": 1,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.7509984025559105,
+   "gross_bp_if_filled": 51.99351936405109,
+   "gross_bp_of_unfilled_signals": 50.901090089166935,
+   "net_bp_per_signal": 32.55723369173246
+  },
+  {
+   "definition": "move1_z8_dn",
+   "h": 15,
+   "signals": 5008,
+   "taker_gross_bp": 44.17247165396549,
+   "taker_net_bp": 30.92486782009967,
+   "order_alive_min": 5,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.9802316293929713,
+   "gross_bp_if_filled": 43.04172400250012,
+   "gross_bp_of_unfilled_signals": 100.24156479581877,
+   "net_bp_per_signal": 33.74157810069351
+  },
+  {
+   "definition": "move1_z8_dn",
+   "h": 15,
+   "signals": 5008,
+   "taker_gross_bp": 44.17247165396549,
+   "taker_net_bp": 30.92486782009967,
+   "order_alive_min": 5,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.8282747603833865,
+   "gross_bp_if_filled": 47.6546476884841,
+   "gross_bp_of_unfilled_signals": 75.83945454632435,
+   "net_bp_per_signal": 32.320183428880206
+  },
+  {
+   "definition": "move1_z3_dn",
+   "h": 15,
+   "signals": 84676,
+   "taker_gross_bp": 7.8667541297742005,
+   "taker_net_bp": -5.446935699693417,
+   "order_alive_min": 1,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.9325074401247107,
+   "gross_bp_if_filled": 7.028764781449278,
+   "gross_bp_of_unfilled_signals": 19.44479033853784,
+   "net_bp_per_signal": -1.511357457744621
+  },
+  {
+   "definition": "move1_z3_dn",
+   "h": 15,
+   "signals": 84676,
+   "taker_gross_bp": 7.8667541297742005,
+   "taker_net_bp": -5.446935699693417,
+   "order_alive_min": 1,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.5439557844017195,
+   "gross_bp_if_filled": 11.77019541620599,
+   "gross_bp_of_unfilled_signals": 15.152584602837761,
+   "net_bp_per_signal": 1.6759436070486078
+  },
+  {
+   "definition": "move1_z3_dn",
+   "h": 15,
+   "signals": 84676,
+   "taker_gross_bp": 7.8667541297742005,
+   "taker_net_bp": -5.446935699693417,
+   "order_alive_min": 5,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.9644409277717417,
+   "gross_bp_if_filled": 6.776601033350677,
+   "gross_bp_of_unfilled_signals": 37.43412464436308,
+   "net_bp_per_signal": -1.8096258279963273
+  },
+  {
+   "definition": "move1_z3_dn",
+   "h": 15,
+   "signals": 84676,
+   "taker_gross_bp": 7.8667541297742005,
+   "taker_net_bp": -5.446935699693417,
+   "order_alive_min": 5,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.7243610940526242,
+   "gross_bp_if_filled": 8.983041277697833,
+   "gross_bp_of_unfilled_signals": 31.236179807356265,
+   "net_bp_per_signal": 0.22355590496568417
+  },
+  {
+   "definition": "fund_post5_big",
+   "h": 5,
+   "signals": 4270,
+   "taker_gross_bp": 8.62835366404625,
+   "taker_net_bp": -4.780545633377637,
+   "order_alive_min": 1,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.8742388758782201,
+   "gross_bp_if_filled": 6.314757380745301,
+   "gross_bp_of_unfilled_signals": 24.711509950009837,
+   "net_bp_per_signal": -2.085716791025244
+  },
+  {
+   "definition": "fund_post5_big",
+   "h": 5,
+   "signals": 4270,
+   "taker_gross_bp": 8.62835366404625,
+   "taker_net_bp": -4.780545633377637,
+   "order_alive_min": 1,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.3442622950819672,
+   "gross_bp_if_filled": 1.9541609681990821,
+   "gross_bp_of_unfilled_signals": 17.380816303566224,
+   "net_bp_per_signal": -2.339902430151604
+  },
+  {
+   "definition": "fund_post5_big",
+   "h": 5,
+   "signals": 4270,
+   "taker_gross_bp": 8.62835366404625,
+   "taker_net_bp": -4.780545633377637,
+   "order_alive_min": 5,
+   "bp_below_first_print": 0.0,
+   "fill_rate": 0.9365339578454333,
+   "gross_bp_if_filled": 5.182298069582766,
+   "gross_bp_of_unfilled_signals": 59.47992680891518,
+   "net_bp_per_signal": -3.298124126402464
+  },
+  {
+   "definition": "fund_post5_big",
+   "h": 5,
+   "signals": 4270,
+   "taker_gross_bp": 8.62835366404625,
+   "taker_net_bp": -4.780545633377637,
+   "order_alive_min": 5,
+   "bp_below_first_print": 10.0,
+   "fill_rate": 0.6391100702576112,
+   "gross_bp_if_filled": -1.110915890279946,
+   "gross_bp_of_unfilled_signals": 43.57862078527947,
+   "net_bp_per_signal": -6.28329964041545
+  }
+ ],
+ "cascade_anatomy_design": {
+  "all": {
+   "n": 7965,
+   "days": 697,
+   "mean_bp": 40.42249209326736,
+   "t_day": 10.068824658016323,
+   "median_bp": 49.14004914004843,
+   "hit": 0.5964846202134337
+  },
+  "first event in 60 minutes (same coin)": {
+   "n": 3372,
+   "days": 695,
+   "mean_bp": 11.667493617090477,
+   "t_day": 2.105973115404585,
+   "median_bp": 33.43830370008183,
+   "hit": 0.5898576512455516
+  },
+  "later legs of the same cascade": {
+   "n": 4593,
+   "days": 304,
+   "mean_bp": 61.53328130765196,
+   "t_day": 9.849916428431415,
+   "median_bp": 72.60221627818142,
+   "hit": 0.6013498802525582
+  },
+  "one position at a time per coin": {
+   "n": 6029,
+   "days": 696,
+   "mean_bp": 27.062767412815855,
+   "t_day": 6.8022573442476695,
+   "median_bp": 38.40782122904951,
+   "hit": 0.5860009951899154,
+   "share_of_events_taken": 0.7569671102184283
+  },
+  "by size of the 5-minute fall": {
+   "below -500 bp": {
+    "n": 324,
+    "days": 82,
+    "mean_bp": 189.59140878902122,
+    "t_day": 3.4991212193522205,
+    "median_bp": 176.4107868356668,
+    "hit": 0.6327160493827161
+   },
+   "-500 to -300 bp": {
+    "n": 1333,
+    "days": 283,
+    "mean_bp": 75.83183042643267,
+    "t_day": 5.667708760481976,
+    "median_bp": 98.83198562443907,
+    "hit": 0.6339084771192798
+   },
+   "-300 to -250 bp": {
+    "n": 1672,
+    "days": 374,
+    "mean_bp": 32.241532124040525,
+    "t_day": 4.2151759729674305,
+    "median_bp": 55.386943721676964,
+    "hit": 0.6094497607655502
+   },
+   "-250 to -200 bp": {
+    "n": 4636,
+    "days": 631,
+    "mean_bp": 22.76657925051794,
+    "t_day": 5.98030026454909,
+    "median_bp": 35.79098588936014,
+    "hit": 0.5785159620362381
+   }
+  },
+  "by number of coins falling in the same quarter hour": {
+   "1 coin": {
+    "n": 3534,
+    "days": 598,
+    "mean_bp": 35.40051814037086,
+    "t_day": 5.222265798661155,
+    "median_bp": 37.637856281415026,
+    "hit": 0.5783814374646293
+   },
+   "2-3 coins": {
+    "n": 2180,
+    "days": 295,
+    "mean_bp": 55.338445658774056,
+    "t_day": 6.344387206905692,
+    "median_bp": 63.738457856215014,
+    "hit": 0.6302752293577981
+   },
+   "4-6 coins": {
+    "n": 2251,
+    "days": 157,
+    "mean_bp": 33.861353566715444,
+    "t_day": 3.0230857241807993,
+    "median_bp": 52.56885029583324,
+    "hit": 0.5921812527765438
+   }
+  },
+  "single trades net of taker costs": {
+   "sd_bp": 328.98566560698293,
+   "worst_bp": -2949.0318471337578,
+   "best_bp": 2703.697361560121,
+   "share_below_minus_500bp": 0.04330906351995983,
+   "share_above_plus_500bp": 0.04883253828772282
+  }
+ },
+ "cost_stress": [
+  {
+   "segment": "design",
+   "costs": "gross",
+   "events": 7965,
+   "event_days": 697,
+   "calendar_days": 1461,
+   "bp_per_event": 40.422492093267365,
+   "annualised_sharpe_of_daily_sums": 4.073584404660188,
+   "share_of_event_days_positive": 0.7503586800573888,
+   "worst_day_bp_units": -7216.2660939162115,
+   "max_drawdown_bp_units": -7216.266093916216,
+   "max_events_in_one_day": 231
+  },
+  {
+   "segment": "design",
+   "costs": "taker costs of the study",
+   "events": 7965,
+   "event_days": 697,
+   "calendar_days": 1461,
+   "bp_per_event": 26.679868113355244,
+   "annualised_sharpe_of_daily_sums": 3.046603513166625,
+   "share_of_event_days_positive": 0.6857962697274032,
+   "worst_day_bp_units": -9064.266093916212,
+   "max_drawdown_bp_units": -9064.266093916216,
+   "max_events_in_one_day": 231
+  },
+  {
+   "segment": "design",
+   "costs": "+10 bp per round trip",
+   "events": 7965,
+   "event_days": 697,
+   "calendar_days": 1461,
+   "bp_per_event": 16.679868113355248,
+   "annualised_sharpe_of_daily_sums": 2.0311430169002276,
+   "share_of_event_days_positive": 0.6370157819225251,
+   "worst_day_bp_units": -10384.266093916212,
+   "max_drawdown_bp_units": -13648.963708878277,
+   "max_events_in_one_day": 231
+  },
+  {
+   "segment": "design",
+   "costs": "+20 bp per round trip",
+   "events": 7965,
+   "event_days": 697,
+   "calendar_days": 1461,
+   "bp_per_event": 6.679868113355248,
+   "annualised_sharpe_of_daily_sums": 0.8366186330542685,
+   "share_of_event_days_positive": 0.5667144906743186,
+   "worst_day_bp_units": -11704.266093916212,
+   "max_drawdown_bp_units": -19498.96370887822,
+   "max_events_in_one_day": 231
+  },
+  {
+   "segment": "design",
+   "costs": "+30 bp per round trip",
+   "events": 7965,
+   "event_days": 697,
+   "calendar_days": 1461,
+   "bp_per_event": -3.3201318866447513,
+   "annualised_sharpe_of_daily_sums": -0.40984325871422284,
+   "share_of_event_days_positive": 0.5222381635581061,
+   "worst_day_bp_units": -13024.266093916212,
+   "max_drawdown_bp_units": -36168.10788989572,
+   "max_events_in_one_day": 231
+  },
+  {
+   "segment": "validation",
+   "costs": "gross",
+   "events": 1004,
+   "event_days": 157,
+   "calendar_days": 547,
+   "bp_per_event": 47.11524256966676,
+   "annualised_sharpe_of_daily_sums": 3.7105494753516624,
+   "share_of_event_days_positive": 0.7388535031847133,
+   "worst_day_bp_units": -4753.735445365091,
+   "max_drawdown_bp_units": -4753.735445365091,
+   "max_events_in_one_day": 55
+  },
+  {
+   "segment": "validation",
+   "costs": "taker costs of the study",
+   "events": 1004,
+   "event_days": 157,
+   "calendar_days": 547,
+   "bp_per_event": 33.40607922305321,
+   "annualised_sharpe_of_daily_sums": 2.806657774762625,
+   "share_of_event_days_positive": 0.7006369426751592,
+   "worst_day_bp_units": -5135.735445365091,
+   "max_drawdown_bp_units": -5135.735445365091,
+   "max_events_in_one_day": 55
+  },
+  {
+   "segment": "validation",
+   "costs": "+10 bp per round trip",
+   "events": 1004,
+   "event_days": 157,
+   "calendar_days": 547,
+   "bp_per_event": 23.40607922305321,
+   "annualised_sharpe_of_daily_sums": 2.0293011018075973,
+   "share_of_event_days_positive": 0.6815286624203821,
+   "worst_day_bp_units": -5415.735445365091,
+   "max_drawdown_bp_units": -5415.735445365091,
+   "max_events_in_one_day": 55
+  },
+  {
+   "segment": "validation",
+   "costs": "+20 bp per round trip",
+   "events": 1004,
+   "event_days": 157,
+   "calendar_days": 547,
+   "bp_per_event": 13.406079223053213,
+   "annualised_sharpe_of_daily_sums": 1.1794597126788684,
+   "share_of_event_days_positive": 0.6305732484076433,
+   "worst_day_bp_units": -5695.735445365091,
+   "max_drawdown_bp_units": -5695.735445365091,
+   "max_events_in_one_day": 55
+  },
+  {
+   "segment": "validation",
+   "costs": "+30 bp per round trip",
+   "events": 1004,
+   "event_days": 157,
+   "calendar_days": 547,
+   "bp_per_event": 3.4060792230532124,
+   "annualised_sharpe_of_daily_sums": 0.2985698080739191,
+   "share_of_event_days_positive": 0.5414012738853503,
+   "worst_day_bp_units": -5975.735445365091,
+   "max_drawdown_bp_units": -6873.1802084163355,
+   "max_events_in_one_day": 55
+  }
+ ]
+}

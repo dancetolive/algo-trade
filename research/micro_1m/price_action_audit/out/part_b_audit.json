@@ -1,0 +1,53 @@
+{
+ "design_rule_trades_by_year_and_side": {
+  "2020:sell": 31,
+  "2020:buy": 37,
+  "2021:sell": 48,
+  "2021:buy": 44,
+  "2022:sell": 29,
+  "2022:buy": 31,
+  "2023:sell": 33,
+  "2023:buy": 39
+ },
+ "design_rule_trades": 292,
+ "design_mean_trade_size": 0.17922374429223747,
+ "design_brute_force_trades_checked": 24,
+ "design_brute_force_mismatches": 0,
+ "design_min_delay_minutes": 1,
+ "design_max_delay_minutes": 1440,
+ "design_trigger_before_t0": 0,
+ "design_fallback_share_small_sweep_240": 0.014084507042253502,
+ "design_fallback_share_big_sweep_240": 0.8063380281690141,
+ "validation_rule_trades_by_year_and_side": {
+  "2024:sell": 44,
+  "2024:buy": 39,
+  "2025:sell": 25,
+  "2025:buy": 24
+ },
+ "validation_rule_trades": 132,
+ "validation_mean_trade_size": 0.18434343434343436,
+ "validation_brute_force_trades_checked": 24,
+ "validation_brute_force_mismatches": 0,
+ "validation_min_delay_minutes": 1,
+ "validation_max_delay_minutes": 1440,
+ "validation_trigger_before_t0": 0,
+ "validation_fallback_share_small_sweep_240": 0.007575757575757569,
+ "validation_fallback_share_big_sweep_240": 0.9393939393939394,
+ "rows_compared": 96,
+ "rows_in_researcher_table": 96,
+ "max_abs_difference_by_column": {
+  "trades": 0.0,
+  "days": 0.0,
+  "triggered": 0.0,
+  "mean_wait_min": 0.0,
+  "mean_bp": 0.0,
+  "median_bp": 0.0,
+  "t": 0.0,
+  "worse": 0.0,
+  "delay_end_bp": 0.0,
+  "t_delay_end": 0.0,
+  "placebo_bp": 1.4210854715202004e-14,
+  "info_bp": 2.1316282072803006e-14,
+  "t_info": 2.6645352591003757e-15
+ }
+}

@@ -1,0 +1,296 @@
+[
+ {
+  "market": "um",
+  "symbol": "BTCUSDT",
+  "bars": 2103840,
+  "cuts": [
+   {
+    "market": "um",
+    "symbol": "BTCUSDT",
+    "cut": 648997,
+    "cut_time": "2021-03-26 16:36:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1021986,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   },
+   {
+    "market": "um",
+    "symbol": "BTCUSDT",
+    "cut": 715169,
+    "cut_time": "2021-05-11 15:28:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1122019,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "um",
+    "symbol": "BTCUSDT",
+    "cut": 1051200,
+    "cut_time": "2021-12-30 23:59:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1627779,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "um",
+    "symbol": "BTCUSDT",
+    "cut": 1224864,
+    "cut_time": "2022-04-30 14:23:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1882528,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "um",
+    "symbol": "BTCUSDT",
+    "cut": 1900182,
+    "cut_time": "2023-08-12 13:41:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 2977367,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   },
+   {
+    "market": "um",
+    "symbol": "BTCUSDT",
+    "cut": 2016409,
+    "cut_time": "2023-11-01 06:48:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 3189929,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   }
+  ],
+  "failures": [],
+  "audit_impl_failures": 0,
+  "seconds": 70.5
+ },
+ {
+  "market": "um",
+  "symbol": "SOLUSDT",
+  "bars": 1733340,
+  "cuts": [
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 465478,
+    "cut_time": "2021-08-03 12:57:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 858727,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   },
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 502063,
+    "cut_time": "2021-08-28 22:42:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 923130,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   },
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 751461,
+    "cut_time": "2022-02-18 03:20:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1356330,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 762781,
+    "cut_time": "2022-02-26 00:00:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1375874,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 766380,
+    "cut_time": "2022-02-28 11:59:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1375874,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 866460,
+    "cut_time": "2022-05-08 23:59:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1533776,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   },
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 983122,
+    "cut_time": "2022-07-29 00:21:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1732062,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "um",
+    "symbol": "SOLUSDT",
+    "cut": 1731192,
+    "cut_time": "2023-12-30 12:11:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 2894614,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   }
+  ],
+  "failures": [],
+  "audit_impl_failures": 0,
+  "seconds": 64.8
+ },
+ {
+  "market": "spot",
+  "symbol": "ETHUSDT",
+  "bars": 2103840,
+  "cuts": [
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 56281,
+    "cut_time": "2020-02-09 02:00:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 87343,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 512250,
+    "cut_time": "2020-12-21 17:29:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 822699,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 540227,
+    "cut_time": "2021-01-10 03:46:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 871757,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   },
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 689456,
+    "cut_time": "2021-04-23 18:55:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1129215,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   },
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 1051200,
+    "cut_time": "2021-12-30 23:59:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 1730702,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 1241020,
+    "cut_time": "2022-05-11 19:39:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 2056282,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 1685047,
+    "cut_time": "2023-03-16 04:06:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 2833256,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": false
+   },
+   {
+    "market": "spot",
+    "symbol": "ETHUSDT",
+    "cut": 1751451,
+    "cut_time": "2023-05-01 06:50:00+00:00",
+    "definitions": 70,
+    "events_before_cut": 2949720,
+    "context_same": true,
+    "rv_same": true,
+    "fwd_consistent": true,
+    "cheat_caught": true
+   }
+  ],
+  "failures": [],
+  "audit_impl_failures": 0,
+  "seconds": 71.2
+ }
+]

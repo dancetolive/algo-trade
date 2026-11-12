@@ -1,0 +1,260 @@
+{
+ "written_at_utc": "2026-11-12T14:31:21Z",
+ "basis": "DESIGN segment only: 1-minute bars before 2024-01-01, six USDT perpetuals pooled, day-clustered statistics",
+ "looks_on_design_grid": 630,
+ "selected": [
+  {
+   "name": "move5_abs2pct_dn",
+   "horizon": 15,
+   "trade_side": -1,
+   "trade": "BUY at the next minute's open after the 5-minute return (close to close) falls to -2% or lower (first bar of the crossing; no other such bar in the previous 4); hold 15 minutes",
+   "why": "Largest day-clustered |t| of any look whose gross size exceeds a taker round trip (design |t| about 10). Same sign in each of the four design years and in each of the six coins; survives a one- and two-minute late entry and a fill at the next minute's volume-weighted price. The pre-stated hypothesis was continuation; the data say reversal, so the trade is the opposite side.",
+   "part_b": {
+    "bullish": "move5_abs2pct_dn",
+    "bearish_mirror": "move5_abs2pct_up"
+   },
+   "design": {
+    "events": 7965,
+    "days": 697,
+    "gross_bp": 40.422492093267365,
+    "baseline_bp": 1.1624864273118165,
+    "excess_bp": 39.26000566595555,
+    "t_day": 9.892735324224375,
+    "hit_rate": 0.5981167608286253,
+    "net_perp_taker_bp": 26.679868113355248,
+    "net_perp_maker_bound_bp": 36.422492093267365,
+    "net_spot_taker_bp": 16.67986811335525,
+    "by_year": {
+     "2020": {
+      "events": 1492,
+      "gross_bp": 26.14183583372302,
+      "t_day": 3.9263769955512995
+     },
+     "2021": {
+      "events": 4882,
+      "gross_bp": 46.16528841743604,
+      "t_day": 8.02606944750435
+     },
+     "2022": {
+      "events": 1133,
+      "gross_bp": 26.67039464488197,
+      "t_day": 2.746617226086834
+     },
+     "2023": {
+      "events": 458,
+      "gross_bp": 59.74898531088607,
+      "t_day": 6.760937775042338
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 359,
+      "gross_bp": 30.44872965768188,
+      "t_day": 1.6502168223108793
+     },
+     "ETHUSDT": {
+      "events": 666,
+      "gross_bp": 53.45955713724537,
+      "t_day": 6.102722117462447
+     },
+     "SOLUSDT": {
+      "events": 1871,
+      "gross_bp": 40.982405628216185,
+      "t_day": 8.800901398533822
+     },
+     "BNBUSDT": {
+      "events": 848,
+      "gross_bp": 46.60427946778574,
+      "t_day": 5.420553705356369
+     },
+     "XRPUSDT": {
+      "events": 1620,
+      "gross_bp": 35.28889502760963,
+      "t_day": 5.927699058382897
+     },
+     "DOGEUSDT": {
+      "events": 2601,
+      "gross_bp": 39.240088680722394,
+      "t_day": 4.788278622093209
+     }
+    }
+   }
+  },
+  {
+   "name": "move1_z3_dn",
+   "horizon": 15,
+   "trade_side": -1,
+   "trade": "BUY at the next minute's open after a 1-minute return below -3 trailing (1-day) standard deviations; hold 15 minutes",
+   "why": "The most frequent bullish structure with a pooled day-clustered |t| above 7 (about ten events per coin and day), so it is the natural candidate for entry timing in Part B. Known weaknesses on design: gross size (about 8 bp) is below a taker round trip, it is weak in 2022 and on BTC. Expected NOT to pay costs; carried to validation to see whether even the gross effect persists.",
+   "part_b": {
+    "bullish": "move1_z3_dn",
+    "bearish_mirror": "move1_z3_up"
+   },
+   "design": {
+    "events": 84676,
+    "days": 1460,
+    "gross_bp": 7.8667541297742,
+    "baseline_bp": 0.6393156872466487,
+    "excess_bp": 7.227438442527553,
+    "t_day": 7.3587286874087505,
+    "hit_rate": 0.5680239973546224,
+    "net_perp_taker_bp": -5.446935699693419,
+    "net_perp_maker_bound_bp": 3.8667541297741996,
+    "net_spot_taker_bp": -15.446935699693416,
+    "by_year": {
+     "2020": {
+      "events": 18973,
+      "gross_bp": 7.3266139997839,
+      "t_day": 3.7648445027439355
+     },
+     "2021": {
+      "events": 21027,
+      "gross_bp": 19.448523484049737,
+      "t_day": 6.152808492976995
+     },
+     "2022": {
+      "events": 22260,
+      "gross_bp": 1.0635259291706718,
+      "t_day": 0.9147799833337461
+     },
+     "2023": {
+      "events": 22416,
+      "gross_bp": 4.215704621360067,
+      "t_day": 2.9899405660981957
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 14756,
+      "gross_bp": 2.2312250851938598,
+      "t_day": 1.7671185252818145
+     },
+     "ETHUSDT": {
+      "events": 14301,
+      "gross_bp": 6.226105267323865,
+      "t_day": 5.221608403151024
+     },
+     "SOLUSDT": {
+      "events": 11825,
+      "gross_bp": 12.078487716263988,
+      "t_day": 6.553373346708801
+     },
+     "BNBUSDT": {
+      "events": 15457,
+      "gross_bp": 6.558751477604507,
+      "t_day": 5.593029275019665
+     },
+     "XRPUSDT": {
+      "events": 14403,
+      "gross_bp": 7.503962533478424,
+      "t_day": 4.841001720405468
+     },
+     "DOGEUSDT": {
+      "events": 13934,
+      "gross_bp": 13.77030807404886,
+      "t_day": 5.340007680588887
+     }
+    }
+   }
+  },
+  {
+   "name": "fund_post5_big",
+   "horizon": 5,
+   "trade_side": 1,
+   "trade": "Perpetuals only. At the 00:00 / 08:00 / 16:00 UTC funding stamp, if the last funding rate already paid was >= +3 bp BUY at the stamp's first print (<= -3 bp: SELL); hold 5 minutes",
+   "why": "A different family (time structure) with a mechanical explanation (positions avoid the payment and return after it). Design |t| about 5, same sign in all four years and all six coins. Gross size (about 8 bp) is below a taker round trip.",
+   "part_b": {
+    "bullish": "fund_post5_big (last funding >= +3 bp)",
+    "bearish_mirror": "fund_post5_big (last funding <= -3 bp)"
+   },
+   "design": {
+    "events": 4270,
+    "days": 766,
+    "gross_bp": 8.628353664046251,
+    "baseline_bp": 0.20878131798184188,
+    "excess_bp": 8.41957234606441,
+    "t_day": 4.978854488884187,
+    "hit_rate": 0.5608899297423887,
+    "net_perp_taker_bp": -4.780545633377637,
+    "net_perp_maker_bound_bp": 4.6283536640462515,
+    "net_spot_taker_bp": -14.780545633377635,
+    "by_year": {
+     "2020": {
+      "events": 1270,
+      "gross_bp": 9.230402907631003,
+      "t_day": 4.219643855946949
+     },
+     "2021": {
+      "events": 2355,
+      "gross_bp": 8.614957488459073,
+      "t_day": 3.1401956232655257
+     },
+     "2022": {
+      "events": 286,
+      "gross_bp": 10.108985520257745,
+      "t_day": 1.2272334771607143
+     },
+     "2023": {
+      "events": 359,
+      "gross_bp": 5.406862698248706,
+      "t_day": 2.886764753718116
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 569,
+      "gross_bp": 5.7808639606926375,
+      "t_day": 2.8928503319224763
+     },
+     "ETHUSDT": {
+      "events": 693,
+      "gross_bp": 11.722480488142583,
+      "t_day": 5.325823581650097
+     },
+     "SOLUSDT": {
+      "events": 614,
+      "gross_bp": 8.776584339331718,
+      "t_day": 2.21496244630403
+     },
+     "BNBUSDT": {
+      "events": 1051,
+      "gross_bp": 5.790531958807096,
+      "t_day": 3.4369577251037033
+     },
+     "XRPUSDT": {
+      "events": 775,
+      "gross_bp": 11.294054854513561,
+      "t_day": 3.7230565073208055
+     },
+     "DOGEUSDT": {
+      "events": 568,
+      "gross_bp": 9.159357725803924,
+      "t_day": 1.6975650836471792
+     }
+    }
+   }
+  }
+ ],
+ "definition_names_to_evaluate": [
+  "move5_abs2pct_dn",
+  "move1_z3_dn",
+  "fund_post5_big"
+ ],
+ "horizons_to_evaluate": {
+  "move5_abs2pct_dn": 15,
+  "move1_z3_dn": 15,
+  "fund_post5_big": 5
+ },
+ "part_b_mirror_names": [
+  "move5_abs2pct_up",
+  "move1_z3_up"
+ ],
+ "validation_plan": [
+  "Evaluate only the three (definition, horizon) pairs above on 2024-01-01 .. 2025-06-30, once.",
+  "Same statistics as on design: events, days, gross bp on the trade side, matched baseline, day-clustered t of the excess, net after a perpetual taker round trip, perpetual maker bound, spot taker.",
+  "Pooled over the six perpetuals; by coin and by calendar year as a breakdown; BTC/ETH spot as a cross-check of the two price-based structures.",
+  "Execution robustness of the same pairs only: entry one and two minutes late, fills at the minute's volume-weighted price, buy at the next bar's high.",
+  "Part B uses the event flags of the selected structures and of their mirrors (part_b_mirror_names) to time entries and exits; no forward-return statistic of the mirrors is computed on validation.",
+  "A structure counts as confirmed if the validation estimate has the design sign with day-clustered |t| > 2 (one-sided test of three pre-registered pairs) and as paying costs only if gross minus the taker round trip is positive with the same margin."
+ ]
+}

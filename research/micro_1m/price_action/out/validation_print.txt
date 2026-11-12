@@ -1,0 +1,44 @@
+segment validation: the 3 pre-registered pairs, six perpetuals pooled
+           def_id   h  events  days  gross  base  excess  se_excess  t_excess  t_gross  t_naive  hit  cost_taker  net_taker  net_maker_bound
+  sweep_N30_x2_k3   5  307372   547   0.35 -0.06    0.41       0.10      4.26     3.61     7.25 0.51       13.40     -13.06            -3.65
+sweep_N240_x10_k1  60   13249   546   9.66 -0.47   10.13       2.65      3.82     3.64     7.30 0.57       13.50      -3.84             5.66
+sweep_N240_x10_k1 240   13248   546  18.82  0.11   18.70       5.41      3.46     3.48     8.18 0.55       13.50       5.32            14.82
+
+BTC and ETH only: perpetuals versus spot
+           def_id   h  events_perp_btc_eth  gross_perp_btc_eth  t_excess_perp_btc_eth  net_taker_perp_btc_eth  events_spot  gross_spot  t_excess_spot  net_taker_spot
+  sweep_N30_x2_k3   5                91769                0.28                   3.44                  -11.72        85990        0.27           3.19          -21.73
+sweep_N240_x10_k1  60                 3330                4.93                   1.90                   -7.07         2759        4.35           1.51          -17.65
+sweep_N240_x10_k1 240                 3329                4.01                   0.59                   -7.99         2759        4.28           0.58          -17.72
+
+by year, coin and direction
+           def_id   h        by    value    events   days  gross   base  excess  t_excess  hit    net
+sweep_N240_x10_k1  60      year     2024   9067.00 365.00   9.51  -0.31    9.81      3.23 0.57  -4.01
+sweep_N240_x10_k1  60      year     2025   4182.00 181.00   9.98  -0.84   10.82      2.07 0.56  -3.47
+sweep_N240_x10_k1  60    symbol  BNBUSDT   1067.00 351.00  10.45  -0.34   10.78      2.83 0.58  -3.55
+sweep_N240_x10_k1  60    symbol  BTCUSDT   1205.00 392.00   8.22   0.31    7.91      2.13 0.58  -3.78
+sweep_N240_x10_k1  60    symbol DOGEUSDT   3420.00 508.00  11.07  -0.57   11.64      2.53 0.57  -2.93
+sweep_N240_x10_k1  60    symbol  ETHUSDT   2125.00 490.00   3.07  -0.43    3.50      1.18 0.55  -8.93
+sweep_N240_x10_k1  60    symbol  SOLUSDT   3025.00 521.00  10.31  -1.10   11.41      3.11 0.55  -3.69
+sweep_N240_x10_k1  60    symbol  XRPUSDT   2407.00 468.00  13.00  -0.04   13.04      2.40 0.59  -1.00
+sweep_N240_x10_k1  60 direction    short   5672.00 525.00   2.14  -3.04    5.18      1.25 0.56 -11.37
+sweep_N240_x10_k1  60 direction     long   7577.00 526.00  15.28   1.44   13.84      3.90 0.58   1.79
+sweep_N240_x10_k1 240      year     2024   9067.00 365.00  20.67   0.90   19.77      3.01 0.56   7.15
+sweep_N240_x10_k1 240      year     2025   4181.00 181.00  14.79  -1.60   16.39      1.72 0.54   1.34
+sweep_N240_x10_k1 240    symbol  BNBUSDT   1067.00 351.00  19.11   3.55   15.56      1.75 0.56   5.11
+sweep_N240_x10_k1 240    symbol  BTCUSDT   1204.00 392.00  10.52   1.48    9.04      1.53 0.55  -1.48
+sweep_N240_x10_k1 240    symbol DOGEUSDT   3420.00 508.00  19.39  -0.83   20.22      2.36 0.55   5.39
+sweep_N240_x10_k1 240    symbol  ETHUSDT   2125.00 490.00   0.31   0.02    0.29      0.04 0.53 -11.69
+sweep_N240_x10_k1 240    symbol  SOLUSDT   3025.00 521.00  22.75  -1.49   24.24      3.20 0.55   8.75
+sweep_N240_x10_k1 240    symbol  XRPUSDT   2407.00 468.00  33.41   1.33   32.08      3.40 0.58  19.41
+sweep_N240_x10_k1 240 direction    short   5672.00 525.00  -2.47 -12.30    9.83      1.29 0.52 -15.98
+sweep_N240_x10_k1 240 direction     long   7576.00 526.00  34.75   9.41   25.35      2.84 0.58  21.26
+  sweep_N30_x2_k3   5      year     2024 203185.00 366.00   0.32  -0.05    0.37      2.98 0.51 -13.08
+  sweep_N30_x2_k3   5      year     2025 104187.00 181.00   0.40  -0.08    0.48      3.29 0.52 -13.02
+  sweep_N30_x2_k3   5    symbol  BNBUSDT  44693.00 547.00   0.34  -0.05    0.39      2.95 0.51 -13.66
+  sweep_N30_x2_k3   5    symbol  BTCUSDT  41841.00 547.00   0.27  -0.03    0.30      2.79 0.52 -11.73
+  sweep_N30_x2_k3   5    symbol DOGEUSDT  60414.00 547.00   0.26  -0.07    0.33      1.86 0.51 -13.74
+  sweep_N30_x2_k3   5    symbol  ETHUSDT  49928.00 547.00   0.29  -0.05    0.35      2.95 0.53 -11.71
+  sweep_N30_x2_k3   5    symbol  SOLUSDT  61175.00 547.00   0.59  -0.07    0.66      4.45 0.52 -13.41
+  sweep_N30_x2_k3   5    symbol  XRPUSDT  49321.00 547.00   0.27  -0.08    0.35      1.99 0.51 -13.73
+  sweep_N30_x2_k3   5 direction    short 152207.00 547.00   0.07  -0.15    0.22      1.81 0.51 -13.34
+  sweep_N30_x2_k3   5 direction     long 155165.00 547.00   0.62   0.03    0.59      3.84 0.52 -12.79

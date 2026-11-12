@@ -1,0 +1,783 @@
+{
+ "segment": "validation",
+ "pairs": [
+  {
+   "name": "move5_abs2pct_dn",
+   "horizon": 15,
+   "trade": "BUY at the next minute's open after the 5-minute return (close to close) falls to -2% or lower (first bar of the crossing; no other such bar in the previous 4); hold 15 minutes",
+   "perp_pooled": {
+    "events": 1004,
+    "days": 157,
+    "gross_bp": 47.11524256966676,
+    "baseline_bp": 0.12093667063893528,
+    "excess_bp": 46.99430589902782,
+    "t_day": 5.036932816893745,
+    "t_naive": 6.085845010238395,
+    "hit_rate": 0.6404382470119522,
+    "cost_perp_taker_bp": 13.709163346613545,
+    "net_perp_taker_bp": 33.40607922305322,
+    "net_perp_maker_bound_bp": 43.11524256966676,
+    "net_spot_taker_bp": 23.406079223053215,
+    "t_net_perp_taker": 3.5573082692434066,
+    "bootstrap_excess_ci95_bp": [
+     28.650188843640898,
+     65.92985169059035
+    ],
+    "bootstrap_p_two_sided": 0.0,
+    "by_year": {
+     "2024": {
+      "events": 685,
+      "days": 108,
+      "gross_bp": 50.739369561525194,
+      "excess_bp": 49.961651951347484,
+      "t_day": 4.283354160687787
+     },
+     "2025": {
+      "events": 319,
+      "days": 49,
+      "gross_bp": 39.33302630188297,
+      "excess_bp": 40.62241860799657,
+      "t_day": 2.627996031350537
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 37,
+      "days": 24,
+      "gross_bp": 75.39488426193803,
+      "excess_bp": 75.15780332853899,
+      "t_day": 2.857343367028855,
+      "net_perp_taker_bp": 63.39488426193803
+     },
+     "ETHUSDT": {
+      "events": 109,
+      "days": 63,
+      "gross_bp": 50.420138631741324,
+      "excess_bp": 50.881413411261015,
+      "t_day": 2.892851928771318,
+      "net_perp_taker_bp": 38.420138631741324
+     },
+     "SOLUSDT": {
+      "events": 172,
+      "days": 76,
+      "gross_bp": 73.52961855107621,
+      "excess_bp": 73.98417731981117,
+      "t_day": 5.537026232935287,
+      "net_perp_taker_bp": 59.52961855107621
+     },
+     "BNBUSDT": {
+      "events": 41,
+      "days": 27,
+      "gross_bp": 21.157162151704497,
+      "excess_bp": 20.63624868942766,
+      "t_day": 0.5671073523776028,
+      "net_perp_taker_bp": 7.157162151704497
+     },
+     "XRPUSDT": {
+      "events": 272,
+      "days": 94,
+      "gross_bp": 36.992854087325036,
+      "excess_bp": 36.716840091254745,
+      "t_day": 2.7445169283275646,
+      "net_perp_taker_bp": 22.992854087325036
+     },
+     "DOGEUSDT": {
+      "events": 373,
+      "days": 119,
+      "gross_bp": 41.39866852717565,
+      "excess_bp": 41.01079125347238,
+      "t_day": 3.9351822348659415,
+      "net_perp_taker_bp": 27.39866852717565
+     }
+    }
+   },
+   "perp_btc_eth": {
+    "events": 146,
+    "days": 67,
+    "gross_bp": 56.74935499007885,
+    "baseline_bp": -0.28429422213618183,
+    "excess_bp": 57.03364921221503,
+    "t_day": 3.7782225620239593,
+    "t_naive": 3.473530375421661,
+    "hit_rate": 0.6917808219178082,
+    "cost_perp_taker_bp": 12.0,
+    "net_perp_taker_bp": 44.74935499007885,
+    "net_perp_maker_bound_bp": 52.74935499007885,
+    "net_spot_taker_bp": 34.74935499007885,
+    "t_net_perp_taker": 2.957124507860301,
+    "bootstrap_excess_ci95_bp": [
+     29.41843843742476,
+     87.21331638947296
+    ],
+    "bootstrap_p_two_sided": 0.0,
+    "by_year": {
+     "2024": {
+      "events": 84,
+      "days": 35,
+      "gross_bp": 74.3074301294289,
+      "excess_bp": 74.22946502142909,
+      "t_day": 3.326037018636398
+     },
+     "2025": {
+      "events": 62,
+      "days": 32,
+      "gross_bp": 32.960995123862666,
+      "excess_bp": 33.736092309408896,
+      "t_day": 1.7632414290022924
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 37,
+      "days": 24,
+      "gross_bp": 75.39488426193803,
+      "excess_bp": 75.15780332853899,
+      "t_day": 2.857343367028855,
+      "net_perp_taker_bp": 63.39488426193803
+     },
+     "ETHUSDT": {
+      "events": 109,
+      "days": 63,
+      "gross_bp": 50.420138631741324,
+      "excess_bp": 50.881413411261015,
+      "t_day": 2.892851928771318,
+      "net_perp_taker_bp": 38.420138631741324
+     }
+    }
+   },
+   "spot_btc_eth": {
+    "events": 139,
+    "days": 65,
+    "gross_bp": 49.987127055303766,
+    "baseline_bp": -0.29557828468944475,
+    "excess_bp": 50.28270533999322,
+    "t_day": 2.883088180843674,
+    "t_naive": 2.8734084389949177,
+    "hit_rate": 0.6762589928057554,
+    "cost_perp_taker_bp": 12.0,
+    "net_perp_taker_bp": 37.987127055303766,
+    "net_perp_maker_bound_bp": 45.987127055303766,
+    "net_spot_taker_bp": 27.987127055303766,
+    "t_net_perp_taker": 2.1731633883889057,
+    "bootstrap_excess_ci95_bp": [
+     16.18539491874367,
+     85.52794847721368
+    ],
+    "bootstrap_p_two_sided": 0.00625,
+    "by_year": {
+     "2024": {
+      "events": 78,
+      "days": 33,
+      "gross_bp": 71.22720285434018,
+      "excess_bp": 71.1501578695779,
+      "t_day": 2.78403787097753
+     },
+     "2025": {
+      "events": 61,
+      "days": 32,
+      "gross_bp": 22.827685869650658,
+      "excess_bp": 23.59973325298328,
+      "t_day": 1.0205034288246781
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 33,
+      "days": 21,
+      "gross_bp": 69.8034336388049,
+      "excess_bp": 69.67840006494909,
+      "t_day": 2.3974673214449704,
+      "net_perp_taker_bp": 57.803433638804904
+     },
+     "ETHUSDT": {
+      "events": 106,
+      "days": 62,
+      "gross_bp": 43.817899534025116,
+      "excess_bp": 44.24442301995978,
+      "t_day": 2.3788538915861785,
+      "net_perp_taker_bp": 31.817899534025116
+     }
+    }
+   },
+   "execution_perp": {
+    "next_open (convention)": {
+     "n": 1004,
+     "mean_bp": 47.11524256966676,
+     "t_day": 5.017968005027919,
+     "median_bp": 67.37298569175154,
+     "trimmed_1pct_mean_bp": 49.76359306485554,
+     "hit_rate": 0.6404382470119522
+    },
+    "one minute late": {
+     "n": 1004,
+     "mean_bp": 39.98354721066111,
+     "t_day": 4.689153326748129,
+     "median_bp": 51.470471165839804,
+     "trimmed_1pct_mean_bp": 41.569630205541465,
+     "hit_rate": 0.600597609561753
+    },
+    "two minutes late": {
+     "n": 1004,
+     "mean_bp": 38.66906463134075,
+     "t_day": 4.874456013435166,
+     "median_bp": 46.788616113262464,
+     "trimmed_1pct_mean_bp": 36.61218338357935,
+     "hit_rate": 0.6145418326693227
+    },
+    "minute vwap to minute vwap": {
+     "n": 1004,
+     "mean_bp": 43.91515279824036,
+     "t_day": 4.725763567634355,
+     "median_bp": 64.0228002434784,
+     "trimmed_1pct_mean_bp": 47.52732428303822,
+     "hit_rate": 0.6235059760956175
+    },
+    "worst print of the first minute": {
+     "n": 1004,
+     "mean_bp": -24.205753009179134,
+     "t_day": -2.477706744381822,
+     "median_bp": 1.7071198505735907,
+     "trimmed_1pct_mean_bp": -19.95629212104043,
+     "hit_rate": 0.5029880478087649
+    },
+    "concentration": {
+     "event_days": 157,
+     "share_of_days_positive": 0.7388535031847133,
+     "top5_days_share_of_total": 0.30145918935139593,
+     "top20_days_share_of_total": 0.7215231980911742
+    }
+   },
+   "execution_spot_btc_eth": {
+    "next_open (convention)": {
+     "n": 139,
+     "mean_bp": 49.987127055303766,
+     "t_day": 2.8596580691448663,
+     "median_bp": 87.28488600963314,
+     "trimmed_1pct_mean_bp": 58.00480669552375,
+     "hit_rate": 0.6762589928057554
+    },
+    "one minute late": {
+     "n": 139,
+     "mean_bp": 27.30362792554597,
+     "t_day": 1.7872276355160308,
+     "median_bp": 49.577121695938416,
+     "trimmed_1pct_mean_bp": 34.74505263949637,
+     "hit_rate": 0.6402877697841727
+    },
+    "two minutes late": {
+     "n": 139,
+     "mean_bp": 36.73548171876014,
+     "t_day": 3.83501582831278,
+     "median_bp": 46.65318847011379,
+     "trimmed_1pct_mean_bp": 36.02245323097919,
+     "hit_rate": 0.6834532374100719
+    },
+    "minute vwap to minute vwap": {
+     "n": 139,
+     "mean_bp": 35.03351846367194,
+     "t_day": 2.2339418802640414,
+     "median_bp": 66.77792612921785,
+     "trimmed_1pct_mean_bp": 42.05891175536749,
+     "hit_rate": 0.7050359712230215
+    },
+    "worst print of the first minute": {
+     "n": 139,
+     "mean_bp": -24.108289339360294,
+     "t_day": -1.440587919991755,
+     "median_bp": 4.606258286596887,
+     "trimmed_1pct_mean_bp": -15.862978335884808,
+     "hit_rate": 0.5251798561151079
+    },
+    "concentration": {
+     "event_days": 65,
+     "share_of_days_positive": 0.7538461538461538,
+     "top5_days_share_of_total": 0.48458449897669514,
+     "top20_days_share_of_total": 1.081224350977589
+    }
+   }
+  },
+  {
+   "name": "move1_z3_dn",
+   "horizon": 15,
+   "trade": "BUY at the next minute's open after a 1-minute return below -3 trailing (1-day) standard deviations; hold 15 minutes",
+   "perp_pooled": {
+    "events": 35439,
+    "days": 547,
+    "gross_bp": 3.6770293916556587,
+    "baseline_bp": 0.014479956598721673,
+    "excess_bp": 3.662549435056937,
+    "t_day": 3.179748709466236,
+    "t_naive": 7.112457032032191,
+    "hit_rate": 0.5440898445215723,
+    "cost_perp_taker_bp": 13.29964163774373,
+    "net_perp_taker_bp": -9.622612246088071,
+    "net_perp_maker_bound_bp": -0.3229706083443413,
+    "net_spot_taker_bp": -19.62261224608807,
+    "t_net_perp_taker": -8.329527893492395,
+    "bootstrap_excess_ci95_bp": [
+     1.168283194662481,
+     6.220928356255238
+    ],
+    "bootstrap_p_two_sided": 0.00425,
+    "by_year": {
+     "2024": {
+      "events": 23411,
+      "days": 366,
+      "gross_bp": 4.466590973519425,
+      "excess_bp": 4.171755577303873,
+      "t_day": 3.129646656418696
+     },
+     "2025": {
+      "events": 12028,
+      "days": 181,
+      "gross_bp": 2.1402463692901246,
+      "excess_bp": 2.671443266438461,
+      "t_day": 1.2189250535093745
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 6501,
+      "days": 532,
+      "gross_bp": 1.6411658540777347,
+      "excess_bp": 1.7089732182769224,
+      "t_day": 1.722737925727934,
+      "net_perp_taker_bp": -10.358834145922266
+     },
+     "ETHUSDT": {
+      "events": 5909,
+      "days": 536,
+      "gross_bp": 0.449322449832449,
+      "excess_bp": 0.7619472869415055,
+      "t_day": 0.5102825791787526,
+      "net_perp_taker_bp": -11.550677550167551
+     },
+     "SOLUSDT": {
+      "events": 5127,
+      "days": 529,
+      "gross_bp": 6.609938003148193,
+      "excess_bp": 6.916409520759769,
+      "t_day": 4.196862125758026,
+      "net_perp_taker_bp": -7.390061996851807
+     },
+     "BNBUSDT": {
+      "events": 6212,
+      "days": 536,
+      "gross_bp": 2.399369185578096,
+      "excess_bp": 2.243875115598805,
+      "t_day": 2.1530332518457183,
+      "net_perp_taker_bp": -11.600630814421905
+     },
+     "XRPUSDT": {
+      "events": 6151,
+      "days": 527,
+      "gross_bp": 6.309917572143276,
+      "excess_bp": 5.827541188838488,
+      "t_day": 2.5062545281710364,
+      "net_perp_taker_bp": -7.690082427856724
+     },
+     "DOGEUSDT": {
+      "events": 5539,
+      "days": 531,
+      "gross_bp": 5.304141998241628,
+      "excess_bp": 5.224791177982757,
+      "t_day": 2.9617295157778694,
+      "net_perp_taker_bp": -8.695858001758372
+     }
+    }
+   },
+   "perp_btc_eth": {
+    "events": 12410,
+    "days": 543,
+    "gross_bp": 1.073671681983827,
+    "baseline_bp": -0.18437677978536135,
+    "excess_bp": 1.2580484617691887,
+    "t_day": 1.1371969748301223,
+    "t_naive": 1.6345835418469228,
+    "hit_rate": 0.5409347300564061,
+    "cost_perp_taker_bp": 12.0,
+    "net_perp_taker_bp": -10.926328318016173,
+    "net_perp_maker_bound_bp": -2.926328318016173,
+    "net_spot_taker_bp": -20.92632831801617,
+    "t_net_perp_taker": -9.84127115509992,
+    "bootstrap_excess_ci95_bp": [
+     -0.9535629059447626,
+     3.492930684535563
+    ],
+    "bootstrap_p_two_sided": 0.26175,
+    "by_year": {
+     "2024": {
+      "events": 8195,
+      "days": 363,
+      "gross_bp": 1.6129896706992841,
+      "excess_bp": 1.6861053509528168,
+      "t_day": 1.25276423974319
+     },
+     "2025": {
+      "events": 4215,
+      "days": 180,
+      "gross_bp": 0.025104441764807407,
+      "excess_bp": 0.42580025136353455,
+      "t_day": 0.21873090713271617
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 6501,
+      "days": 532,
+      "gross_bp": 1.6411658540777347,
+      "excess_bp": 1.7089732182769224,
+      "t_day": 1.722737925727934,
+      "net_perp_taker_bp": -10.358834145922266
+     },
+     "ETHUSDT": {
+      "events": 5909,
+      "days": 536,
+      "gross_bp": 0.449322449832449,
+      "excess_bp": 0.7619472869415055,
+      "t_day": 0.5102825791787526,
+      "net_perp_taker_bp": -11.550677550167551
+     }
+    }
+   },
+   "spot_btc_eth": {
+    "events": 12745,
+    "days": 542,
+    "gross_bp": 0.7015187596048412,
+    "baseline_bp": -0.17139923672684787,
+    "excess_bp": 0.8729179963316895,
+    "t_day": 0.8070010206910445,
+    "t_naive": 1.1116008967616218,
+    "hit_rate": 0.5409180070615928,
+    "cost_perp_taker_bp": 12.0,
+    "net_perp_taker_bp": -11.298481240395159,
+    "net_perp_maker_bound_bp": -3.2984812403951587,
+    "net_spot_taker_bp": -21.29848124039516,
+    "t_net_perp_taker": -10.401870616404938,
+    "bootstrap_excess_ci95_bp": [
+     -1.3755178547369638,
+     3.04455173764213
+    ],
+    "bootstrap_p_two_sided": 0.43475,
+    "by_year": {
+     "2024": {
+      "events": 8427,
+      "days": 362,
+      "gross_bp": 1.2725965385318962,
+      "excess_bp": 1.3116720877775527,
+      "t_day": 0.9963274195434665
+     },
+     "2025": {
+      "events": 4318,
+      "days": 180,
+      "gross_bp": -0.41299546990379515,
+      "excess_bp": 0.016646405638246074,
+      "t_day": 0.008754438321928668
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 6720,
+      "days": 534,
+      "gross_bp": 1.2926109564573132,
+      "excess_bp": 1.3468651534419664,
+      "t_day": 1.4297706362291527,
+      "net_perp_taker_bp": -10.707389043542687
+     },
+     "ETHUSDT": {
+      "events": 6025,
+      "days": 536,
+      "gross_bp": 0.042242483613370595,
+      "excess_bp": 0.34429975636802757,
+      "t_day": 0.23160833794861055,
+      "net_perp_taker_bp": -11.957757516386629
+     }
+    }
+   },
+   "execution_perp": {
+    "next_open (convention)": {
+     "n": 35439,
+     "mean_bp": 3.6770293916556587,
+     "t_day": 3.182933017776608,
+     "median_bp": 4.425953793043558,
+     "trimmed_1pct_mean_bp": 4.187087469660598,
+     "hit_rate": 0.5405062219588589
+    },
+    "one minute late": {
+     "n": 35439,
+     "mean_bp": 2.2345850380620593,
+     "t_day": 1.995346397023577,
+     "median_bp": 3.3886818027806243,
+     "trimmed_1pct_mean_bp": 2.443502668370255,
+     "hit_rate": 0.5316459268038037
+    },
+    "two minutes late": {
+     "n": 35439,
+     "mean_bp": 2.7991442462562963,
+     "t_day": 2.6261616811380346,
+     "median_bp": 3.531696980398902,
+     "trimmed_1pct_mean_bp": 2.837544919477407,
+     "hit_rate": 0.5342419368492339
+    },
+    "minute vwap to minute vwap": {
+     "n": 35439,
+     "mean_bp": 4.135540919789618,
+     "t_day": 3.6625798660032043,
+     "median_bp": 4.921038357119656,
+     "trimmed_1pct_mean_bp": 4.504186489078029,
+     "hit_rate": 0.548802167104038
+    },
+    "worst print of the first minute": {
+     "n": 35439,
+     "mean_bp": -14.243509488273153,
+     "t_day": -10.348269058188192,
+     "median_bp": -7.052971528267449,
+     "trimmed_1pct_mean_bp": -12.467994167534986,
+     "hit_rate": 0.4284263099974604
+    },
+    "concentration": {
+     "event_days": 547,
+     "share_of_days_positive": 0.6544789762340036,
+     "top5_days_share_of_total": 0.3230851286613027,
+     "top20_days_share_of_total": 0.7776697744869193
+    }
+   },
+   "execution_spot_btc_eth": {
+    "next_open (convention)": {
+     "n": 12745,
+     "mean_bp": 0.7015187596048412,
+     "t_day": 0.6458485186753493,
+     "median_bp": 3.7064781599505103,
+     "trimmed_1pct_mean_bp": 1.7174217895004664,
+     "hit_rate": 0.5402118477834444
+    },
+    "one minute late": {
+     "n": 12745,
+     "mean_bp": -0.5871087271644255,
+     "t_day": -0.5116717910088042,
+     "median_bp": 2.816383088182217,
+     "trimmed_1pct_mean_bp": 0.3783783306056333,
+     "hit_rate": 0.5325225578658297
+    },
+    "two minutes late": {
+     "n": 12745,
+     "mean_bp": 0.14838289515726227,
+     "t_day": 0.1368670030106345,
+     "median_bp": 2.6886111299839754,
+     "trimmed_1pct_mean_bp": 0.9409984302115733,
+     "hit_rate": 0.5349548842683405
+    },
+    "minute vwap to minute vwap": {
+     "n": 12745,
+     "mean_bp": 0.8474063572819096,
+     "t_day": 0.7578782530132616,
+     "median_bp": 3.875263608215107,
+     "trimmed_1pct_mean_bp": 1.8048970593888267,
+     "hit_rate": 0.5457041977245979
+    },
+    "worst print of the first minute": {
+     "n": 12745,
+     "mean_bp": -12.726954238449336,
+     "t_day": -9.796502196983111,
+     "median_bp": -5.955511536672731,
+     "trimmed_1pct_mean_bp": -11.032895019516555,
+     "hit_rate": 0.4318556296586897
+    },
+    "concentration": {
+     "event_days": 542,
+     "share_of_days_positive": 0.6180811808118081,
+     "top5_days_share_of_total": 1.2473858419105737,
+     "top20_days_share_of_total": 2.8552520597618303
+    }
+   }
+  },
+  {
+   "name": "fund_post5_big",
+   "horizon": 5,
+   "trade": "Perpetuals only. At the 00:00 / 08:00 / 16:00 UTC funding stamp, if the last funding rate already paid was >= +3 bp BUY at the stamp's first print (<= -3 bp: SELL); hold 5 minutes",
+   "perp_pooled": {
+    "events": 700,
+    "days": 149,
+    "gross_bp": 2.180595745069772,
+    "baseline_bp": 0.07312234054663053,
+    "excess_bp": 2.1074734045231414,
+    "t_day": 0.9181410249934537,
+    "t_naive": 1.493238876601781,
+    "hit_rate": 0.5571428571428572,
+    "cost_perp_taker_bp": 13.557142857142857,
+    "net_perp_taker_bp": -11.376547112073085,
+    "net_perp_maker_bound_bp": -1.819404254930228,
+    "net_spot_taker_bp": -21.376547112073084,
+    "t_net_perp_taker": -4.965890065523403,
+    "bootstrap_excess_ci95_bp": [
+     -2.66340891172648,
+     6.666339998675537
+    ],
+    "bootstrap_p_two_sided": 0.38875,
+    "by_year": {
+     "2024": {
+      "events": 662,
+      "days": 121,
+      "gross_bp": 2.046029066931298,
+      "excess_bp": 1.9673258413448844,
+      "t_day": 0.8121427762381719
+     },
+     "2025": {
+      "events": 38,
+      "days": 28,
+      "gross_bp": 4.524888927376873,
+      "excess_bp": 4.548991478839091,
+      "t_day": 1.4292585583086872
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 73,
+      "days": 35,
+      "gross_bp": 0.615232797210661,
+      "excess_bp": 0.5287705336149627,
+      "t_day": 0.19497942832780876,
+      "net_perp_taker_bp": -11.38476720278934
+     },
+     "ETHUSDT": {
+      "events": 82,
+      "days": 41,
+      "gross_bp": 2.0373860505558903,
+      "excess_bp": 1.983293157805491,
+      "t_day": 0.7215206295400627,
+      "net_perp_taker_bp": -9.96261394944411
+     },
+     "SOLUSDT": {
+      "events": 118,
+      "days": 58,
+      "gross_bp": 6.714752271455599,
+      "excess_bp": 6.6172521206530925,
+      "t_day": 1.7383218026880045,
+      "net_perp_taker_bp": -7.285247728544401
+     },
+     "BNBUSDT": {
+      "events": 211,
+      "days": 111,
+      "gross_bp": 2.1527758814054208,
+      "excess_bp": 2.180807114763866,
+      "t_day": 1.4741552489648098,
+      "net_perp_taker_bp": -11.847224118594578
+     },
+     "XRPUSDT": {
+      "events": 106,
+      "days": 52,
+      "gross_bp": 0.09395865327464911,
+      "excess_bp": -0.04333562615481919,
+      "t_day": -0.011288561863815385,
+      "net_perp_taker_bp": -13.90604134672535
+     },
+     "DOGEUSDT": {
+      "events": 110,
+      "days": 50,
+      "gross_bp": 0.5263934086496532,
+      "excess_bp": 0.34189654720387913,
+      "t_day": 0.05361393887270483,
+      "net_perp_taker_bp": -13.473606591350347
+     }
+    }
+   },
+   "perp_btc_eth": {
+    "events": 155,
+    "days": 45,
+    "gross_bp": 1.3675977441416856,
+    "baseline_bp": 0.06933782224528207,
+    "excess_bp": 1.2982599218964035,
+    "t_day": 0.5100077953033803,
+    "t_naive": 0.7080173239092264,
+    "hit_rate": 0.5741935483870968,
+    "cost_perp_taker_bp": 12.0,
+    "net_perp_taker_bp": -10.632402255858315,
+    "net_perp_maker_bound_bp": -2.6324022558583144,
+    "net_spot_taker_bp": -20.632402255858313,
+    "t_net_perp_taker": -4.17661652137564,
+    "bootstrap_excess_ci95_bp": [
+     -2.855578111268185,
+     4.98383120469506
+    ],
+    "bootstrap_p_two_sided": 0.5185,
+    "by_year": {
+     "2024": {
+      "events": 155,
+      "days": 45,
+      "gross_bp": 1.3675977441416856,
+      "excess_bp": 1.2982599218964035,
+      "t_day": 0.5100077953033803
+     }
+    },
+    "by_symbol": {
+     "BTCUSDT": {
+      "events": 73,
+      "days": 35,
+      "gross_bp": 0.615232797210661,
+      "excess_bp": 0.5287705336149627,
+      "t_day": 0.19497942832780876,
+      "net_perp_taker_bp": -11.38476720278934
+     },
+     "ETHUSDT": {
+      "events": 82,
+      "days": 41,
+      "gross_bp": 2.0373860505558903,
+      "excess_bp": 1.983293157805491,
+      "t_day": 0.7215206295400627,
+      "net_perp_taker_bp": -9.96261394944411
+     }
+    }
+   },
+   "spot_btc_eth": null,
+   "execution_perp": {
+    "next_open (convention)": {
+     "n": 700,
+     "mean_bp": 2.180595745069772,
+     "t_day": 0.9497549292415786,
+     "median_bp": 3.099550266200124,
+     "trimmed_1pct_mean_bp": 2.5660330453672016,
+     "hit_rate": 0.5571428571428572
+    },
+    "one minute late": {
+     "n": 700,
+     "mean_bp": -2.645552571372311,
+     "t_day": -0.835460073310145,
+     "median_bp": 0.0,
+     "trimmed_1pct_mean_bp": -1.959245466514807,
+     "hit_rate": 0.4928571428571429
+    },
+    "two minutes late": {
+     "n": 700,
+     "mean_bp": -0.5102755083670196,
+     "t_day": -0.17867387876782811,
+     "median_bp": 1.1908782467850987,
+     "trimmed_1pct_mean_bp": -0.3041968071119282,
+     "hit_rate": 0.52
+    },
+    "minute vwap to minute vwap": {
+     "n": 700,
+     "mean_bp": -0.3703282271604007,
+     "t_day": -0.1362452168120929,
+     "median_bp": 0.7498919193404951,
+     "trimmed_1pct_mean_bp": 0.21060095863025344,
+     "hit_rate": 0.5128571428571429
+    },
+    "worst print of the first minute": {
+     "n": 700,
+     "mean_bp": -12.74708723646419,
+     "t_day": -4.616270998125159,
+     "median_bp": -6.748235131678326,
+     "trimmed_1pct_mean_bp": -11.484052931110964,
+     "hit_rate": 0.3628571428571429
+    },
+    "concentration": {
+     "event_days": 149,
+     "share_of_days_positive": 0.4966442953020134,
+     "top5_days_share_of_total": 1.3496698826280649,
+     "top20_days_share_of_total": 2.855488469323387
+    }
+   },
+   "execution_spot_btc_eth": null
+  }
+ ]
+}

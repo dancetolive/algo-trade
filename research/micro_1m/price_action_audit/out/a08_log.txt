@@ -1,0 +1,130 @@
+
+=== design sweep_N240_x10_k1 @ 60
+  taker, all events: {'events': 48955, 'gross': 12.731, 'net': -0.623, 't_net': -0.287}
+  A. entry sensitivity (assumed passive exit, 4 bp):
+                   fill_rate  gross_per_fill  net_4bp  t_net_4bp  net_4bp_per_event  maker_in_taker_out  t_maker_in_taker_out
+rest1_through0bp       0.946          11.603    7.603      3.346              7.195               2.931                 1.290
+rest1_through1bp       0.911          11.109    7.109      3.038              6.475               2.426                 1.037
+rest1_through2bp       0.869          10.566    6.566      2.712              5.703               1.877                 0.775
+rest1_through5bp       0.751           8.978    4.978      1.844              3.737               0.279                 0.103
+rest5_through0bp       0.972          11.404    7.404      3.299              7.194               2.730                 1.216
+rest5_through1bp       0.952          10.882    6.882      3.008              6.554               2.201                 0.962
+rest5_through2bp       0.930          10.105    6.105      2.619              5.679               1.421                 0.610
+rest5_through5bp       0.865           7.898    3.898      1.585              3.373              -0.792                -0.322
+rest15_through0bp      0.982          11.340    7.340      3.300              7.205               2.665                 1.198
+rest15_through1bp      0.969          10.713    6.713      2.978              6.503               2.033                 0.902
+rest15_through2bp      0.954           9.937    5.937      2.602              5.666               1.255                 0.550
+rest15_through5bp      0.910           7.441    3.441      1.454              3.133              -1.245                -0.526
+  B. simulated passive exit: {'fills': 47568, 'exit_passive_share': 0.961, 'gross_per_fill': 10.024, 'net_per_fill': 5.837, 'se': 2.242, 't_net': 2.604}
+  C. funding: {'all': 0.008, 'long': 0.102, 'short': -0.106, 'share_events_crossing_a_funding_time': 0.122} | B after funding: {'net_per_fill': 5.828, 't_net': 2.604} | taker after funding: {'net': -0.631, 't_net': -0.291}
+  D. one position per symbol: {'events': 29057, 'share_of_events': 0.594, 'gross': 2.518, 't_gross': 1.844, 'net_taker': -10.808, 't_net_taker': -7.916, 'maker_gross_per_fill': 1.246, 'maker_net_4bp': -2.754, 't_maker_net_4bp': -1.957, 'long_share': 0.538, 'long_gross': 8.114}
+  D. one position per all: {'events': 13099, 'share_of_events': 0.268, 'gross': 1.758, 't_gross': 1.158, 'net_taker': -11.531, 't_net_taker': -7.6, 'maker_gross_per_fill': 0.221, 'maker_net_4bp': -3.779, 't_maker_net_4bp': -2.387, 'long_share': 0.472, 'long_gross': 6.931}
+
+=== design sweep_N240_x10_k1 @ 240
+  taker, all events: {'events': 48947, 'gross': 19.373, 'net': 6.019, 't_net': 1.258}
+  A. entry sensitivity (assumed passive exit, 4 bp):
+                   fill_rate  gross_per_fill  net_4bp  t_net_4bp  net_4bp_per_event  maker_in_taker_out  t_maker_in_taker_out
+rest1_through0bp       0.946          18.396   14.396      2.866             13.624               9.724                 1.936
+rest1_through1bp       0.911          18.292   14.292      2.767             13.018               9.609                 1.860
+rest1_through2bp       0.869          18.371   14.371      2.740             12.484               9.682                 1.846
+rest1_through5bp       0.751          17.509   13.509      2.341             10.141               8.810                 1.527
+rest5_through0bp       0.972          18.068   14.068      2.839             13.670               9.394                 1.896
+rest5_through1bp       0.952          17.746   13.746      2.721             13.092               9.066                 1.794
+rest5_through2bp       0.930          17.263   13.263      2.574             12.338               8.580                 1.665
+rest5_through5bp       0.865          15.588   11.588      2.139             10.028               6.898                 1.273
+rest15_through0bp      0.982          17.827   13.827      2.812             13.573               9.152                 1.861
+rest15_through1bp      0.969          17.344   13.344      2.680             12.927               8.664                 1.740
+rest15_through2bp      0.954          16.638   12.638      2.505             12.061               7.956                 1.577
+rest15_through5bp      0.910          14.425   10.425      1.996              9.491               5.739                 1.099
+  B. simulated passive exit: {'fills': 47561, 'exit_passive_share': 0.957, 'gross_per_fill': 16.687, 'net_per_fill': 12.484, 'se': 4.955, 't_net': 2.52}
+  C. funding: {'all': -0.079, 'long': 0.389, 'short': -0.648, 'share_events_crossing_a_funding_time': 0.472} | B after funding: {'net_per_fill': 12.563, 't_net': 2.539} | taker after funding: {'net': 6.097, 't_net': 1.276}
+  D. one position per symbol: {'events': 19483, 'share_of_events': 0.398, 'gross': 2.767, 't_gross': 1.007, 'net_taker': -10.552, 't_net_taker': -3.838, 'maker_gross_per_fill': 1.798, 'maker_net_4bp': -2.202, 't_maker_net_4bp': -0.777, 'long_share': 0.537, 'long_gross': 12.048}
+  D. one position per all: {'events': 6040, 'share_of_events': 0.123, 'gross': -0.508, 't_gross': -0.107, 'net_taker': -13.796, 't_net_taker': -2.912, 'maker_gross_per_fill': -1.764, 'maker_net_4bp': -5.764, 't_maker_net_4bp': -1.203, 'long_share': 0.471, 'long_gross': 12.884}
+
+=== validation sweep_N240_x10_k1 @ 60
+  taker, all events: {'events': 13249, 'gross': 9.656, 'net': -3.842, 't_net': -1.447}
+  A. entry sensitivity (assumed passive exit, 4 bp):
+                   fill_rate  gross_per_fill  net_4bp  t_net_4bp  net_4bp_per_event  maker_in_taker_out  t_maker_in_taker_out
+rest1_through0bp       0.945           8.616    4.616      1.695              4.362              -0.128                -0.047
+rest1_through1bp       0.897           7.594    3.594      1.280              3.223              -1.159                -0.412
+rest1_through2bp       0.843           7.096    3.096      1.045              2.610              -1.659                -0.560
+rest1_through5bp       0.724           5.496    1.496      0.459              1.082              -3.265                -1.003
+rest5_through0bp       0.973           8.869    4.869      1.812              4.739               0.122                 0.045
+rest5_through1bp       0.948           7.660    3.660      1.331              3.468              -1.091                -0.397
+rest5_through2bp       0.922           6.883    2.883      1.039              2.658              -1.869                -0.674
+rest5_through5bp       0.855           4.013    0.013      0.004              0.011              -4.744                -1.584
+rest15_through0bp      0.982           8.896    4.896      1.822              4.808               0.149                 0.055
+rest15_through1bp      0.967           7.903    3.903      1.433              3.772              -0.848                -0.311
+rest15_through2bp      0.950           7.017    3.017      1.104              2.867              -1.736                -0.635
+rest15_through5bp      0.906           4.381    0.381      0.131              0.345              -4.374                -1.509
+  B. simulated passive exit: {'fills': 12896, 'exit_passive_share': 0.968, 'gross_per_fill': 7.886, 'net_per_fill': 3.736, 'se': 2.691, 't_net': 1.388}
+  C. funding: {'all': -0.007, 'long': 0.105, 'short': -0.156, 'share_events_crossing_a_funding_time': 0.126} | B after funding: {'net_per_fill': 3.743, 't_net': 1.391} | taker after funding: {'net': -3.835, 't_net': -1.446}
+  D. one position per symbol: {'events': 8360, 'share_of_events': 0.631, 'gross': 3.038, 't_gross': 1.61, 'net_taker': -10.413, 't_net_taker': -5.518, 'maker_gross_per_fill': 2.528, 'maker_net_4bp': -1.472, 't_maker_net_4bp': -0.774, 'long_share': 0.559, 'long_gross': 5.856}
+  D. one position per all: {'events': 4195, 'share_of_events': 0.317, 'gross': 1.289, 't_gross': 0.686, 'net_taker': -12.153, 't_net_taker': -6.471, 'maker_gross_per_fill': 0.962, 'maker_net_4bp': -3.038, 't_maker_net_4bp': -1.559, 'long_share': 0.485, 'long_gross': 3.031}
+
+=== validation sweep_N240_x10_k1 @ 240
+  taker, all events: {'events': 13248, 'gross': 18.815, 'net': 5.318, 't_net': 0.985}
+  A. entry sensitivity (assumed passive exit, 4 bp):
+                   fill_rate  gross_per_fill  net_4bp  t_net_4bp  net_4bp_per_event  maker_in_taker_out  t_maker_in_taker_out
+rest1_through0bp       0.945          18.492   14.492      2.578             13.697               9.748                 1.734
+rest1_through1bp       0.897          17.274   13.274      2.305             11.905               8.521                 1.480
+rest1_through2bp       0.843          16.617   12.617      2.098             10.640               7.862                 1.307
+rest1_through5bp       0.724          15.519   11.519      1.772              8.337               6.758                 1.040
+rest5_through0bp       0.973          18.132   14.132      2.569             13.755               9.384                 1.706
+rest5_through1bp       0.948          16.841   12.841      2.314             12.168               8.090                 1.458
+rest5_through2bp       0.922          15.706   11.706      2.076             10.792               6.954                 1.233
+rest5_through5bp       0.855          13.245    9.245      1.568              7.909               4.489                 0.761
+rest15_through0bp      0.982          18.149   14.149      2.577             13.895               9.401                 1.712
+rest15_through1bp      0.967          16.851   12.851      2.326             12.422               8.101                 1.466
+rest15_through2bp      0.950          15.901   11.901      2.129             11.312               7.149                 1.279
+rest15_through5bp      0.906          13.683    9.683      1.689              8.776               4.928                 0.860
+  B. simulated passive exit: {'fills': 12895, 'exit_passive_share': 0.964, 'gross_per_fill': 17.081, 'net_per_fill': 12.911, 'se': 5.505, 't_net': 2.345}
+  C. funding: {'all': 0.001, 'long': 0.426, 'short': -0.566, 'share_events_crossing_a_funding_time': 0.504} | B after funding: {'net_per_fill': 12.912, 't_net': 2.346} | taker after funding: {'net': 5.317, 't_net': 0.985}
+  D. one position per symbol: {'events': 5918, 'share_of_events': 0.447, 'gross': 4.858, 't_gross': 1.304, 'net_taker': -8.564, 't_net_taker': -2.299, 'maker_gross_per_fill': 4.537, 'maker_net_4bp': 0.537, 't_maker_net_4bp': 0.14, 'long_share': 0.556, 'long_gross': 9.805}
+  D. one position per all: {'events': 2076, 'share_of_events': 0.157, 'gross': 2.334, 't_gross': 0.475, 'net_taker': -11.128, 't_net_taker': -2.264, 'maker_gross_per_fill': 2.079, 'maker_net_4bp': -1.921, 't_maker_net_4bp': -0.378, 'long_share': 0.482, 'long_gross': 6.888}
+
+=== both sweep_N240_x10_k1 @ 60
+  taker, all events: {'events': 62204, 'gross': 12.076, 'net': -1.308, 't_net': -0.727}
+  A. entry sensitivity (assumed passive exit, 4 bp):
+                   fill_rate  gross_per_fill  net_4bp  t_net_4bp  net_4bp_per_event  maker_in_taker_out  t_maker_in_taker_out
+rest1_through0bp       0.946          10.967    6.967      3.704              6.591               2.280                 1.212
+rest1_through1bp       0.908          10.370    6.370      3.281              5.783               1.672                 0.861
+rest1_through2bp       0.863           9.844    5.844      2.901              5.044               1.141                 0.567
+rest1_through5bp       0.745           8.258    4.258      1.896              3.171              -0.454                -0.202
+rest5_through0bp       0.972          10.863    6.863      3.696              6.671               2.174                 1.171
+rest5_through1bp       0.951          10.199    6.199      3.270              5.897               1.503                 0.793
+rest5_through2bp       0.928           9.423    5.423      2.810              5.035               0.725                 0.376
+rest5_through5bp       0.863           7.078    3.078      1.507              2.657              -1.626                -0.796
+rest15_through0bp      0.982          10.819    6.819      3.701              6.695               2.128                 1.155
+rest15_through1bp      0.968          10.116    6.116      3.275              5.922               1.421                 0.761
+rest15_through2bp      0.954           9.317    5.317      2.814              5.070               0.620                 0.328
+rest15_through5bp      0.910           6.792    2.792      1.422              2.539              -1.909                -0.972
+  B. simulated passive exit: {'fills': 60464, 'exit_passive_share': 0.962, 'gross_per_fill': 9.568, 'net_per_fill': 5.389, 'se': 1.855, 't_net': 2.905}
+  C. funding: {'all': 0.005, 'long': 0.103, 'short': -0.116, 'share_events_crossing_a_funding_time': 0.123} | B after funding: {'net_per_fill': 5.383, 't_net': 2.906} | taker after funding: {'net': -1.313, 't_net': -0.731}
+  D. one position per symbol: {'events': 37417, 'share_of_events': 0.602, 'gross': 2.634, 't_gross': 2.309, 'net_taker': -10.72, 't_net_taker': -9.397, 'maker_gross_per_fill': 1.533, 'maker_net_4bp': -2.467, 't_maker_net_4bp': -2.105, 'long_share': 0.543, 'long_gross': 7.594}
+  D. one position per all: {'events': 17294, 'share_of_events': 0.278, 'gross': 1.644, 't_gross': 1.33, 'net_taker': -11.682, 't_net_taker': -9.451, 'maker_gross_per_fill': 0.401, 'maker_net_4bp': -3.599, 't_maker_net_4bp': -2.793, 'long_share': 0.475, 'long_gross': 5.966}
+
+=== both sweep_N240_x10_k1 @ 240
+  taker, all events: {'events': 62195, 'gross': 19.254, 'net': 5.87, 't_net': 1.491}
+  A. entry sensitivity (assumed passive exit, 4 bp):
+                   fill_rate  gross_per_fill  net_4bp  t_net_4bp  net_4bp_per_event  maker_in_taker_out  t_maker_in_taker_out
+rest1_through0bp       0.946          18.416   14.416      3.490             13.639               9.729                 2.355
+rest1_through1bp       0.908          18.078   14.078      3.309             12.781               9.380                 2.205
+rest1_through2bp       0.863          18.006   14.006      3.231             12.091               9.304                 2.146
+rest1_through5bp       0.745          17.097   13.097      2.750              9.757               8.385                 1.761
+rest5_through0bp       0.972          18.082   14.082      3.459             13.688               9.392                 2.307
+rest5_through1bp       0.951          17.554   13.554      3.266             12.895               8.858                 2.134
+rest5_through2bp       0.928          16.934   12.934      3.055             12.009               8.236                 1.945
+rest5_through5bp       0.863          15.093   11.093      2.493              9.577               6.390                 1.436
+rest15_through0bp      0.982          17.896   13.896      3.438             13.642               9.205                 2.277
+rest15_through1bp      0.968          17.239   13.239      3.235             12.819               8.544                 2.088
+rest15_through2bp      0.954          16.481   12.481      3.010             11.902               7.784                 1.877
+rest15_through5bp      0.910          14.267   10.267      2.393              9.339               5.567                 1.298
+  B. simulated passive exit: {'fills': 60456, 'exit_passive_share': 0.959, 'gross_per_fill': 16.771, 'net_per_fill': 12.575, 'se': 4.07, 't_net': 3.089}
+  C. funding: {'all': -0.062, 'long': 0.397, 'short': -0.631, 'share_events_crossing_a_funding_time': 0.479} | B after funding: {'net_per_fill': 12.638, 't_net': 3.109} | taker after funding: {'net': 5.931, 't_net': 1.509}
+  D. one position per symbol: {'events': 25401, 'share_of_events': 0.408, 'gross': 3.254, 't_gross': 1.428, 'net_taker': -10.089, 't_net_taker': -4.428, 'maker_gross_per_fill': 2.436, 'maker_net_4bp': -1.564, 't_maker_net_4bp': -0.668, 'long_share': 0.541, 'long_gross': 11.512}
+  D. one position per all: {'events': 8116, 'share_of_events': 0.13, 'gross': 0.219, 't_gross': 0.058, 'net_taker': -13.114, 't_net_taker': -3.504, 'maker_gross_per_fill': -0.782, 'maker_net_4bp': -4.782, 't_maker_net_4bp': -1.261, 'long_share': 0.474, 'long_gross': 11.324}
+
+real	0m10.014s
+user	0m12.645s
+sys	0m7.805s

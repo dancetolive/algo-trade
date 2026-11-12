@@ -1,0 +1,280 @@
+{
+ "labelling/um/BTCUSDT": {
+  "hours_compared": 48192,
+  "share_exactly_equal": {
+   "open": 0.9999584993359893,
+   "high": 0.999937749003984,
+   "low": 0.999937749003984,
+   "close": 0.9999792496679947
+  },
+  "max_rel_diff": {
+   "open": 0.0012045944005741882,
+   "high": 0.0018768587085706834,
+   "low": 0.0023088374610908957,
+   "close": 0.0006955565260995389
+  },
+  "share_equal_open_if_minute_labels_were_close_times": 0.006204478014567035
+ },
+ "labelling/um/DOGEUSDT": {
+  "hours_compared": 43599,
+  "share_exactly_equal": {
+   "open": 0.9996559554118214,
+   "high": 0.9999770636941214,
+   "low": 1.0,
+   "close": 1.0
+  },
+  "max_rel_diff": {
+   "open": 0.004896729235984498,
+   "high": 0.0011880852026816546,
+   "low": 0.0,
+   "close": 0.0
+  },
+  "share_equal_open_if_minute_labels_were_close_times": 0.05722739575209872
+ },
+ "labelling/um/SOLUSDT": {
+  "hours_compared": 41897,
+  "share_exactly_equal": {
+   "open": 0.9999761319426211,
+   "high": 1.0,
+   "low": 0.9999522638852424,
+   "close": 1.0
+  },
+  "max_rel_diff": {
+   "open": 0.0022088808337109578,
+   "high": 0.0,
+   "low": 0.0004819699426017454,
+   "close": 0.0
+  },
+  "share_equal_open_if_minute_labels_were_close_times": 0.02344011075571681
+ },
+ "labelling/spot/ETHUSDT": {
+  "hours_compared": 48147,
+  "share_exactly_equal": {
+   "open": 1.0,
+   "high": 1.0,
+   "low": 1.0,
+   "close": 1.0
+  },
+  "max_rel_diff": {
+   "open": 0.0,
+   "high": 0.0,
+   "low": 0.0,
+   "close": 0.0
+  },
+  "share_equal_open_if_minute_labels_were_close_times": 0.008953611566985894
+ },
+ "days/design": {
+  "total_net_pct_of_unit": 2125.051495228746,
+  "worst_day_pct_of_unit": -90.64266093916213,
+  "max_drawdown_pct_of_unit": -90.64266093916217,
+  "busiest": [
+   {
+    "date": "2021-05-19",
+    "events": 231,
+    "coins": 6,
+    "gross_mean_bp": 65.61,
+    "net_sum_pct": 120.15
+   },
+   {
+    "date": "2020-03-13",
+    "events": 189,
+    "coins": 4,
+    "gross_mean_bp": 28.51,
+    "net_sum_pct": 29.3
+   },
+   {
+    "date": "2021-05-23",
+    "events": 157,
+    "coins": 6,
+    "gross_mean_bp": 5.83,
+    "net_sum_pct": -12.43
+   },
+   {
+    "date": "2021-01-29",
+    "events": 146,
+    "coins": 4,
+    "gross_mean_bp": 43.92,
+    "net_sum_pct": 43.81
+   },
+   {
+    "date": "2022-11-09",
+    "events": 132,
+    "coins": 6,
+    "gross_mean_bp": -14.39,
+    "net_sum_pct": -37.25
+   },
+   {
+    "date": "2021-01-30",
+    "events": 132,
+    "coins": 2,
+    "gross_mean_bp": -54.67,
+    "net_sum_pct": -90.64
+   },
+   {
+    "date": "2021-02-23",
+    "events": 129,
+    "coins": 6,
+    "gross_mean_bp": 60.52,
+    "net_sum_pct": 60.35
+   },
+   {
+    "date": "2021-01-11",
+    "events": 121,
+    "coins": 6,
+    "gross_mean_bp": 32.29,
+    "net_sum_pct": 23.07
+   }
+  ],
+  "worst": [
+   {
+    "date": "2021-01-30",
+    "events": 132,
+    "coins": 2,
+    "gross_mean_bp": -54.67,
+    "net_sum_pct": -90.64
+   },
+   {
+    "date": "2020-03-12",
+    "events": 90,
+    "coins": 4,
+    "gross_mean_bp": -39.92,
+    "net_sum_pct": -47.69
+   },
+   {
+    "date": "2022-11-09",
+    "events": 132,
+    "coins": 6,
+    "gross_mean_bp": -14.39,
+    "net_sum_pct": -37.25
+   },
+   {
+    "date": "2021-05-09",
+    "events": 42,
+    "coins": 3,
+    "gross_mean_bp": -57.52,
+    "net_sum_pct": -30.04
+   },
+   {
+    "date": "2021-04-18",
+    "events": 94,
+    "coins": 6,
+    "gross_mean_bp": -12.27,
+    "net_sum_pct": -24.55
+   },
+   {
+    "date": "2020-12-25",
+    "events": 32,
+    "coins": 2,
+    "gross_mean_bp": -61.85,
+    "net_sum_pct": -24.27
+   }
+  ]
+ },
+ "days/validation": {
+  "total_net_pct_of_unit": 335.39703539945435,
+  "worst_day_pct_of_unit": -51.35735445365089,
+  "max_drawdown_pct_of_unit": -51.357354453650885,
+  "busiest": [
+   {
+    "date": "2024-03-05",
+    "events": 55,
+    "coins": 6,
+    "gross_mean_bp": 44.43,
+    "net_sum_pct": 16.85
+   },
+   {
+    "date": "2024-08-05",
+    "events": 53,
+    "coins": 6,
+    "gross_mean_bp": 74.07,
+    "net_sum_pct": 32.12
+   },
+   {
+    "date": "2024-11-12",
+    "events": 40,
+    "coins": 3,
+    "gross_mean_bp": 41.73,
+    "net_sum_pct": 11.13
+   },
+   {
+    "date": "2025-02-03",
+    "events": 39,
+    "coins": 6,
+    "gross_mean_bp": -42.0,
+    "net_sum_pct": -21.72
+   },
+   {
+    "date": "2025-01-19",
+    "events": 30,
+    "coins": 4,
+    "gross_mean_bp": 83.73,
+    "net_sum_pct": 20.98
+   },
+   {
+    "date": "2024-04-13",
+    "events": 28,
+    "coins": 6,
+    "gross_mean_bp": -169.78,
+    "net_sum_pct": -51.36
+   },
+   {
+    "date": "2025-01-20",
+    "events": 26,
+    "coins": 5,
+    "gross_mean_bp": 59.42,
+    "net_sum_pct": 11.91
+   },
+   {
+    "date": "2024-11-13",
+    "events": 23,
+    "coins": 2,
+    "gross_mean_bp": -6.68,
+    "net_sum_pct": -4.76
+   }
+  ],
+  "worst": [
+   {
+    "date": "2024-04-13",
+    "events": 28,
+    "coins": 6,
+    "gross_mean_bp": -169.78,
+    "net_sum_pct": -51.36
+   },
+   {
+    "date": "2025-02-03",
+    "events": 39,
+    "coins": 6,
+    "gross_mean_bp": -42.0,
+    "net_sum_pct": -21.72
+   },
+   {
+    "date": "2025-03-07",
+    "events": 10,
+    "coins": 5,
+    "gross_mean_bp": -156.77,
+    "net_sum_pct": -17.04
+   },
+   {
+    "date": "2024-11-16",
+    "events": 8,
+    "coins": 1,
+    "gross_mean_bp": -79.41,
+    "net_sum_pct": -7.47
+   },
+   {
+    "date": "2025-04-02",
+    "events": 4,
+    "coins": 3,
+    "gross_mean_bp": -159.59,
+    "net_sum_pct": -6.94
+   },
+   {
+    "date": "2025-05-23",
+    "events": 3,
+    "coins": 3,
+    "gross_mean_bp": -186.3,
+    "net_sum_pct": -5.99
+   }
+  ]
+ }
+}

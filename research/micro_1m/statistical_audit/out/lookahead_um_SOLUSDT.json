@@ -1,0 +1,176 @@
+{
+ "market": "um",
+ "symbol": "SOLUSDT",
+ "bars": 1726140,
+ "definitions": 190,
+ "checks": [
+  {
+   "cut": "random 1",
+   "cut_time": "2023-09-19 16:41:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 1584582,
+   "researcher_differences": [],
+   "researcher_flags_compared": 8423334,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "random 1",
+   "cut_time": "2023-09-19 16:41:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 1584582,
+   "researcher_differences": [],
+   "researcher_flags_compared": 8423334,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "random 2",
+   "cut_time": "2023-08-20 19:14:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 1541535,
+   "researcher_differences": [],
+   "researcher_flags_compared": 8190878,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "random 2",
+   "cut_time": "2023-08-20 19:14:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 1541535,
+   "researcher_differences": [],
+   "researcher_flags_compared": 8190878,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "inside a zero-volume run (3rd bar of >= 8)",
+   "cut_time": "2022-05-28 16:42:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 894823,
+   "researcher_differences": [],
+   "researcher_flags_compared": 4738531,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": true,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "inside a zero-volume run (3rd bar of >= 8)",
+   "cut_time": "2022-05-28 16:42:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 894823,
+   "researcher_differences": [],
+   "researcher_flags_compared": 4738531,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "last bar before a hole in the index",
+   "cut_time": "2022-03-31 23:59:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 811740,
+   "researcher_differences": [],
+   "researcher_flags_compared": 4311304,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": false,
+    "centred 5-bar mean of close": false
+   }
+  },
+  {
+   "cut": "last bar before a hole in the index",
+   "cut_time": "2022-03-31 23:59:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 811740,
+   "researcher_differences": [],
+   "researcher_flags_compared": 4311304,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": false,
+    "centred 5-bar mean of close": false
+   }
+  },
+  {
+   "cut": "the bar of a selected 2% fall event",
+   "cut_time": "2021-05-23 16:41:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 362022,
+   "researcher_differences": [],
+   "researcher_flags_compared": 1931473,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "the bar of a selected 2% fall event",
+   "cut_time": "2021-05-23 16:41:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 362022,
+   "researcher_differences": [],
+   "researcher_flags_compared": 1931473,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "two bars after a selected 2% fall event",
+   "cut_time": "2021-04-19 16:56:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 313077,
+   "researcher_differences": [],
+   "researcher_flags_compared": 1669166,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "two bars after a selected 2% fall event",
+   "cut_time": "2021-04-19 16:56:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 313077,
+   "researcher_differences": [],
+   "researcher_flags_compared": 1669166,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  }
+ ]
+}

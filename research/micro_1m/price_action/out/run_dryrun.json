@@ -1,0 +1,130 @@
+{
+ "runs": [
+  {
+   "segment": "dryrun",
+   "market": "um",
+   "symbol": "BTCUSDT",
+   "bars": 800640,
+   "grid": 800640,
+   "missing": 0,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 790560,
+   "rows": 1786,
+   "seconds": 1.9
+  },
+  {
+   "segment": "dryrun",
+   "market": "um",
+   "symbol": "ETHUSDT",
+   "bars": 800640,
+   "grid": 800640,
+   "missing": 0,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 790560,
+   "rows": 1872,
+   "seconds": 2.0
+  },
+  {
+   "segment": "dryrun",
+   "market": "um",
+   "symbol": "SOLUSDT",
+   "bars": 800640,
+   "grid": 800640,
+   "missing": 0,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 790560,
+   "rows": 2017,
+   "seconds": 1.9
+  },
+  {
+   "segment": "dryrun",
+   "market": "um",
+   "symbol": "BNBUSDT",
+   "bars": 800640,
+   "grid": 800640,
+   "missing": 0,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 790560,
+   "rows": 1717,
+   "seconds": 1.3
+  },
+  {
+   "segment": "dryrun",
+   "market": "um",
+   "symbol": "XRPUSDT",
+   "bars": 800640,
+   "grid": 800640,
+   "missing": 0,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 790560,
+   "rows": 1865,
+   "seconds": 1.3
+  },
+  {
+   "segment": "dryrun",
+   "market": "um",
+   "symbol": "DOGEUSDT",
+   "bars": 800640,
+   "grid": 800640,
+   "missing": 0,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 790560,
+   "rows": 1897,
+   "seconds": 1.4
+  },
+  {
+   "segment": "dryrun",
+   "market": "spot",
+   "symbol": "BTCUSDT",
+   "bars": 800560,
+   "grid": 800640,
+   "missing": 80,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 788980,
+   "rows": 1719,
+   "seconds": 1.3
+  },
+  {
+   "segment": "dryrun",
+   "market": "spot",
+   "symbol": "ETHUSDT",
+   "bars": 800560,
+   "grid": 800640,
+   "missing": 80,
+   "first": "2022-06-24 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 788980,
+   "rows": 1830,
+   "seconds": 1.2
+  }
+ ],
+ "definitions": {
+  "sweep_N30_x2_k3": {
+   "family": "sweep",
+   "params": {
+    "N": 30,
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N240_x10_k1": {
+   "family": "sweep",
+   "params": {
+    "N": 240,
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  }
+ }
+}

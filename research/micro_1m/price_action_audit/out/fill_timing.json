@@ -1,0 +1,92 @@
+{
+ "forward_returns_vs_timestamp_lookup": [
+  {
+   "market": "um",
+   "symbol": "BTCUSDT",
+   "bars_checked": 20000,
+   "missing_minutes": 0,
+   "nan_h1": 0,
+   "nan_h5": 0,
+   "nan_h15": 0,
+   "nan_h60": 2,
+   "nan_h240": 6,
+   "nan_h1440": 23,
+   "max_abs_diff_bp": 0.0,
+   "nan_pattern_mismatches": 0
+  },
+  {
+   "market": "um",
+   "symbol": "SOLUSDT",
+   "bars_checked": 23010,
+   "missing_minutes": 7200,
+   "nan_h1": 84,
+   "nan_h5": 93,
+   "nan_h15": 113,
+   "nan_h60": 204,
+   "nan_h240": 571,
+   "nan_h1440": 3015,
+   "max_abs_diff_bp": 0.0,
+   "nan_pattern_mismatches": 0
+  },
+  {
+   "market": "spot",
+   "symbol": "BTCUSDT",
+   "bars_checked": 42575,
+   "missing_minutes": 2325,
+   "nan_h1": 55,
+   "nan_h5": 116,
+   "nan_h15": 267,
+   "nan_h60": 950,
+   "nan_h240": 3687,
+   "nan_h1440": 21846,
+   "max_abs_diff_bp": 0.0,
+   "nan_pattern_mismatches": 0
+  }
+ ],
+ "gross_by_timestamp_lookup": [
+  {
+   "symbol": "BTCUSDT",
+   "events": 7130,
+   "h60_max_abs_diff_vs_table_bp": 0.0,
+   "h60_mean_next_open_entry": 8.659301628056841,
+   "h60_mean_if_entry_at_event_close": 8.621021999700263,
+   "h60_mean_if_exit_at_close_of_last_bar": 8.66337094374969,
+   "h240_max_abs_diff_vs_table_bp": 0.0,
+   "h240_mean_next_open_entry": 9.430055077888108,
+   "h240_mean_if_entry_at_event_close": 9.392995214945316,
+   "h240_mean_if_exit_at_close_of_last_bar": 9.428659386917708,
+   "mean_signed_gap_close_to_next_open_bp": -0.03664942538605678,
+   "share_next_open_differs_from_close": 0.6371669004207574
+  },
+  {
+   "symbol": "XRPUSDT",
+   "events": 8144,
+   "h60_max_abs_diff_vs_table_bp": 0.0,
+   "h60_mean_next_open_entry": 19.381041623867276,
+   "h60_mean_if_entry_at_event_close": 19.20081645577711,
+   "h60_mean_if_exit_at_close_of_last_bar": 19.3932595727719,
+   "h240_max_abs_diff_vs_table_bp": 0.0,
+   "h240_mean_next_open_entry": 30.959758001961806,
+   "h240_mean_if_entry_at_event_close": 30.780759285683203,
+   "h240_mean_if_exit_at_close_of_last_bar": 30.953903585566774,
+   "mean_signed_gap_close_to_next_open_bp": -0.180911578795738,
+   "share_next_open_differs_from_close": 0.5261542239685658
+  }
+ ],
+ "literal_definition": [
+  {
+   "symbol": "BTCUSDT",
+   "events_checked": 400,
+   "event_disagreements": 0,
+   "random_bars_checked": 3000,
+   "random_bar_disagreements": 0
+  },
+  {
+   "symbol": "SOLUSDT",
+   "events_checked": 400,
+   "event_disagreements": 0,
+   "random_bars_checked": 3000,
+   "random_bar_disagreements": 0
+  }
+ ]
+}

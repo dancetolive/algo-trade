@@ -1,0 +1,74 @@
+{
+ "design BTC+ETH perp @240": {
+  "events": 15817,
+  "gross": 12.66,
+  "t_excess": 2.31,
+  "net_taker": 0.66
+ },
+ "design four altcoin perps @240": {
+  "events": 33130,
+  "gross": 22.58,
+  "t_excess": 3.95,
+  "net_taker": 8.58,
+  "t_net_taker": 1.49
+ },
+ "design BTC+ETH perp @60": {
+  "events": 15818,
+  "gross": 8.02,
+  "t_excess": 3.42,
+  "net_taker": -3.98
+ },
+ "design four altcoin perps @60": {
+  "events": 33137,
+  "gross": 14.98,
+  "t_excess": 6.0,
+  "net_taker": 0.98,
+  "t_net_taker": 0.37
+ },
+ "design 2022-07..2023-12 @240 (baseline of the full design run)": {
+  "events": 14374,
+  "gross": 8.84,
+  "t_gross": 1.5
+ },
+ "design 2022-07..2023-12 @60 (baseline of the full design run)": {
+  "events": 14378,
+  "gross": 2.73,
+  "t_gross": 1.06
+ },
+ "design small sweep: taker gross if resting order later filled / never filled": [
+  -0.26,
+  26.12,
+  0.0441
+ ],
+ "validation BTC+ETH perp @240": {
+  "events": 3329,
+  "gross": 4.01,
+  "t_excess": 0.59,
+  "net_taker": -7.99
+ },
+ "validation four altcoin perps @240": {
+  "events": 9919,
+  "gross": 23.79,
+  "t_excess": 4.06,
+  "net_taker": 9.79,
+  "t_net_taker": 1.64
+ },
+ "validation BTC+ETH perp @60": {
+  "events": 3330,
+  "gross": 4.93,
+  "t_excess": 1.9,
+  "net_taker": -7.07
+ },
+ "validation four altcoin perps @60": {
+  "events": 9919,
+  "gross": 11.24,
+  "t_excess": 3.91,
+  "net_taker": -2.76,
+  "t_net_taker": -0.91
+ },
+ "validation small sweep: taker gross if resting order later filled / never filled": [
+  -0.6,
+  22.46,
+  0.0411
+ ]
+}

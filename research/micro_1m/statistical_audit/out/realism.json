@@ -1,0 +1,737 @@
+{
+ "design": {
+  "costs": {
+   "gross_bp": 40.422492093267365,
+   "se_bp": 4.0146187331889704,
+   "stated_cost_bp": 13.742623979912114,
+   "net_bp": 26.679868113355255,
+   "break_even_total_round_trip_bp": 40.422492093267365,
+   "break_even_extra_round_trip_bp": 26.679868113355255,
+   "extra_cost_at_which_t_net_falls_to_2_bp": 18.650630646977316,
+   "break_even_cost_per_side_bp": 20.211246046633683,
+   "table": [
+    {
+     "extra_round_trip_bp": 0,
+     "total_round_trip_bp": 13.742623979912114,
+     "net_bp": 26.679868113355248,
+     "t_day": 6.649716174772868
+    },
+    {
+     "extra_round_trip_bp": 5,
+     "total_round_trip_bp": 18.742623979912114,
+     "net_bp": 21.67986811335524,
+     "t_day": 5.4035113310082545
+    },
+    {
+     "extra_round_trip_bp": 10,
+     "total_round_trip_bp": 23.742623979912114,
+     "net_bp": 16.679868113355244,
+     "t_day": 4.157306487243642
+    },
+    {
+     "extra_round_trip_bp": 15,
+     "total_round_trip_bp": 28.742623979912114,
+     "net_bp": 11.679868113355239,
+     "t_day": 2.9111016434790287
+    },
+    {
+     "extra_round_trip_bp": 20,
+     "total_round_trip_bp": 33.74262397991211,
+     "net_bp": 6.679868113355237,
+     "t_day": 1.6648967997144157
+    },
+    {
+     "extra_round_trip_bp": 25,
+     "total_round_trip_bp": 38.74262397991211,
+     "net_bp": 1.6798681133552469,
+     "t_day": 0.4186919559498059
+    },
+    {
+     "extra_round_trip_bp": 30,
+     "total_round_trip_bp": 43.74262397991211,
+     "net_bp": -3.3201318866447536,
+     "t_day": -0.8275128878148065
+    },
+    {
+     "extra_round_trip_bp": 35,
+     "total_round_trip_bp": 48.74262397991211,
+     "net_bp": -8.320131886644752,
+     "t_day": -2.0737177315794186
+    },
+    {
+     "extra_round_trip_bp": 40,
+     "total_round_trip_bp": 53.74262397991211,
+     "net_bp": -13.320131886644754,
+     "t_day": -3.319922575344031
+    }
+   ],
+   "fill one minute late": {
+    "gross_bp": 34.458248668984844,
+    "t": 9.100622439681338,
+    "net_bp": 20.715592379755613
+   },
+   "fill two minutes late": {
+    "gross_bp": 29.756035818045852,
+    "t": 7.449352885272347,
+    "net_bp": 16.01337952881663
+   },
+   "fill minute vwap": {
+    "gross_bp": 37.04950686948675,
+    "t": 9.715613915743637,
+    "net_bp": 23.306882889574627
+   },
+   "fill worst print": {
+    "gross_bp": -37.754365334394585,
+    "t": -7.930834531893567,
+    "net_bp": -51.49698931430671
+   }
+  },
+  "spread_proxies_bp": {
+   "BTCUSDT": {
+    "|open[t+1]/close[t]-1| mean": 2.92,
+    "same, median": 0.78,
+    "entry-bar range mean": 162.03,
+    "entry-bar range median": 122.6,
+    "open -> high of entry bar, mean": 78.32,
+    "open -> low, mean": 81.31
+   },
+   "ETHUSDT": {
+    "|open[t+1]/close[t]-1| mean": 2.6,
+    "same, median": 0.72,
+    "entry-bar range mean": 156.96,
+    "entry-bar range median": 118.3,
+    "open -> high of entry bar, mean": 83.95,
+    "open -> low, mean": 70.48
+   },
+   "SOLUSDT": {
+    "|open[t+1]/close[t]-1| mean": 3.84,
+    "same, median": 1.99,
+    "entry-bar range mean": 128.92,
+    "entry-bar range median": 101.64,
+    "open -> high of entry bar, mean": 66.8,
+    "open -> low, mean": 60.62
+   },
+   "BNBUSDT": {
+    "|open[t+1]/close[t]-1| mean": 5.62,
+    "same, median": 1.36,
+    "entry-bar range mean": 148.93,
+    "entry-bar range median": 113.88,
+    "open -> high of entry bar, mean": 77.99,
+    "open -> low, mean": 68.97
+   },
+   "XRPUSDT": {
+    "|open[t+1]/close[t]-1| mean": 3.06,
+    "same, median": 1.48,
+    "entry-bar range mean": 161.81,
+    "entry-bar range median": 122.08,
+    "open -> high of entry bar, mean": 80.56,
+    "open -> low, mean": 78.75
+   },
+   "DOGEUSDT": {
+    "|open[t+1]/close[t]-1| mean": 2.85,
+    "same, median": 1.23,
+    "entry-bar range mean": 167.31,
+    "entry-bar range median": 125.65,
+    "open -> high of entry bar, mean": 84.07,
+    "open -> low, mean": 80.54
+   },
+   "ALL": {
+    "|open[t+1]/close[t]-1| mean": 3.4,
+    "same, median": 1.35,
+    "entry-bar range mean": 154.11,
+    "entry-bar range median": 116.69,
+    "open -> high of entry bar, mean": 78.38,
+    "open -> low, mean": 73.46
+   }
+  },
+  "tails": {
+   "sd_bp": 328.98566560698293,
+   "worst_bp": -2949.0318471337578,
+   "best_bp": 2703.6973615601205,
+   "q01_bp": -1008.176274634759,
+   "q05_bp": -452.1073704102376,
+   "q95_bp": 493.72099848421277,
+   "share_below_minus_100bp": 0.2608913998744507,
+   "share_below_minus_500bp": 0.04331450094161959,
+   "hit_rate_net": 0.5683615819209039
+  },
+  "anatomy": {
+   "all events": {
+    "n": 7965,
+    "days": 697,
+    "gross_bp": 40.422492093267365,
+    "t": 10.068824658016327,
+    "net_taker_bp": 26.679868113355248,
+    "t_net": 6.649716174772867,
+    "median_bp": 49.14004914004843,
+    "share_of_events": 1.0,
+    "share_of_total_gross": 1.0
+   },
+   "first fall in 60 min (same coin)": {
+    "n": 3372,
+    "days": 695,
+    "gross_bp": 11.667493617090477,
+    "t": 2.105973115404585,
+    "net_taker_bp": -1.9843450543211463,
+    "t_net": -0.3585160748887197,
+    "median_bp": 33.43830370008183,
+    "share_of_events": 0.4233521657250471,
+    "share_of_total_gross": 0.1221957983189541
+   },
+   "later leg (a fall in the previous 60 min)": {
+    "n": 4593,
+    "days": 304,
+    "gross_bp": 61.53328130765196,
+    "t": 9.849916428431415,
+    "net_taker_bp": 47.72400632398115,
+    "t_net": 7.6332894638542035,
+    "median_bp": 72.60221627818142,
+    "share_of_events": 0.5766478342749529,
+    "share_of_total_gross": 0.8778042016810458
+   },
+   "no fall in the previous 20 min": {
+    "n": 4938,
+    "days": 695,
+    "gross_bp": 16.78648194011806,
+    "t": 3.584979714586715,
+    "net_taker_bp": 3.0789080235526556,
+    "t_net": 0.6583776319308042,
+    "median_bp": 32.3086790759175,
+    "share_of_events": 0.6199623352165725,
+    "share_of_total_gross": 0.2574553424280282
+   },
+   "a fall in the previous 20 min": {
+    "n": 3027,
+    "days": 264,
+    "gross_bp": 78.9803441369579,
+    "t": 9.415265280967892,
+    "net_taker_bp": 65.1805423530134,
+    "t_net": 7.7595708080115395,
+    "median_bp": 95.20999839081723,
+    "share_of_events": 0.3800376647834275,
+    "share_of_total_gross": 0.7425446575719715
+   },
+   "day with 1 event": {
+    "n": 192,
+    "days": 192,
+    "gross_bp": 67.14780421110709,
+    "t": 7.697520069856544,
+    "net_taker_bp": 53.30405421110709,
+    "t_net": 6.109825271721098,
+    "median_bp": 72.68192027391262,
+    "share_of_events": 0.024105461393596987,
+    "share_of_total_gross": 0.04004277614405779
+   },
+   "day with 2-5 events": {
+    "n": 754,
+    "days": 246,
+    "gross_bp": 48.47437884076456,
+    "t": 9.508692412234138,
+    "net_taker_bp": 34.78472366835078,
+    "t_net": 6.823875451164288,
+    "median_bp": 58.77909991126029,
+    "share_of_events": 0.09466415568110484,
+    "share_of_total_gross": 0.11352061457614294
+   },
+   "day with 6-20 events": {
+    "n": 1803,
+    "days": 174,
+    "gross_bp": 42.826951270147404,
+    "t": 7.4360230390407365,
+    "net_taker_bp": 29.118687265710356,
+    "t_net": 5.0565239250633285,
+    "median_bp": 46.44708148064281,
+    "share_of_events": 0.2263653483992467,
+    "share_of_total_gross": 0.2398302836642565
+   },
+   "day with more than 20 events": {
+    "n": 5216,
+    "days": 85,
+    "gross_bp": 37.44365343717979,
+    "t": 6.524069071280479,
+    "net_taker_bp": 23.685217854357692,
+    "t_net": 4.12951356698416,
+    "median_bp": 45.782538523859714,
+    "share_of_events": 0.6548650345260515,
+    "share_of_total_gross": 0.6066063256155427
+   },
+   "fall of 5% or more": {
+    "n": 324,
+    "days": 82,
+    "gross_bp": 189.59140878902122,
+    "t": 3.4991212193522214,
+    "net_taker_bp": 175.81363101124333,
+    "t_net": 3.2435444877441078,
+    "median_bp": 176.4107868356668,
+    "share_of_events": 0.04067796610169491,
+    "share_of_total_gross": 0.19078964458940184
+   },
+   "fall of 3-5%": {
+    "n": 1333,
+    "days": 283,
+    "gross_bp": 75.83183042643269,
+    "t": 5.667708760481976,
+    "net_taker_bp": 62.065888941061345,
+    "t_net": 4.640127908492578,
+    "median_bp": 98.83198562443907,
+    "share_of_events": 0.16735718769617075,
+    "share_of_total_gross": 0.31395891793951164
+   },
+   "fall of 2.5-3%": {
+    "n": 1672,
+    "days": 374,
+    "gross_bp": 32.241532124040525,
+    "t": 4.2151759729674305,
+    "net_taker_bp": 18.505886191026168,
+    "t_net": 2.4207987232774233,
+    "median_bp": 55.386943721676964,
+    "share_of_events": 0.20991839296924042,
+    "share_of_total_gross": 0.1674337790636119
+   },
+   "fall of 2-2.5%": {
+    "n": 4636,
+    "days": 631,
+    "gross_bp": 22.766579250517935,
+    "t": 5.980300264549088,
+    "net_taker_bp": 9.030599958024414,
+    "t_net": 2.374021878434008,
+    "median_bp": 35.79098588936014,
+    "share_of_events": 0.582046453232894,
+    "share_of_total_gross": 0.3278176584074745
+   }
+  },
+  "capital": {
+   "one position at a time per coin": {
+    "trades": 6029,
+    "share_of_events": 0.7569365976145637,
+    "gross_bp": 27.062767412815855,
+    "t": 6.8022573442476695,
+    "net_taker_bp": 13.336444639553298,
+    "t_net": 3.3541199576465592,
+    "total_net_bp_units": 80405.42473186683,
+    "share_of_all_events_net_total": 0.37836930028470583
+   },
+   "cap of 1 concurrent positions": {
+    "trades": 3710.0,
+    "gross_bp": 19.60083329185678,
+    "net_taker_bp": 5.7378144239322575,
+    "t_net": 1.2917949051225663,
+    "total_net_pct_of_one_unit": 212.87291512788676,
+    "units_of_capital": 1,
+    "return_on_capital_pct_per_year_unlevered": 53.21822878197169
+   },
+   "cap of 2 concurrent positions": {
+    "trades": 5396.0,
+    "gross_bp": 23.356638252904773,
+    "net_taker_bp": 9.51605263392776,
+    "t_net": 2.1650989770450066,
+    "total_net_pct_of_one_unit": 513.486200126742,
+    "units_of_capital": 2,
+    "return_on_capital_pct_per_year_unlevered": 64.18577501584275
+   },
+   "cap of 3 concurrent positions": {
+    "trades": 6290.0,
+    "gross_bp": 26.61870356309058,
+    "net_taker_bp": 12.799434882645427,
+    "t_net": 3.0182152504288866,
+    "total_net_pct_of_one_unit": 805.0844541183975,
+    "units_of_capital": 3,
+    "return_on_capital_pct_per_year_unlevered": 67.09037117653313
+   },
+   "cap of 6 concurrent positions": {
+    "trades": 7415.0,
+    "gross_bp": 34.42007877483397,
+    "net_taker_bp": 20.653106421496137,
+    "t_net": 4.9656316445748185,
+    "total_net_pct_of_one_unit": 1531.4278411539387,
+    "units_of_capital": 6,
+    "return_on_capital_pct_per_year_unlevered": 63.809493381414114
+   },
+   "no cap (every event)": {
+    "trades": 7965.0,
+    "gross_bp": 40.422492093267365,
+    "net_taker_bp": 26.67986811335525,
+    "t_net": 6.649716174772869,
+    "total_net_pct_of_one_unit": 2125.051495228746,
+    "units_of_capital": 19,
+    "return_on_capital_pct_per_year_unlevered": 27.96120388458876
+   }
+  },
+  "lost_to_gap_rule": {
+   "events_flagged": 7966,
+   "without_valid_return": 1,
+   "rows": [
+    {
+     "symbol": "SOLUSDT",
+     "time": "2020-10-29 22:31:00+00:00",
+     "r5": -0.0202920408582985,
+     "nohalt_15": 0.0074872297250017095
+    }
+   ]
+  }
+ },
+ "validation": {
+  "costs": {
+   "gross_bp": 47.11524256966676,
+   "se_bp": 9.389307090531082,
+   "stated_cost_bp": 13.709163346613543,
+   "net_bp": 33.40607922305322,
+   "break_even_total_round_trip_bp": 47.11524256966676,
+   "break_even_extra_round_trip_bp": 33.40607922305322,
+   "extra_cost_at_which_t_net_falls_to_2_bp": 14.627465041991051,
+   "break_even_cost_per_side_bp": 23.55762128483338,
+   "table": [
+    {
+     "extra_round_trip_bp": 0,
+     "total_round_trip_bp": 13.709163346613543,
+     "net_bp": 33.40607922305321,
+     "t_day": 3.557308269243406
+    },
+    {
+     "extra_round_trip_bp": 5,
+     "total_round_trip_bp": 18.709163346613543,
+     "net_bp": 28.406079223053204,
+     "t_day": 3.0248740009937296
+    },
+    {
+     "extra_round_trip_bp": 10,
+     "total_round_trip_bp": 23.709163346613543,
+     "net_bp": 23.406079223053208,
+     "t_day": 2.4924397327440544
+    },
+    {
+     "extra_round_trip_bp": 15,
+     "total_round_trip_bp": 28.709163346613543,
+     "net_bp": 18.40607922305321,
+     "t_day": 1.960005464494379
+    },
+    {
+     "extra_round_trip_bp": 20,
+     "total_round_trip_bp": 33.70916334661354,
+     "net_bp": 13.406079223053213,
+     "t_day": 1.4275711962447035
+    },
+    {
+     "extra_round_trip_bp": 25,
+     "total_round_trip_bp": 38.70916334661354,
+     "net_bp": 8.406079223053219,
+     "t_day": 0.8951369279950284
+    },
+    {
+     "extra_round_trip_bp": 30,
+     "total_round_trip_bp": 43.70916334661354,
+     "net_bp": 3.4060792230532173,
+     "t_day": 0.3627026597453527
+    },
+    {
+     "extra_round_trip_bp": 35,
+     "total_round_trip_bp": 48.70916334661354,
+     "net_bp": -1.5939207769467867,
+     "t_day": -0.16973160850432337
+    },
+    {
+     "extra_round_trip_bp": 40,
+     "total_round_trip_bp": 53.70916334661354,
+     "net_bp": -6.593920776946791,
+     "t_day": -0.7021658767539996
+    }
+   ],
+   "fill one minute late": {
+    "gross_bp": 39.98354721066111,
+    "t": 4.689153326748129,
+    "net_bp": 26.274383864047557
+   },
+   "fill two minutes late": {
+    "gross_bp": 38.66906463134075,
+    "t": 4.874456013435166,
+    "net_bp": 24.959901284727213
+   },
+   "fill minute vwap": {
+    "gross_bp": 43.91515279824036,
+    "t": 4.725763567634355,
+    "net_bp": 30.205989451626827
+   },
+   "fill worst print": {
+    "gross_bp": -24.205753009179134,
+    "t": -2.477706744381822,
+    "net_bp": -37.91491635579268
+   }
+  },
+  "spread_proxies_bp": {
+   "BTCUSDT": {
+    "|open[t+1]/close[t]-1| mean": 0.34,
+    "same, median": 0.02,
+    "entry-bar range mean": 127.41,
+    "entry-bar range median": 105.54,
+    "open -> high of entry bar, mean": 78.8,
+    "open -> low, mean": 47.65
+   },
+   "ETHUSDT": {
+    "|open[t+1]/close[t]-1| mean": 0.85,
+    "same, median": 0.05,
+    "entry-bar range mean": 148.18,
+    "entry-bar range median": 119.14,
+    "open -> high of entry bar, mean": 77.23,
+    "open -> low, mean": 68.98
+   },
+   "SOLUSDT": {
+    "|open[t+1]/close[t]-1| mean": 0.99,
+    "same, median": 0.4,
+    "entry-bar range mean": 146.84,
+    "entry-bar range median": 109.37,
+    "open -> high of entry bar, mean": 73.03,
+    "open -> low, mean": 71.49
+   },
+   "BNBUSDT": {
+    "|open[t+1]/close[t]-1| mean": 2.64,
+    "same, median": 0.56,
+    "entry-bar range mean": 187.72,
+    "entry-bar range median": 106.53,
+    "open -> high of entry bar, mean": 56.33,
+    "open -> low, mean": 125.86
+   },
+   "XRPUSDT": {
+    "|open[t+1]/close[t]-1| mean": 1.01,
+    "same, median": 0.4,
+    "entry-bar range mean": 153.93,
+    "entry-bar range median": 107.33,
+    "open -> high of entry bar, mean": 74.66,
+    "open -> low, mean": 76.5
+   },
+   "DOGEUSDT": {
+    "|open[t+1]/close[t]-1| mean": 1.27,
+    "same, median": 0.5,
+    "entry-bar range mean": 141.58,
+    "entry-bar range median": 109.41,
+    "open -> high of entry bar, mean": 67.49,
+    "open -> low, mean": 72.13
+   },
+   "ALL": {
+    "|open[t+1]/close[t]-1| mean": 1.13,
+    "same, median": 0.38,
+    "entry-bar range mean": 147.91,
+    "entry-bar range median": 108.66,
+    "open -> high of entry bar, mean": 71.4,
+    "open -> low, mean": 74.16
+   }
+  },
+  "tails": {
+   "sd_bp": 245.3180121314814,
+   "worst_bp": -1674.2085063197715,
+   "best_bp": 1547.4801703634027,
+   "q01_bp": -793.1134532653939,
+   "q05_bp": -375.4462491807139,
+   "q95_bp": 358.95656692300724,
+   "share_below_minus_100bp": 0.21215139442231076,
+   "share_below_minus_500bp": 0.02888446215139442,
+   "hit_rate_net": 0.6055776892430279
+  },
+  "anatomy": {
+   "all events": {
+    "n": 1004,
+    "days": 157,
+    "gross_bp": 47.11524256966676,
+    "t": 5.017968005027919,
+    "net_taker_bp": 33.40607922305322,
+    "t_net": 3.557308269243407,
+    "median_bp": 67.37298569175154,
+    "share_of_events": 1.0,
+    "share_of_total_gross": 1.0
+   },
+   "first fall in 60 min (same coin)": {
+    "n": 591,
+    "days": 157,
+    "gross_bp": 23.266852697173835,
+    "t": 1.8127617261207616,
+    "net_taker_bp": 9.632334930676384,
+    "t_net": 0.7505482850200653,
+    "median_bp": 44.8544346648605,
+    "share_of_events": 0.5886454183266933,
+    "share_of_total_gross": 0.290689923092766
+   },
+   "later leg (a fall in the previous 60 min)": {
+    "n": 413,
+    "days": 74,
+    "gross_bp": 81.2421152443479,
+    "t": 6.800802395197046,
+    "net_taker_bp": 67.42613461480796,
+    "t_net": 5.642755691979997,
+    "median_bp": 119.7690509137761,
+    "share_of_events": 0.4113545816733068,
+    "share_of_total_gross": 0.7093100769072339
+   },
+   "no fall in the previous 20 min": {
+    "n": 743,
+    "days": 157,
+    "gross_bp": 27.21450493366607,
+    "t": 2.6284017049423536,
+    "net_taker_bp": 13.54559510863243,
+    "t_net": 1.3080271283104663,
+    "median_bp": 48.58378273332464,
+    "share_of_events": 0.7400398406374502,
+    "share_of_total_gross": 0.4274586481085751
+   },
+   "a fall in the previous 20 min": {
+    "n": 261,
+    "days": 58,
+    "gross_bp": 103.7675340008871,
+    "t": 6.823233086053013,
+    "net_taker_bp": 89.94377921161508,
+    "t_net": 5.916132510511136,
+    "median_bp": 131.87447859847268,
+    "share_of_events": 0.2599601593625498,
+    "share_of_total_gross": 0.5725413518914249
+   },
+   "day with 1 event": {
+    "n": 44,
+    "days": 44,
+    "gross_bp": 54.26666638353967,
+    "t": 3.405201383260979,
+    "net_taker_bp": 40.44848456535785,
+    "t_net": 2.540331594626537,
+    "median_bp": 40.072127231659536,
+    "share_of_events": 0.043824701195219126,
+    "share_of_total_gross": 0.05047666762200625
+   },
+   "day with 2-5 events": {
+    "n": 168,
+    "days": 53,
+    "gross_bp": 54.89211425988657,
+    "t": 3.7092634400828564,
+    "net_taker_bp": 41.154019021791335,
+    "t_net": 2.7807163468015696,
+    "median_bp": 53.87752971024784,
+    "share_of_events": 0.16733067729083664,
+    "share_of_total_gross": 0.19495038454808442
+   },
+   "day with 6-20 events": {
+    "n": 498,
+    "days": 52,
+    "gross_bp": 60.53145574568874,
+    "t": 5.732616470588992,
+    "net_taker_bp": 46.84872482199396,
+    "t_net": 4.436747224142135,
+    "median_bp": 80.59145875657592,
+    "share_of_events": 0.4960159362549801,
+    "share_of_total_gross": 0.6372580306718997
+   },
+   "day with more than 20 events": {
+    "n": 294,
+    "days": 8,
+    "gross_bp": 18.87561245597192,
+    "t": 0.7330315697750359,
+    "net_taker_bp": 5.154524020597767,
+    "t_net": 0.20011369911046087,
+    "median_bp": 48.632806348841704,
+    "share_of_events": 0.29282868525896416,
+    "share_of_total_gross": 0.11731491715800962
+   },
+   "fall of 5% or more": {
+    "n": 25,
+    "days": 14,
+    "gross_bp": 370.4563511892704,
+    "t": 3.881269542833366,
+    "net_taker_bp": 356.6963511892704,
+    "t_net": 3.7364174904031326,
+    "median_bp": 333.1052651427391,
+    "share_of_events": 0.0249003984063745,
+    "share_of_total_gross": 0.1957861242706081
+   },
+   "fall of 3-5%": {
+    "n": 119,
+    "days": 50,
+    "gross_bp": 46.463457275676255,
+    "t": 1.3358397804651343,
+    "net_taker_bp": 32.883625342903144,
+    "t_net": 0.9457426538101208,
+    "median_bp": 113.94943280902848,
+    "share_of_events": 0.11852589641434264,
+    "share_of_total_gross": 0.11688622670181426
+   },
+   "fall of 2.5-3%": {
+    "n": 193,
+    "days": 81,
+    "gross_bp": 43.36545397626402,
+    "t": 2.097634993247204,
+    "net_taker_bp": 29.603795945175943,
+    "t_net": 1.4319061787550942,
+    "median_bp": 71.27751233649393,
+    "share_of_events": 0.19223107569721115,
+    "share_of_total_gross": 0.17693186772049121
+   },
+   "fall of 2-2.5%": {
+    "n": 667,
+    "days": 148,
+    "gross_bp": 36.19731743176797,
+    "t": 4.551088194514164,
+    "net_taker_bp": 22.48217500298237,
+    "t_net": 2.8239485709342795,
+    "median_bp": 57.20470006184142,
+    "share_of_events": 0.6643426294820717,
+    "share_of_total_gross": 0.5103957813070864
+   }
+  },
+  "capital": {
+   "one position at a time per coin": {
+    "trades": 824,
+    "share_of_events": 0.8207171314741036,
+    "gross_bp": 34.775119910857875,
+    "t": 3.99451919603041,
+    "net_taker_bp": 21.093081075906426,
+    "t_net": 2.4225417754651364,
+    "total_net_bp_units": 17380.698806546894,
+    "share_of_all_events_net_total": 0.5182126546183291
+   },
+   "cap of 1 concurrent positions": {
+    "trades": 483.0,
+    "gross_bp": 21.479672280298427,
+    "net_taker_bp": 7.652964205764271,
+    "t_net": 0.9664808911241591,
+    "total_net_pct_of_one_unit": 36.963817113841436,
+    "units_of_capital": 1,
+    "return_on_capital_pct_per_year_unlevered": 24.642544742560958
+   },
+   "cap of 2 concurrent positions": {
+    "trades": 679.0,
+    "gross_bp": 28.971884564362128,
+    "net_taker_bp": 15.191177642418106,
+    "t_net": 1.860117389679964,
+    "total_net_pct_of_one_unit": 103.14809619201894,
+    "units_of_capital": 2,
+    "return_on_capital_pct_per_year_unlevered": 34.38269873067298
+   },
+   "cap of 3 concurrent positions": {
+    "trades": 793.0,
+    "gross_bp": 32.81286021032012,
+    "net_taker_bp": 19.04980850792416,
+    "t_net": 2.4080115483450646,
+    "total_net_pct_of_one_unit": 151.06498146783855,
+    "units_of_capital": 3,
+    "return_on_capital_pct_per_year_unlevered": 33.569995881741896
+   },
+   "cap of 6 concurrent positions": {
+    "trades": 942.0,
+    "gross_bp": 43.33334353840542,
+    "net_taker_bp": 29.614766043713274,
+    "t_net": 3.462014906546546,
+    "total_net_pct_of_one_unit": 278.971096131779,
+    "units_of_capital": 6,
+    "return_on_capital_pct_per_year_unlevered": 30.996788459086556
+   },
+   "no cap (every event)": {
+    "trades": 1004.0,
+    "gross_bp": 47.11524256966676,
+    "net_taker_bp": 33.40607922305321,
+    "t_net": 3.557308269243406,
+    "total_net_pct_of_one_unit": 335.39703539945424,
+    "units_of_capital": 16,
+    "return_on_capital_pct_per_year_unlevered": 13.97487647497726
+   }
+  },
+  "lost_to_gap_rule": {
+   "events_flagged": 1004,
+   "without_valid_return": 0,
+   "rows": []
+  }
+ }
+}

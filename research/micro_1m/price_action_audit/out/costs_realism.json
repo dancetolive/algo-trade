@@ -1,0 +1,1004 @@
+{
+ "design": {
+  "60": {
+   "taker_all": {
+    "events": 48955,
+    "gross": 12.730841020771457,
+    "net": -0.6229328531944294,
+    "t_net": -0.2871878939769955
+   },
+   "entry_sensitivity": {
+    "rest1_through0bp": {
+     "fill_rate": 0.9463384741088755,
+     "gross_per_fill": 11.602507281715868,
+     "net_4bp": 7.602507281715868,
+     "t_net_4bp": 3.34625649872897,
+     "net_4bp_per_event": 7.194545140380609,
+     "maker_in_taker_out": 2.930926380317146,
+     "t_maker_in_taker_out": 1.2900522267199812
+    },
+    "rest1_through1bp": {
+     "fill_rate": 0.9108364824839138,
+     "gross_per_fill": 11.109153445758064,
+     "net_4bp": 7.109153445758064,
+     "t_net_4bp": 3.0376814171001176,
+     "net_4bp_per_event": 6.475276317972671,
+     "maker_in_taker_out": 2.4258163746658905,
+     "t_maker_in_taker_out": 1.0365309145235357
+    },
+    "rest1_through2bp": {
+     "fill_rate": 0.868634460218568,
+     "gross_per_fill": 10.565714913207932,
+     "net_4bp": 6.565714913207932,
+     "t_net_4bp": 2.712450105080517,
+     "net_4bp_per_event": 5.703206229583374,
+     "maker_in_taker_out": 1.8770214695055518,
+     "t_maker_in_taker_out": 0.7754413874956319
+    },
+    "rest1_through5bp": {
+     "fill_rate": 0.7506077009498519,
+     "gross_per_fill": 8.978260647437635,
+     "net_4bp": 4.978260647437635,
+     "t_net_4bp": 1.8443417557928448,
+     "net_4bp_per_event": 3.736720779302284,
+     "maker_in_taker_out": 0.2788647948278271,
+     "t_maker_in_taker_out": 0.10331359118094655
+    },
+    "rest5_through0bp": {
+     "fill_rate": 0.9716882851598406,
+     "gross_per_fill": 11.404050097650645,
+     "net_4bp": 7.404050097650645,
+     "t_net_4bp": 3.299249461781694,
+     "net_4bp_per_event": 7.194428742623706,
+     "maker_in_taker_out": 2.729745403417006,
+     "t_maker_in_taker_out": 1.2163762986804088
+    },
+    "rest5_through1bp": {
+     "fill_rate": 0.9523644163006842,
+     "gross_per_fill": 10.882227511564095,
+     "net_4bp": 6.8822275115640945,
+     "t_net_4bp": 3.008084204863347,
+     "net_4bp_per_event": 6.5543885868992495,
+     "maker_in_taker_out": 2.2012117039155097,
+     "t_maker_in_taker_out": 0.9621056768295873
+    },
+    "rest5_through2bp": {
+     "fill_rate": 0.9302216321111224,
+     "gross_per_fill": 10.104827803932793,
+     "net_4bp": 6.104827803932793,
+     "t_net_4bp": 2.6187864582754385,
+     "net_4bp_per_event": 5.678842883531722,
+     "maker_in_taker_out": 1.4212159547485772,
+     "t_maker_in_taker_out": 0.6096586531372615
+    },
+    "rest5_through5bp": {
+     "fill_rate": 0.8654274333571648,
+     "gross_per_fill": 7.8977512824922105,
+     "net_4bp": 3.8977512824922105,
+     "t_net_4bp": 1.5845766933919072,
+     "net_4bp_per_event": 3.373220888271831,
+     "maker_in_taker_out": -0.7916768101270453,
+     "t_maker_in_taker_out": -0.3218452207715163
+    },
+    "rest15_through0bp": {
+     "fill_rate": 0.9816566234296803,
+     "gross_per_fill": 11.339837905534177,
+     "net_4bp": 7.339837905534177,
+     "t_net_4bp": 3.2995865386475667,
+     "net_4bp_per_event": 7.205200494867857,
+     "maker_in_taker_out": 2.664514851660652,
+     "t_maker_in_taker_out": 1.1978190049588238
+    },
+    "rest15_through1bp": {
+     "fill_rate": 0.9687468082933306,
+     "gross_per_fill": 10.713200989276961,
+     "net_4bp": 6.713200989276961,
+     "t_net_4bp": 2.9781914829898843,
+     "net_4bp_per_event": 6.503392031793686,
+     "maker_in_taker_out": 2.0333064189026864,
+     "t_maker_in_taker_out": 0.9020400057673311
+    },
+    "rest15_through2bp": {
+     "fill_rate": 0.9543662547237258,
+     "gross_per_fill": 9.937031215236477,
+     "net_4bp": 5.937031215236477,
+     "t_net_4bp": 2.6015739938691933,
+     "net_4bp_per_event": 5.666102245063088,
+     "maker_in_taker_out": 1.2551964942330738,
+     "t_maker_in_taker_out": 0.550020109076095
+    },
+    "rest15_through5bp": {
+     "fill_rate": 0.9104279440302319,
+     "gross_per_fill": 7.44108445349641,
+     "net_4bp": 3.4410844534964102,
+     "t_net_4bp": 1.4541121690382584,
+     "net_4bp_per_event": 3.132859444231131,
+     "maker_in_taker_out": -1.2446682949891184,
+     "t_maker_in_taker_out": -0.5259642239587555
+    }
+   },
+   "simulated_passive_exit": {
+    "fills": 47568,
+    "exit_passive_share": 0.9605617221661621,
+    "gross_per_fill": 10.02376810852849,
+    "net_per_fill": 5.836772649396299,
+    "se": 2.241550071747731,
+    "t_net": 2.603900186287332
+   },
+   "funding_bp_paid_per_event": {
+    "all": 0.008163505259932162,
+    "long": 0.10208323783300698,
+    "short": -0.10616172380995141,
+    "share_events_crossing_a_funding_time": 0.1220304361147993
+   },
+   "simulated_passive_exit_after_funding": {
+    "net_per_fill": 5.827948738363672,
+    "t_net": 2.6039231420040534
+   },
+   "taker_after_funding": {
+    "net": -0.6310963584543645,
+    "t_net": -0.29149483366905976
+   },
+   "one_position_per_symbol": {
+    "events": 29057,
+    "share_of_events": 0.5935450924318252,
+    "gross": 2.5179961208443937,
+    "t_gross": 1.8443455818167536,
+    "net_taker": -10.807949434443488,
+    "t_net_taker": -7.916451349110946,
+    "maker_gross_per_fill": 1.2461196586972931,
+    "maker_net_4bp": -2.7538803413027066,
+    "t_maker_net_4bp": -1.9567431467400638,
+    "long_share": 0.5377017586123826,
+    "long_gross": 8.114201555001326
+   },
+   "one_position_per_all": {
+    "events": 13099,
+    "share_of_events": 0.267572260238995,
+    "gross": 1.7577597325336818,
+    "t_gross": 1.1584433911954313,
+    "net_taker": -11.531193622684274,
+    "t_net_taker": -7.599579622602108,
+    "maker_gross_per_fill": 0.2214464678814308,
+    "maker_net_4bp": -3.7785535321185693,
+    "t_maker_net_4bp": -2.38696686282775,
+    "long_share": 0.47217344835483627,
+    "long_gross": 6.930908443334142
+   }
+  },
+  "240": {
+   "taker_all": {
+    "events": 48947,
+    "gross": 19.372642354033502,
+    "net": 6.018933240093935,
+    "t_net": 1.2578304494174548
+   },
+   "entry_sensitivity": {
+    "rest1_through0bp": {
+     "fill_rate": 0.9463501338182115,
+     "gross_per_fill": 18.395923362446233,
+     "net_4bp": 14.395923362446233,
+     "t_net_4bp": 2.865987996590839,
+     "net_4bp_per_event": 13.623584000487709,
+     "maker_in_taker_out": 9.724370503052006,
+     "t_maker_in_taker_out": 1.9359598154607889
+    },
+    "rest1_through1bp": {
+     "fill_rate": 0.9108627699348275,
+     "gross_per_fill": 18.291978508079072,
+     "net_4bp": 14.291978508079072,
+     "t_net_4bp": 2.7666648485581664,
+     "net_4bp_per_event": 13.018031131717928,
+     "maker_in_taker_out": 9.60868405266906,
+     "t_maker_in_taker_out": 1.8600649584235882
+    },
+    "rest1_through2bp": {
+     "fill_rate": 0.8686742803440456,
+     "gross_per_fill": 18.370983706126207,
+     "net_4bp": 14.370983706126207,
+     "t_net_4bp": 2.740062094962965,
+     "net_4bp_per_event": 12.483703928755189,
+     "maker_in_taker_out": 9.682326870358668,
+     "t_maker_in_taker_out": 1.8460933079481283
+    },
+    "rest1_through5bp": {
+     "fill_rate": 0.7506690910576747,
+     "gross_per_fill": 17.50948237750304,
+     "net_4bp": 13.50948237750304,
+     "t_net_4bp": 2.3408889095038674,
+     "net_4bp_per_event": 10.14115085697988,
+     "maker_in_taker_out": 8.810111068682312,
+     "t_maker_in_taker_out": 1.5265937447403173
+    },
+    "rest5_through0bp": {
+     "fill_rate": 0.9716836578339837,
+     "gross_per_fill": 18.068046632785016,
+     "net_4bp": 14.068046632785016,
+     "t_net_4bp": 2.838812148737919,
+     "net_4bp_per_event": 13.669691010723602,
+     "maker_in_taker_out": 9.393775696513702,
+     "t_maker_in_taker_out": 1.8955840327992197
+    },
+    "rest5_through1bp": {
+     "fill_rate": 0.952377060902609,
+     "gross_per_fill": 17.746488518135102,
+     "net_4bp": 13.746488518135102,
+     "t_net_4bp": 2.7205867744568764,
+     "net_4bp_per_event": 13.09184033263297,
+     "maker_in_taker_out": 9.065520610120686,
+     "t_maker_in_taker_out": 1.7941698669389725
+    },
+    "rest5_through2bp": {
+     "fill_rate": 0.9302306576501114,
+     "gross_per_fill": 17.26325633757922,
+     "net_4bp": 13.263256337579222,
+     "t_net_4bp": 2.5741237643472905,
+     "net_4bp_per_event": 12.337887665488326,
+     "maker_in_taker_out": 8.579693129286152,
+     "t_maker_in_taker_out": 1.6651410040479995
+    },
+    "rest5_through5bp": {
+     "fill_rate": 0.8654258687968619,
+     "gross_per_fill": 15.587573068641966,
+     "net_4bp": 11.587573068641966,
+     "t_net_4bp": 2.1386295776559394,
+     "net_4bp_per_event": 10.028185490176593,
+     "maker_in_taker_out": 6.898196298103722,
+     "t_maker_in_taker_out": 1.2731472369761982
+    },
+    "rest15_through0bp": {
+     "fill_rate": 0.9816536253498682,
+     "gross_per_fill": 17.827125001757786,
+     "net_4bp": 13.827125001757786,
+     "t_net_4bp": 2.8117643593536727,
+     "net_4bp_per_event": 13.573447386141332,
+     "maker_in_taker_out": 9.151835193437114,
+     "t_maker_in_taker_out": 1.861037924826296
+    },
+    "rest15_through1bp": {
+     "fill_rate": 0.9687621304676487,
+     "gross_per_fill": 17.343608882826576,
+     "net_4bp": 13.343608882826576,
+     "t_net_4bp": 2.6800467404831068,
+     "net_4bp_per_event": 12.926782969454116,
+     "maker_in_taker_out": 8.663761567461103,
+     "t_maker_in_taker_out": 1.7401054057482537
+    },
+    "rest15_through2bp": {
+     "fill_rate": 0.954379226510307,
+     "gross_per_fill": 16.637669200207206,
+     "net_4bp": 12.637669200207206,
+     "t_net_4bp": 2.504794317122758,
+     "net_4bp_per_event": 12.061128956186884,
+     "maker_in_taker_out": 7.955882155638125,
+     "t_maker_in_taker_out": 1.5768610568485206
+    },
+    "rest15_through5bp": {
+     "fill_rate": 0.9104337344474636,
+     "gross_per_fill": 14.424678320529793,
+     "net_4bp": 10.424678320529793,
+     "t_net_4bp": 1.9956416224857785,
+     "net_4bp_per_event": 9.490978813773452,
+     "maker_in_taker_out": 5.738974934312527,
+     "t_maker_in_taker_out": 1.0986369936002605
+    }
+   },
+   "simulated_passive_exit": {
+    "fills": 47561,
+    "exit_passive_share": 0.957402073127142,
+    "gross_per_fill": 16.686917619437427,
+    "net_per_fill": 12.48439874893428,
+    "se": 4.954894386725851,
+    "t_net": 2.5196094557292588
+   },
+   "funding_bp_paid_per_event": {
+    "all": -0.0785391934132845,
+    "long": 0.38886036394758927,
+    "short": -0.6475068448470965,
+    "share_events_crossing_a_funding_time": 0.47191860583896866
+   },
+   "simulated_passive_exit_after_funding": {
+    "net_per_fill": 12.563327976662883,
+    "t_net": 2.539303109979833
+   },
+   "taker_after_funding": {
+    "net": 6.097472433507218,
+    "t_net": 1.276412005165053
+   },
+   "one_position_per_symbol": {
+    "events": 19483,
+    "share_of_events": 0.39804278096716855,
+    "gross": 2.7670578353999487,
+    "t_gross": 1.0065522390290915,
+    "net_taker": -10.551732905245743,
+    "t_net_taker": -3.8383261258711316,
+    "maker_gross_per_fill": 1.798171290321824,
+    "maker_net_4bp": -2.2018287096781757,
+    "t_maker_net_4bp": -0.7770995399479222,
+    "long_share": 0.5370836113534877,
+    "long_gross": 12.048372319429223
+   },
+   "one_position_per_all": {
+    "events": 6040,
+    "share_of_events": 0.12339877827037408,
+    "gross": -0.5081329564943932,
+    "t_gross": -0.10726819362776563,
+    "net_taker": -13.796212426693069,
+    "t_net_taker": -2.9124164591214186,
+    "maker_gross_per_fill": -1.7638654872578026,
+    "maker_net_4bp": -5.763865487257803,
+    "t_maker_net_4bp": -1.2026934176069717,
+    "long_share": 0.47135761589403974,
+    "long_gross": 12.883687633052148
+   }
+  }
+ },
+ "validation": {
+  "60": {
+   "taker_all": {
+    "events": 13249,
+    "gross": 9.655801499579107,
+    "net": -3.8415190529154213,
+    "t_net": -1.4471884161692847
+   },
+   "entry_sensitivity": {
+    "rest1_through0bp": {
+     "fill_rate": 0.9450524567891916,
+     "gross_per_fill": 8.616086553470087,
+     "net_4bp": 4.616086553470087,
+     "t_net_4bp": 1.695302877298779,
+     "net_4bp_per_event": 4.362443938108457,
+     "maker_in_taker_out": -0.12818307355650838,
+     "t_maker_in_taker_out": -0.047076485872646866
+    },
+    "rest1_through1bp": {
+     "fill_rate": 0.8968224016906936,
+     "gross_per_fill": 7.594098561446935,
+     "net_4bp": 3.594098561446935,
+     "t_net_4bp": 1.2795672365162118,
+     "net_4bp_per_event": 3.2232681037899074,
+     "maker_in_taker_out": -1.1586366683123641,
+     "t_maker_in_taker_out": -0.41249662313154445
+    },
+    "rest1_through2bp": {
+     "fill_rate": 0.8432334515812514,
+     "gross_per_fill": 7.095745919405175,
+     "net_4bp": 3.095745919405175,
+     "t_net_4bp": 1.0451117905617757,
+     "net_4bp_per_event": 2.6104365168386003,
+     "maker_in_taker_out": -1.6589085739711233,
+     "t_maker_in_taker_out": -0.5600410871103947
+    },
+    "rest1_through5bp": {
+     "fill_rate": 0.7237527360555513,
+     "gross_per_fill": 5.49566963834496,
+     "net_4bp": 1.4956696383449604,
+     "t_net_4bp": 0.4594854979678266,
+     "net_4bp_per_event": 1.082494992987382,
+     "maker_in_taker_out": -3.264785049317986,
+     "t_maker_in_taker_out": -1.0029764231917924
+    },
+    "rest5_through0bp": {
+     "fill_rate": 0.9733564797343196,
+     "gross_per_fill": 8.868947362706052,
+     "net_4bp": 4.868947362706052,
+     "t_net_4bp": 1.8117795764209577,
+     "net_4bp_per_event": 4.739221464975262,
+     "maker_in_taker_out": 0.12181646940580393,
+     "t_maker_in_taker_out": 0.04532901567834599
+    },
+    "rest5_through1bp": {
+     "fill_rate": 0.9476186882028832,
+     "gross_per_fill": 7.659764761588389,
+     "net_4bp": 3.659764761588389,
+     "t_net_4bp": 1.3313004044116221,
+     "net_4bp_per_event": 3.4680614825075264,
+     "maker_in_taker_out": -1.0914100691563347,
+     "t_maker_in_taker_out": -0.39701859575699205
+    },
+    "rest5_through2bp": {
+     "fill_rate": 0.9218808966714469,
+     "gross_per_fill": 6.882867317065521,
+     "net_4bp": 2.8828673170655206,
+     "t_net_4bp": 1.0388026462259894,
+     "net_4bp_per_event": 2.6576603072411706,
+     "maker_in_taker_out": -1.8694660708499855,
+     "t_maker_in_taker_out": -0.6736370730392969
+    },
+    "rest5_through5bp": {
+     "fill_rate": 0.8554607894935466,
+     "gross_per_fill": 4.012502250715279,
+     "net_4bp": 0.012502250715279217,
+     "t_net_4bp": 0.004174430620479636,
+     "net_4bp_per_event": 0.010695185267339018,
+     "maker_in_taker_out": -4.743717971624584,
+     "t_maker_in_taker_out": -1.5839005317233363
+    },
+    "rest15_through0bp": {
+     "fill_rate": 0.9820363801041588,
+     "gross_per_fill": 8.89633957814696,
+     "net_4bp": 4.896339578146961,
+     "t_net_4bp": 1.8217163879768792,
+     "net_4bp_per_event": 4.808383595084165,
+     "maker_in_taker_out": 0.14858767591039168,
+     "t_maker_in_taker_out": 0.0552830537868453
+    },
+    "rest15_through1bp": {
+     "fill_rate": 0.9665635142274889,
+     "gross_per_fill": 7.902703404395227,
+     "net_4bp": 3.9027034043952273,
+     "t_net_4bp": 1.4327561319240605,
+     "net_4bp_per_event": 3.7722107175398354,
+     "maker_in_taker_out": -0.8479603469713197,
+     "t_maker_in_taker_out": -0.31130225919381116
+    },
+    "rest15_through2bp": {
+     "fill_rate": 0.9504868291946562,
+     "gross_per_fill": 7.016678474720543,
+     "net_4bp": 3.0166784747205426,
+     "t_net_4bp": 1.1038776491531603,
+     "net_4bp_per_event": 2.8673131581369007,
+     "maker_in_taker_out": -1.7358824718370691,
+     "t_maker_in_taker_out": -0.6352025508436702
+    },
+    "rest15_through5bp": {
+     "fill_rate": 0.9063325534002566,
+     "gross_per_fill": 4.381092285784349,
+     "net_4bp": 0.38109228578434884,
+     "t_net_4bp": 0.13147082178139008,
+     "net_4bp_per_event": 0.3453963444560692,
+     "maker_in_taker_out": -4.37423749436222,
+     "t_maker_in_taker_out": -1.5090428736104005
+    }
+   },
+   "simulated_passive_exit": {
+    "fills": 12896,
+    "exit_passive_share": 0.9682847394540943,
+    "gross_per_fill": 7.886358057721777,
+    "net_per_fill": 3.735536097424011,
+    "se": 2.6912290284569136,
+    "t_net": 1.38804095003608
+   },
+   "funding_bp_paid_per_event": {
+    "all": -0.006967039021813068,
+    "long": 0.10461169328229898,
+    "short": -0.15602064527503184,
+    "share_events_crossing_a_funding_time": 0.1263491584270511
+   },
+   "simulated_passive_exit_after_funding": {
+    "net_per_fill": 3.7426413316051512,
+    "t_net": 1.3909305039979014
+   },
+   "taker_after_funding": {
+    "net": -3.8345520138936067,
+    "t_net": -1.4455461469295146
+   },
+   "one_position_per_symbol": {
+    "events": 8360,
+    "share_of_events": 0.6309910181900521,
+    "gross": 3.0384601478925735,
+    "t_gross": 1.6100731406846223,
+    "net_taker": -10.412975258805991,
+    "t_net_taker": -5.517811971450543,
+    "maker_gross_per_fill": 2.5278791266910616,
+    "maker_net_4bp": -1.4721208733089384,
+    "t_maker_net_4bp": -0.7744944137969696,
+    "long_share": 0.5593301435406699,
+    "long_gross": 5.8561128403719325
+   },
+   "one_position_per_all": {
+    "events": 4195,
+    "share_of_events": 0.31662767001283115,
+    "gross": 1.2890911859376748,
+    "t_gross": 0.6864035037804831,
+    "net_taker": -12.153101901070668,
+    "t_net_taker": -6.471172728272362,
+    "maker_gross_per_fill": 0.9623026722619504,
+    "maker_net_4bp": -3.0376973277380497,
+    "t_maker_net_4bp": -1.558991723506346,
+    "long_share": 0.48486293206197856,
+    "long_gross": 3.03074167855802
+   }
+  },
+  "240": {
+   "taker_all": {
+    "events": 13248,
+    "gross": 18.815331570800033,
+    "net": 5.317897995920806,
+    "t_net": 0.9846366479492155
+   },
+   "entry_sensitivity": {
+    "rest1_through0bp": {
+     "fill_rate": 0.9451237922705314,
+     "gross_per_fill": 18.492093420312695,
+     "net_4bp": 14.492093420312695,
+     "t_net_4bp": 2.5777053453995444,
+     "net_4bp_per_event": 13.696822291344752,
+     "maker_in_taker_out": 9.7478237932861,
+     "t_maker_in_taker_out": 1.733843190849668
+    },
+    "rest1_through1bp": {
+     "fill_rate": 0.8968900966183575,
+     "gross_per_fill": 17.273926432703817,
+     "net_4bp": 13.273926432703817,
+     "t_net_4bp": 2.3050221146073735,
+     "net_4bp_per_event": 11.905253160732695,
+     "maker_in_taker_out": 8.521191202944518,
+     "t_maker_in_taker_out": 1.4797079270526032
+    },
+    "rest1_through2bp": {
+     "fill_rate": 0.8432971014492754,
+     "gross_per_fill": 16.617007852358668,
+     "net_4bp": 12.617007852358668,
+     "t_net_4bp": 2.09763778618036,
+     "net_4bp_per_event": 10.63988615085681,
+     "maker_in_taker_out": 7.86235335898237,
+     "t_maker_in_taker_out": 1.3071537790174517
+    },
+    "rest1_through5bp": {
+     "fill_rate": 0.7238073671497585,
+     "gross_per_fill": 15.518650264791875,
+     "net_4bp": 11.518650264791875,
+     "t_net_4bp": 1.7718372347470794,
+     "net_4bp_per_event": 8.337283921277875,
+     "maker_in_taker_out": 6.758195577128928,
+     "t_maker_in_taker_out": 1.0395682035647276
+    },
+    "rest5_through0bp": {
+     "fill_rate": 0.9733544685990339,
+     "gross_per_fill": 18.131678680288115,
+     "net_4bp": 14.131678680288115,
+     "t_net_4bp": 2.5685460920080025,
+     "net_4bp_per_event": 13.755132592264134,
+     "maker_in_taker_out": 9.384489847407153,
+     "t_maker_in_taker_out": 1.7057063968394008
+    },
+    "rest5_through1bp": {
+     "fill_rate": 0.9476147342995169,
+     "gross_per_fill": 16.84074305607095,
+     "net_4bp": 12.840743056070949,
+     "t_net_4bp": 2.314083196568469,
+     "net_4bp_per_event": 12.16807731928704,
+     "maker_in_taker_out": 8.089508389829113,
+     "t_maker_in_taker_out": 1.4578436272465332
+    },
+    "rest5_through2bp": {
+     "fill_rate": 0.921875,
+     "gross_per_fill": 15.706301122037555,
+     "net_4bp": 11.706301122037555,
+     "t_net_4bp": 2.075934747387955,
+     "net_4bp_per_event": 10.791746346878371,
+     "maker_in_taker_out": 6.953906133091349,
+     "t_maker_in_taker_out": 1.2331696597640476
+    },
+    "rest5_through5bp": {
+     "fill_rate": 0.8554498792270532,
+     "gross_per_fill": 13.245053915429649,
+     "net_4bp": 9.245053915429649,
+     "t_net_4bp": 1.5678147675090064,
+     "net_4bp_per_event": 7.9086802554018885,
+     "maker_in_taker_out": 4.488766965813484,
+     "t_maker_in_taker_out": 0.7612238069443337
+    },
+    "rest15_through0bp": {
+     "fill_rate": 0.9820350241545893,
+     "gross_per_fill": 18.14888565653032,
+     "net_4bp": 14.148885656530322,
+     "t_net_4bp": 2.5767747297708157,
+     "net_4bp_per_event": 13.894701267471277,
+     "maker_in_taker_out": 9.401076279128324,
+     "t_maker_in_taker_out": 1.7121105065631144
+    },
+    "rest15_through1bp": {
+     "fill_rate": 0.9665609903381642,
+     "gross_per_fill": 16.851321648493784,
+     "net_4bp": 12.851321648493784,
+     "t_net_4bp": 2.326010153816334,
+     "net_4bp_per_event": 12.421586179722441,
+     "maker_in_taker_out": 8.100599274421155,
+     "t_maker_in_taker_out": 1.4661586317473572
+    },
+    "rest15_through2bp": {
+     "fill_rate": 0.9504830917874396,
+     "gross_per_fill": 15.901234405277162,
+     "net_4bp": 11.901234405277162,
+     "t_net_4bp": 2.1293249277614033,
+     "net_4bp_per_event": 11.311922073614888,
+     "maker_in_taker_out": 7.148613693714264,
+     "t_maker_in_taker_out": 1.2790035737984282
+    },
+    "rest15_through5bp": {
+     "fill_rate": 0.9063254830917874,
+     "gross_per_fill": 13.683495321756258,
+     "net_4bp": 9.683495321756258,
+     "t_net_4bp": 1.6892047183417902,
+     "net_4bp_per_event": 8.776398575507804,
+     "maker_in_taker_out": 4.928102634157357,
+     "t_maker_in_taker_out": 0.8596662615603368
+    }
+   },
+   "simulated_passive_exit": {
+    "fills": 12895,
+    "exit_passive_share": 0.9641721597518418,
+    "gross_per_fill": 17.081446669638517,
+    "net_per_fill": 12.91052770880098,
+    "se": 5.505117582538491,
+    "t_net": 2.3451865496481816
+   },
+   "funding_bp_paid_per_event": {
+    "all": 0.0013587635869557967,
+    "long": 0.42607485480463564,
+    "short": -0.5659277503525968,
+    "share_events_crossing_a_funding_time": 0.5042270531400966
+   },
+   "simulated_passive_exit_after_funding": {
+    "net_per_fill": 12.912120450173605,
+    "t_net": 2.345911103602965
+   },
+   "taker_after_funding": {
+    "net": 5.316539232333854,
+    "t_net": 0.9847482940368747
+   },
+   "one_position_per_symbol": {
+    "events": 5918,
+    "share_of_events": 0.44670893719806765,
+    "gross": 4.85822595248135,
+    "t_gross": 1.304054526959058,
+    "net_taker": -8.563876109025916,
+    "t_net_taker": -2.298732400988433,
+    "maker_gross_per_fill": 4.5365167676585605,
+    "maker_net_4bp": 0.5365167676585605,
+    "t_maker_net_4bp": 0.14040171500617013,
+    "long_share": 0.5555931057789794,
+    "long_gross": 9.804902832604581
+   },
+   "one_position_per_all": {
+    "events": 2076,
+    "share_of_events": 0.15670289855072464,
+    "gross": 2.3335408529136763,
+    "t_gross": 0.4746619689506619,
+    "net_taker": -11.127923501614262,
+    "t_net_taker": -2.2635138669260595,
+    "maker_gross_per_fill": 2.0790484668421616,
+    "maker_net_4bp": -1.9209515331578384,
+    "t_maker_net_4bp": -0.3782733269817411,
+    "long_share": 0.4821772639691715,
+    "long_gross": 6.888149212090436
+   }
+  }
+ },
+ "both": {
+  "60": {
+   "taker_all": {
+    "events": 62204,
+    "gross": 12.075879947266897,
+    "net": -1.308468326156035,
+    "t_net": -0.727304983320209
+   },
+   "entry_sensitivity": {
+    "rest1_through0bp": {
+     "fill_rate": 0.9460645617645167,
+     "gross_per_fill": 10.967101855313285,
+     "net_4bp": 6.967101855313285,
+     "t_net_4bp": 3.7043419347547553,
+     "net_4bp_per_event": 6.591328163515715,
+     "maker_in_taker_out": 2.280055346451622,
+     "t_maker_in_taker_out": 1.2122837887006512
+    },
+    "rest1_through1bp": {
+     "fill_rate": 0.9078515851070671,
+     "gross_per_fill": 10.369567772585786,
+     "net_4bp": 6.3695677725857855,
+     "t_net_4bp": 3.2814962410695223,
+     "net_4bp_per_event": 5.7826221987888955,
+     "maker_in_taker_out": 1.6716289710558243,
+     "t_maker_in_taker_out": 0.8611956699152498
+    },
+    "rest1_through2bp": {
+     "fill_rate": 0.8632242299530577,
+     "gross_per_fill": 9.843752502623076,
+     "net_4bp": 5.843752502623076,
+     "t_net_4bp": 2.9008242244544187,
+     "net_4bp_per_event": 5.044468754113058,
+     "maker_in_taker_out": 1.141335190346556,
+     "t_maker_in_taker_out": 0.5665559530273511
+    },
+    "rest1_through5bp": {
+     "fill_rate": 0.7448877885666516,
+     "gross_per_fill": 8.25754056140786,
+     "net_4bp": 4.257540561407859,
+     "t_net_4bp": 1.8963320464323299,
+     "net_4bp_per_event": 3.171389973519921,
+     "maker_in_taker_out": -0.45449137988921606,
+     "t_maker_in_taker_out": -0.20243296712742848
+    },
+    "rest5_through0bp": {
+     "fill_rate": 0.9720435984824127,
+     "gross_per_fill": 10.863362346557524,
+     "net_4bp": 6.863362346557524,
+     "t_net_4bp": 3.6964545849877735,
+     "net_4bp_per_event": 6.671487433036472,
+     "maker_in_taker_out": 2.1735252507169562,
+     "t_maker_in_taker_out": 1.1706124451711628
+    },
+    "rest5_through1bp": {
+     "fill_rate": 0.9513536107002765,
+     "gross_per_fill": 10.198560949227671,
+     "net_4bp": 6.198560949227671,
+     "t_net_4bp": 3.2704857180738043,
+     "net_4bp_per_event": 5.897023340193478,
+     "maker_in_taker_out": 1.5026604456621566,
+     "t_maker_in_taker_out": 0.7928339443471681
+    },
+    "rest5_through2bp": {
+     "fill_rate": 0.9284451160697061,
+     "gross_per_fill": 9.423425532421412,
+     "net_4bp": 5.423425532421412,
+     "t_net_4bp": 2.8095217726481447,
+     "net_4bp_per_event": 5.035352947944406,
+     "maker_in_taker_out": 0.7252799815409379,
+     "t_maker_in_taker_out": 0.37572008451553984
+    },
+    "rest5_through5bp": {
+     "fill_rate": 0.863304610635972,
+     "gross_per_fill": 7.077740248690985,
+     "net_4bp": 3.0777402486909846,
+     "t_net_4bp": 1.5070999252365032,
+     "net_4bp_per_event": 2.65702734703483,
+     "maker_in_taker_out": -1.6257848253299834,
+     "t_maker_in_taker_out": -0.7961101297445682
+    },
+    "rest15_through0bp": {
+     "fill_rate": 0.9817375088418752,
+     "gross_per_fill": 10.819232076988376,
+     "net_4bp": 6.819232076988376,
+     "t_net_4bp": 3.701472612116823,
+     "net_4bp_per_event": 6.694695911477175,
+     "maker_in_taker_out": 2.1284775083108354,
+     "t_maker_in_taker_out": 1.1553355441744477
+    },
+    "rest15_through1bp": {
+     "fill_rate": 0.9682817825220243,
+     "gross_per_fill": 10.11564770156805,
+     "net_4bp": 6.115647701568051,
+     "t_net_4bp": 3.2746322145403055,
+     "net_4bp_per_event": 5.921670257751033,
+     "maker_in_taker_out": 1.420706558302955,
+     "t_maker_in_taker_out": 0.7607193367326727
+    },
+    "rest15_through2bp": {
+     "fill_rate": 0.953539965275545,
+     "gross_per_fill": 9.317008926041396,
+     "net_4bp": 5.317008926041396,
+     "t_net_4bp": 2.8138493742876793,
+     "net_4bp_per_event": 5.069980506707275,
+     "maker_in_taker_out": 0.6201582668378354,
+     "t_maker_in_taker_out": 0.3281980480706435
+    },
+    "rest15_through5bp": {
+     "fill_rate": 0.9095556555848499,
+     "gross_per_fill": 6.7916379203936765,
+     "net_4bp": 2.7916379203936765,
+     "t_net_4bp": 1.4215110848960324,
+     "net_4bp_per_event": 2.5391500588391973,
+     "maker_in_taker_out": -1.908881716214192,
+     "t_maker_in_taker_out": -0.9720087621431863
+    }
+   },
+   "simulated_passive_exit": {
+    "fills": 60464,
+    "exit_passive_share": 0.962208917703096,
+    "gross_per_fill": 9.567892876734309,
+    "net_per_fill": 5.38861264386847,
+    "se": 1.854858359670492,
+    "t_net": 2.905134300834558
+   },
+   "funding_bp_paid_per_event": {
+    "all": 0.0049408092727152185,
+    "long": 0.1026393028183286,
+    "short": -0.11635234045619607,
+    "share_events_crossing_a_funding_time": 0.12295029258568581
+   },
+   "simulated_passive_exit_after_funding": {
+    "net_per_fill": 5.383186163648836,
+    "t_net": 2.9062566656264526
+   },
+   "taker_after_funding": {
+    "net": -1.3134091354287478,
+    "t_net": -0.731304837889635
+   },
+   "one_position_per_symbol": {
+    "events": 37417,
+    "share_of_events": 0.6015208025207383,
+    "gross": 2.6342822813094973,
+    "t_gross": 2.3092277088852344,
+    "net_taker": -10.719701202133857,
+    "t_net_taker": -9.396954617419578,
+    "maker_gross_per_fill": 1.5329024739985397,
+    "maker_net_4bp": -2.46709752600146,
+    "t_maker_net_4bp": -2.1047844090648637,
+    "long_share": 0.542534142234813,
+    "long_gross": 7.594062499355658
+   },
+   "one_position_per_all": {
+    "events": 17294,
+    "share_of_events": 0.2780207060639187,
+    "gross": 1.6440749544042585,
+    "t_gross": 1.3300550557370714,
+    "net_taker": -11.682049713110487,
+    "t_net_taker": -9.450766974261597,
+    "maker_gross_per_fill": 0.4011805518241401,
+    "maker_net_4bp": -3.5988194481758597,
+    "t_maker_net_4bp": -2.7928819249300103,
+    "long_share": 0.47525153232334916,
+    "long_gross": 5.965713261492721
+   }
+  },
+  "240": {
+   "taker_all": {
+    "events": 62195,
+    "gross": 19.253930990478924,
+    "net": 5.869607491805397,
+    "t_net": 1.4908169566076668
+   },
+   "entry_sensitivity": {
+    "rest1_through0bp": {
+     "fill_rate": 0.9460889138998312,
+     "gross_per_fill": 18.41638740674361,
+     "net_4bp": 14.41638740674361,
+     "t_net_4bp": 3.49015149536864,
+     "net_4bp_per_event": 13.639184304005264,
+     "maker_in_taker_out": 9.729361132993567,
+     "t_maker_in_taker_out": 2.355440607222781
+    },
+    "rest1_through1bp": {
+     "fill_rate": 0.9078864860519335,
+     "gross_per_fill": 18.077752340834913,
+     "net_4bp": 14.077752340834913,
+     "t_net_4bp": 3.3089306395340574,
+     "net_4bp_per_event": 12.78100110422999,
+     "maker_in_taker_out": 9.379845635915139,
+     "t_maker_in_taker_out": 2.204702701634449
+    },
+    "rest1_through2bp": {
+     "fill_rate": 0.8632687515073559,
+     "gross_per_fill": 18.006017170984546,
+     "net_4bp": 14.006017170984546,
+     "t_net_4bp": 3.2309440320932428,
+     "net_4bp_per_event": 12.090956956786417,
+     "maker_in_taker_out": 9.303627571237847,
+     "t_maker_in_taker_out": 2.146184715550799
+    },
+    "rest1_through5bp": {
+     "fill_rate": 0.744947343034006,
+     "gross_per_fill": 17.097454208445214,
+     "net_4bp": 13.097454208445214,
+     "t_net_4bp": 2.7501998285831553,
+     "net_4bp_per_event": 9.756913713090821,
+     "maker_in_taker_out": 8.385440913098584,
+     "t_maker_in_taker_out": 1.7607725741791715
+    },
+    "rest5_through0bp": {
+     "fill_rate": 0.9720395530187315,
+     "gross_per_fill": 18.08161906980619,
+     "net_4bp": 14.081619069806191,
+     "t_net_4bp": 3.4591676680433876,
+     "net_4bp_per_event": 13.687890706394453,
+     "maker_in_taker_out": 9.391795065571706,
+     "t_maker_in_taker_out": 2.307106425380829
+    },
+    "rest5_through1bp": {
+     "fill_rate": 0.9513626497306857,
+     "gross_per_fill": 17.554318017361847,
+     "net_4bp": 13.554318017361847,
+     "t_net_4bp": 3.2655650615021146,
+     "net_4bp_per_event": 12.895071904289741,
+     "maker_in_taker_out": 8.858441728702054,
+     "t_maker_in_taker_out": 2.134214187061859
+    },
+    "rest5_through2bp": {
+     "fill_rate": 0.9284508400996865,
+     "gross_per_fill": 16.93396212946752,
+     "net_4bp": 12.93396212946752,
+     "t_net_4bp": 3.0549197982976044,
+     "net_4bp_per_event": 12.00854800492165,
+     "maker_in_taker_out": 8.23584108002601,
+     "t_maker_in_taker_out": 1.94525341261688
+    },
+    "rest5_through5bp": {
+     "fill_rate": 0.8633009084331538,
+     "gross_per_fill": 15.093136744291396,
+     "net_4bp": 11.093136744291396,
+     "t_net_4bp": 2.4934604444561312,
+     "net_4bp_per_event": 9.57671502871996,
+     "maker_in_taker_out": 6.38963721921364,
+     "t_maker_in_taker_out": 1.4362310704168282
+    },
+    "rest15_through0bp": {
+     "fill_rate": 0.9817348661467964,
+     "gross_per_fill": 17.895683381662312,
+     "net_4bp": 13.895683381662312,
+     "t_net_4bp": 3.437658570598283,
+     "net_4bp_per_event": 13.641876864714511,
+     "maker_in_taker_out": 9.204941640068117,
+     "t_maker_in_taker_out": 2.27721412842466
+    },
+    "rest15_through1bp": {
+     "fill_rate": 0.9682932711632768,
+     "gross_per_fill": 17.238935617867487,
+     "net_4bp": 13.238935617867487,
+     "t_net_4bp": 3.2353754101732473,
+     "net_4bp_per_event": 12.819172276144926,
+     "maker_in_taker_out": 8.544018393551195,
+     "t_maker_in_taker_out": 2.0880158203395043
+    },
+    "rest15_through2bp": {
+     "fill_rate": 0.9535493206849425,
+     "gross_per_fill": 16.48130750092283,
+     "net_4bp": 12.481307500922831,
+     "t_net_4bp": 3.0097004455350227,
+     "net_4bp_per_event": 11.901542288764842,
+     "maker_in_taker_out": 7.7844808729256645,
+     "t_maker_in_taker_out": 1.8771234944552857
+    },
+    "rest15_through5bp": {
+     "fill_rate": 0.9095586461934239,
+     "gross_per_fill": 14.267361999754227,
+     "net_4bp": 10.267361999754227,
+     "t_net_4bp": 2.3932876380335326,
+     "net_4bp_per_event": 9.33876788047426,
+     "maker_in_taker_out": 5.566867037760238,
+     "t_maker_in_taker_out": 1.2976180312301102
+    }
+   },
+   "simulated_passive_exit": {
+    "fills": 60456,
+    "exit_passive_share": 0.9588461029509064,
+    "gross_per_fill": 16.771068937790325,
+    "net_per_fill": 12.575290189609833,
+    "se": 4.0704548456193175,
+    "t_net": 3.0894066305989223
+   },
+   "funding_bp_paid_per_event": {
+    "all": -0.06152033121633645,
+    "long": 0.3970447863446219,
+    "short": -0.630830569070515,
+    "share_events_crossing_a_funding_time": 0.4788005466677386
+   },
+   "simulated_passive_exit_after_funding": {
+    "net_per_fill": 12.637723883535992,
+    "t_net": 3.109016162934193
+   },
+   "taker_after_funding": {
+    "net": 5.931127823021734,
+    "t_net": 1.5088263370487542
+   },
+   "one_position_per_symbol": {
+    "events": 25401,
+    "share_of_events": 0.4084090360961492,
+    "gross": 3.254264359430017,
+    "t_gross": 1.428462336380721,
+    "net_taker": -10.088596157872452,
+    "t_net_taker": -4.42839857085248,
+    "maker_gross_per_fill": 2.4364774085316663,
+    "maker_net_4bp": -1.5635225914683337,
+    "t_maker_net_4bp": -0.6675516018251044,
+    "long_share": 0.5413960080311798,
+    "long_gross": 11.511975600938863
+   },
+   "one_position_per_all": {
+    "events": 8116,
+    "share_of_events": 0.13049280488785273,
+    "gross": 0.21874171432018946,
+    "t_gross": 0.05844701349468146,
+    "net_taker": -13.113688054038608,
+    "t_net_taker": -3.5039311319354285,
+    "maker_gross_per_fill": -0.7820597920968044,
+    "maker_net_4bp": -4.782059792096804,
+    "t_maker_net_4bp": -1.2606714156670045,
+    "long_share": 0.4741251848201084,
+    "long_gross": 11.324037435707377
+   }
+  }
+ }
+}

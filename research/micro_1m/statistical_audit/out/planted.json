@@ -1,0 +1,250 @@
+{
+ "part_a/BTCUSDT": {
+  "T/fund_post5_all@5": {
+   "events": 4381,
+   "gross_before_bp": 0.41530663081185726,
+   "gross_after_bp": 7.084472977011497,
+   "gain_bp": 6.66916634619964,
+   "expected_gain_bp": 6.668889382799303,
+   "t_day_before": 0.8330123385045856,
+   "t_day_after": 16.33915060762847
+  },
+  "T/fund_post15_all@15": {
+   "events": 4381,
+   "gross_before_bp": 1.2933611482319154,
+   "gross_after_bp": 21.315963798988182,
+   "gain_bp": 20.022602650756266,
+   "expected_gain_bp": 20.02001334000303,
+   "t_day_before": 1.7714545602725356,
+   "t_day_after": 33.22138635859688
+  },
+  "T/fund_post60_all@60": {
+   "events": 4379,
+   "gross_before_bp": 1.5498894574909658,
+   "gross_after_bp": 21.57300567826457,
+   "gain_bp": 20.023116220773602,
+   "expected_gain_bp": 20.02001334000303,
+   "t_day_before": 0.6623212103283198,
+   "t_day_after": 15.920215245905561
+  },
+  "T/sign60@60": {
+   "events": 2102253,
+   "gross_before_bp": 0.0029203173296094196,
+   "gross_after_bp": 0.08785036849400538,
+   "gain_bp": 0.08493005116439596,
+   "expected_gain_bp": null,
+   "t_day_before": -0.3523691794866153,
+   "t_day_after": -0.7352960435831987
+  },
+  "P/move1_z3_dn@15": {
+   "events_before": 14756,
+   "events_after": 13108,
+   "gross_before_bp_hyp_side": -2.2312250851938598,
+   "gross_after_bp_hyp_side": -38.69503476246928,
+   "gain_on_long_side_bp": 36.463809677275414,
+   "planted_drift_in_event_windows_bp": 35.97467195613672,
+   "t_day_before": -1.7671185252818145,
+   "t_day_after": -36.37218452247337
+  },
+  "P/control sign60@60": {
+   "gross_before_bp": 0.0029203173296094196,
+   "gross_after_bp": 0.5112327183708572,
+   "t_day_before": -0.3523691794866153,
+   "t_day_after": -5.281649378646474
+  }
+ },
+ "part_a/DOGEUSDT": {
+  "T/fund_post5_all@5": {
+   "events": 3786,
+   "gross_before_bp": -1.7563537867040926,
+   "gross_after_bp": 4.911364303181534,
+   "gain_bp": 6.667718089885627,
+   "expected_gain_bp": 6.668889382799303,
+   "t_day_before": -2.09082904722206,
+   "t_day_after": 4.814994119807939
+  },
+  "T/fund_post15_all@15": {
+   "events": 3791,
+   "gross_before_bp": -1.4221978875376,
+   "gross_after_bp": 18.594968210394907,
+   "gain_bp": 20.017166097932506,
+   "expected_gain_bp": 20.02001334000303,
+   "t_day_before": -1.4334984164939568,
+   "t_day_after": 12.44467728816076
+  },
+  "T/fund_post60_all@60": {
+   "events": 3797,
+   "gross_before_bp": -0.7772981467230566,
+   "gross_after_bp": 19.24115904135085,
+   "gain_bp": 20.018457188073906,
+   "expected_gain_bp": 20.02001334000303,
+   "t_day_before": -1.2180565062885838,
+   "t_day_after": 5.821615526837757
+  },
+  "T/sign60@60": {
+   "events": 1785369,
+   "gross_before_bp": -1.3274212013324302,
+   "gross_after_bp": -1.2776067765892802,
+   "gain_bp": 0.04981442474315001,
+   "expected_gain_bp": null,
+   "t_day_before": -2.344025801206564,
+   "t_day_after": -2.495655907661123
+  },
+  "P/move1_z3_dn@15": {
+   "events_before": 13934,
+   "events_after": 13010,
+   "gross_before_bp_hyp_side": -13.77030807404886,
+   "gross_after_bp_hyp_side": -51.51130782660226,
+   "gain_on_long_side_bp": 37.74099975255341,
+   "planted_drift_in_event_windows_bp": 36.65850798029187,
+   "t_day_before": -5.340007680588887,
+   "t_day_after": -16.693514858822503
+  },
+  "P/control sign60@60": {
+   "gross_before_bp": -1.3274212013324302,
+   "gross_after_bp": -1.1493217386838233,
+   "t_day_before": -2.344025801206564,
+   "t_day_after": -3.6015451242119227
+  }
+ },
+ "part_b": {
+  "rows": [
+   {
+    "side": "entry (buy)",
+    "structure": "move1_z3",
+    "window_min": 240,
+    "trades": 151,
+    "triggered": 0.5099337748,
+    "mean_bp": 18.6295929186,
+    "mean_bp_planted": 28.80391366,
+    "gain_bp": 10.1743207414,
+    "expected_gain_bp": 10.1986754967,
+    "t_day": 2.1426973154,
+    "t_day_planted": 3.2825232743,
+    "vs_delay_bp": 2.1767903733,
+    "vs_delay_bp_planted": 12.2227200314,
+    "vs_delay_t": 0.2446662798,
+    "vs_delay_t_planted": 1.3611205043
+   },
+   {
+    "side": "entry (buy)",
+    "structure": "move1_z3",
+    "window_min": 1440,
+    "trades": 151,
+    "triggered": 0.9867549669,
+    "mean_bp": 11.4924092698,
+    "mean_bp_planted": 31.2008780122,
+    "gain_bp": 19.7084687424,
+    "expected_gain_bp": 19.7350993377,
+    "t_day": 0.9976632397,
+    "t_day_planted": 2.7080305613,
+    "vs_delay_bp": 48.5900796371,
+    "vs_delay_bp_planted": 68.0369663668,
+    "vs_delay_t": 1.7761896008,
+    "vs_delay_t_planted": 2.4858595372
+   },
+   {
+    "side": "entry (buy)",
+    "structure": "move5_abs2pct",
+    "window_min": 240,
+    "trades": 151,
+    "triggered": 0.0,
+    "mean_bp": 16.4528025453,
+    "mean_bp_planted": 16.5811936286,
+    "gain_bp": 0.1283910833,
+    "expected_gain_bp": 0.0,
+    "t_day": 1.2396279792,
+    "t_day_planted": 1.247506766,
+    "vs_delay_bp": 0.0,
+    "vs_delay_bp_planted": 0.0,
+    "vs_delay_t": null,
+    "vs_delay_t_planted": null
+   },
+   {
+    "side": "entry (buy)",
+    "structure": "move5_abs2pct",
+    "window_min": 1440,
+    "trades": 151,
+    "triggered": 0.0993377483,
+    "mean_bp": -41.9781524906,
+    "mean_bp_planted": -40.2745144787,
+    "gain_bp": 1.7036380119,
+    "expected_gain_bp": 0.0,
+    "t_day": -1.4793437231,
+    "t_day_planted": -1.4161928913,
+    "vs_delay_bp": -4.8804821233,
+    "vs_delay_bp_planted": -3.4384261241,
+    "vs_delay_t": -0.3882876754,
+    "vs_delay_t_planted": -0.2749224088
+   },
+   {
+    "side": "exit (sell)",
+    "structure": "move1_z3",
+    "window_min": 240,
+    "trades": 139,
+    "triggered": 0.5539568345,
+    "mean_bp": 5.3825427421,
+    "mean_bp_planted": 5.6715098539,
+    "gain_bp": 0.2889671117,
+    "expected_gain_bp": 0.0,
+    "t_day": 0.423428512,
+    "t_day_planted": 0.4459844089,
+    "vs_delay_bp": -28.6418728108,
+    "vs_delay_bp_planted": -28.6412336381,
+    "vs_delay_t": -1.9039148488,
+    "vs_delay_t_planted": -1.9038699381
+   },
+   {
+    "side": "exit (sell)",
+    "structure": "move1_z3",
+    "window_min": 1440,
+    "trades": 141,
+    "triggered": 0.9716312057,
+    "mean_bp": 9.3778223087,
+    "mean_bp_planted": 9.6626905962,
+    "gain_bp": 0.2848682875,
+    "expected_gain_bp": 0.0,
+    "t_day": 0.3455848944,
+    "t_day_planted": 0.3560419003,
+    "vs_delay_bp": -92.0921724731,
+    "vs_delay_bp_planted": -92.0978341832,
+    "vs_delay_t": -2.2435487736,
+    "vs_delay_t_planted": -2.2436374338
+   },
+   {
+    "side": "exit (sell)",
+    "structure": "move5_abs2pct",
+    "window_min": 240,
+    "trades": 139,
+    "triggered": 0.071942446,
+    "mean_bp": 13.1207928922,
+    "mean_bp_planted": 13.4091208313,
+    "gain_bp": 0.2883279391,
+    "expected_gain_bp": 0.0,
+    "t_day": 0.8606298855,
+    "t_day_planted": 0.8794829009,
+    "vs_delay_bp": -20.9036226607,
+    "vs_delay_bp_planted": -20.9036226607,
+    "vs_delay_t": -1.3677261427,
+    "vs_delay_t_planted": -1.3677261427
+   },
+   {
+    "side": "exit (sell)",
+    "structure": "move5_abs2pct",
+    "window_min": 1440,
+    "trades": 141,
+    "triggered": 0.1631205674,
+    "mean_bp": 28.2064679888,
+    "mean_bp_planted": 28.4969979864,
+    "gain_bp": 0.2905299976,
+    "expected_gain_bp": 0.0,
+    "t_day": 0.6890683514,
+    "t_day_planted": 0.6959544566,
+    "vs_delay_bp": -73.263526793,
+    "vs_delay_bp_planted": -73.263526793,
+    "vs_delay_t": -1.9807520042,
+    "vs_delay_t_planted": -1.9807520042
+   }
+  ]
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "planted_bp": 10.0,
+ "definitions": 14,
+ "symbols": [
+  "BTCUSDT",
+  "SOLUSDT"
+ ],
+ "uplift_1min_min": 9.999859688215441,
+ "uplift_1min_max": 10.001134708818672,
+ "max_abs_their_minus_mine_all_horizons": 2.842170943040401e-14,
+ "early_plant_uplift_1min_min": -0.08778337249642393,
+ "early_plant_uplift_1min_max": 2.3289355351950856,
+ "min_t_excess_1min_planted": 27.59763372224816
+}

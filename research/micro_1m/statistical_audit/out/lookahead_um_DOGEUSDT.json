@@ -1,0 +1,148 @@
+{
+ "market": "um",
+ "symbol": "DOGEUSDT",
+ "bars": 1828260,
+ "definitions": 190,
+ "checks": [
+  {
+   "cut": "random 1",
+   "cut_time": "2022-09-17 11:02:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 1150683,
+   "researcher_differences": [],
+   "researcher_flags_compared": 6312982,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "random 1",
+   "cut_time": "2022-09-17 11:02:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 1150683,
+   "researcher_differences": [],
+   "researcher_flags_compared": 6312982,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "random 2",
+   "cut_time": "2022-10-16 03:34:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 1191995,
+   "researcher_differences": [],
+   "researcher_flags_compared": 6531822,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "random 2",
+   "cut_time": "2022-10-16 03:34:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 1191995,
+   "researcher_differences": [],
+   "researcher_flags_compared": 6531822,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "inside a zero-volume run (3rd bar of >= 8)",
+   "cut_time": "2022-05-01 22:28:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 951209,
+   "researcher_differences": [],
+   "researcher_flags_compared": 5243703,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": true,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "inside a zero-volume run (3rd bar of >= 8)",
+   "cut_time": "2022-05-01 22:28:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 951209,
+   "researcher_differences": [],
+   "researcher_flags_compared": 5243703,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "the bar of a selected 2% fall event",
+   "cut_time": "2021-04-17 09:31:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 404672,
+   "researcher_differences": [],
+   "researcher_flags_compared": 2284364,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "the bar of a selected 2% fall event",
+   "cut_time": "2021-04-17 09:31:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 404672,
+   "researcher_differences": [],
+   "researcher_flags_compared": 2284364,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "two bars after a selected 2% fall event",
+   "cut_time": "2021-02-05 04:34:00+00:00",
+   "later_bars": "removed",
+   "bars_compared": 302135,
+   "researcher_differences": [],
+   "researcher_flags_compared": 1715565,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  },
+  {
+   "cut": "two bars after a selected 2% fall event",
+   "cut_time": "2021-02-05 04:34:00+00:00",
+   "later_bars": "replaced",
+   "bars_compared": 302135,
+   "researcher_differences": [],
+   "researcher_flags_compared": 1715565,
+   "auditor_differences": [],
+   "non_causal_controls_caught": {
+    "grid.outage (uses the whole zero-volume run)": false,
+    "next bar's close (shift -1)": true,
+    "centred 5-bar mean of close": true
+   }
+  }
+ ]
+}

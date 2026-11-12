@@ -1,0 +1,68 @@
+                                      sample    segment            def_id   h  events  days  gross  base  excess  t_excess  t_excess_week  cost_taker  net_taker  long_gross  long_excess  short_gross  short_excess
+             um six coins (selection sample)     design sweep_N240_x10_k1 240   48947  1458  19.37  0.71   18.66      3.99           4.41       13.35       6.02       38.58        26.33        -4.01          9.32
+             um six coins (selection sample)     design sweep_N240_x10_k1  60   48955  1458  12.73 -0.37   13.11      6.17           6.49       13.35      -0.62       23.99        21.18        -0.98          3.28
+             um six coins (selection sample)     design   sweep_N30_x2_k3   5  772787  1460   0.91 -0.07    0.97     12.24           8.58       13.35     -12.45        1.27         1.17         0.55          0.78
+             um six coins (selection sample) validation sweep_N240_x10_k1 240   13248   546  18.82  0.11   18.70      3.46           3.85       13.50       5.32       34.75        25.35        -2.47          9.83
+             um six coins (selection sample) validation sweep_N240_x10_k1  60   13249   546   9.66 -0.47   10.13      3.82           3.88       13.50      -3.84       15.28        13.84         2.14          5.18
+             um six coins (selection sample) validation   sweep_N30_x2_k3   5  307372   547   0.35 -0.06    0.41      4.26           4.19       13.40     -13.06        0.62         0.59         0.07          0.22
+     spot BTC+ETH (researcher's cross-check)     design sweep_N240_x10_k1 240   13425  1405  15.49  1.65   13.85      2.78           3.31       22.00      -6.51       23.75        17.50         3.84          8.69
+     spot BTC+ETH (researcher's cross-check)     design sweep_N240_x10_k1  60   13443  1409   9.92  0.12    9.80      3.70           4.08       22.00     -12.08       15.79        14.14         1.64          3.68
+     spot BTC+ETH (researcher's cross-check)     design   sweep_N30_x2_k3   5  241590  1460   1.13 -0.04    1.17     13.85          11.01       22.00     -20.87        1.34         1.28         0.91          1.06
+     spot BTC+ETH (researcher's cross-check) validation sweep_N240_x10_k1 240    2759   497   4.28  0.86    3.41      0.58           0.62       22.00     -17.72       12.72         7.77        -9.05         -3.46
+     spot BTC+ETH (researcher's cross-check) validation sweep_N240_x10_k1  60    2759   497   4.35 -0.10    4.45      1.51           1.81       22.00     -17.65        5.74         5.07         2.15          3.46
+     spot BTC+ETH (researcher's cross-check) validation   sweep_N30_x2_k3   5   85990   547   0.27 -0.04    0.32      3.19           3.17       22.00     -21.73        0.36         0.37         0.18          0.27
+spot SOL+BNB+XRP+DOGE (unused by researcher)     design sweep_N240_x10_k1 240   30710  1444  23.68  0.73   22.96      4.22           4.50       24.00      -0.32       44.72        29.22        -1.79         15.37
+spot SOL+BNB+XRP+DOGE (unused by researcher)     design sweep_N240_x10_k1  60   30783  1448  15.58 -0.46   16.04      6.47           6.80       24.00      -8.42       28.51        25.09        -0.10          5.07
+spot SOL+BNB+XRP+DOGE (unused by researcher)     design   sweep_N30_x2_k3   5  507360  1460   0.47 -0.08    0.54      5.52           3.93       24.00     -23.53        1.04         0.92        -0.09          0.18
+spot SOL+BNB+XRP+DOGE (unused by researcher) validation sweep_N240_x10_k1 240    8891   541  23.26 -0.20   23.46      4.16           4.92       24.00      -0.74       46.04        34.82        -6.84          8.45
+spot SOL+BNB+XRP+DOGE (unused by researcher) validation sweep_N240_x10_k1  60    8891   541  11.94 -0.58   12.52      4.08           3.96       24.00     -12.06       22.53        20.75        -2.05          1.64
+spot SOL+BNB+XRP+DOGE (unused by researcher) validation   sweep_N30_x2_k3   5  202585   547   0.30 -0.07    0.37      3.37           3.56       24.00     -23.70        0.65         0.61        -0.06          0.13
+                              spot six coins     design sweep_N240_x10_k1 240   44135  1448  21.19  1.01   20.19      4.36           4.76       23.39      -2.20       38.04        25.49        -0.18         13.46
+                              spot six coins     design sweep_N240_x10_k1  60   44226  1453  13.86 -0.28   14.14      6.57           6.62       23.39      -9.53       24.47        21.60         0.40          4.67
+                              spot six coins     design   sweep_N30_x2_k3   5  748950  1460   0.68 -0.07    0.75      9.25           6.59       23.35     -22.67        1.14         1.04         0.22          0.46
+                              spot six coins validation sweep_N240_x10_k1 240   11650   542  18.77  0.05   18.71      3.53           4.16       23.53      -4.76       37.70        28.05        -7.33          5.85
+                              spot six coins validation sweep_N240_x10_k1  60   11650   542  10.15 -0.46   10.61      3.91           3.88       23.53     -13.38       18.33        16.83        -1.13          2.04
+                              spot six coins validation   sweep_N30_x2_k3   5  288575   547   0.29 -0.06    0.36      3.68           3.88       23.40     -23.11        0.57         0.53         0.01          0.17
+                                   spot PAXG     design sweep_N240_x10_k1 240    1499   720  13.95  0.22   13.73      7.79           7.75       24.00     -10.05       14.62        14.35        13.22         13.06
+                                   spot PAXG     design sweep_N240_x10_k1  60    1500   720  11.84  0.07   11.77      7.29           7.18       24.00     -12.16       10.87        10.78        12.90         12.85
+                                   spot PAXG     design   sweep_N30_x2_k3   5   26711  1212   0.81 -0.01    0.82      6.81           4.19       24.00     -23.19        0.78         0.79         0.84          0.85
+                                   spot PAXG validation sweep_N240_x10_k1 240     537   285  13.36 -0.15   13.51      2.20           2.07       24.00     -10.64        8.27         7.71        18.18         19.00
+                                   spot PAXG validation sweep_N240_x10_k1  60     537   285  10.76  0.01   10.75      2.51           2.02       24.00     -13.24        8.82         8.75        12.59         12.64
+                                   spot PAXG validation   sweep_N30_x2_k3   5   18268   547   0.47 -0.01    0.48      5.91           4.18       24.00     -23.53        0.41         0.41         0.52          0.54
+                    perp PAXG (2025-03-27..) validation sweep_N240_x10_k1 240      37    26  -9.87  2.15  -12.01     -1.11          -1.07       14.00     -23.87       -7.46       -11.54       -13.82        -12.80
+                    perp PAXG (2025-03-27..) validation sweep_N240_x10_k1  60      37    26 -17.54 -0.29  -17.26     -2.32          -2.05       14.00     -31.54      -21.56       -20.76       -10.96        -11.51
+                    perp PAXG (2025-03-27..) validation   sweep_N30_x2_k3   5    3322    93   0.04 -0.06    0.10      0.57           0.56       14.00     -13.96        0.12         0.15        -0.05          0.04
+                                spot BNBUSDT     design sweep_N240_x10_k1 240    5732  1219  18.12  3.34   14.78      2.10           2.52       24.00      -5.88       33.35        21.37        -3.97          5.23
+                                spot BNBUSDT     design sweep_N240_x10_k1  60    5746  1222  12.55  0.21   12.34      3.83           4.69       24.00     -11.45       22.81        20.27        -2.34          0.85
+                                spot BTCUSDT     design sweep_N240_x10_k1 240    5980  1280  11.68  1.35   10.32      1.90           2.61       22.00     -10.32       22.86        18.16        -5.06         -1.41
+                                spot BTCUSDT     design sweep_N240_x10_k1  60    5987  1281  10.21  0.06   10.15      3.24           3.61       22.00     -11.79       16.80        15.70         0.34          1.85
+                               spot DOGEUSDT     design sweep_N240_x10_k1 240    8107  1337  23.64 -1.28   24.92      1.77           1.93       24.00      -0.36       51.14        28.93        -6.94         20.45
+                               spot DOGEUSDT     design sweep_N240_x10_k1  60    8126  1341  15.17 -0.79   15.96      2.70           3.22       24.00      -8.83       32.95        27.60        -4.62          3.00
+                                spot ETHUSDT     design sweep_N240_x10_k1 240    7445  1347  18.55  1.88   16.67      3.08           3.19       22.00      -3.45       24.49        16.94        10.56         16.32
+                                spot ETHUSDT     design sweep_N240_x10_k1  60    7456  1352   9.70  0.17    9.53      3.49           3.65       22.00     -12.30       14.95        12.84         2.62          5.06
+                                spot SOLUSDT     design sweep_N240_x10_k1 240    9719  1189  24.22 -0.16   24.39      3.47           3.78       24.00       0.22       48.08        30.88        -3.01         16.97
+                                spot SOLUSDT     design sweep_N240_x10_k1  60    9738  1193  15.02 -0.71   15.73      3.99           3.67       24.00      -8.98       27.84        23.92         0.39          6.39
+                                spot XRPUSDT     design sweep_N240_x10_k1 240    7152  1327  27.45  2.11   25.34      3.54           3.73       24.00       3.45       43.15        34.06         7.78         14.41
+                                spot XRPUSDT     design sweep_N240_x10_k1  60    7173  1331  19.22 -0.28   19.50      4.62           4.59       24.00      -4.78       29.48        28.02         6.34          8.80
+                                spot BNBUSDT validation sweep_N240_x10_k1 240     944   340   8.69  3.20    5.48      0.63           0.60       24.00     -15.31       32.72        23.34       -31.91        -24.69
+                                spot BNBUSDT validation sweep_N240_x10_k1  60     944   340  11.35  0.12   11.23      2.47           2.32       24.00     -12.65       22.95        21.89        -8.23         -6.76
+                                spot BTCUSDT validation sweep_N240_x10_k1 240     960   348   7.84  1.57    6.27      0.88           1.03       22.00     -14.16       18.22        12.00        -9.31         -3.20
+                                spot BTCUSDT validation sweep_N240_x10_k1  60     960   348   5.03  0.45    4.58      1.04           1.23       22.00     -16.97        6.52         5.30         2.57          3.40
+                               spot DOGEUSDT validation sweep_N240_x10_k1 240    3111   499  16.53 -0.79   17.32      2.03           2.34       24.00      -7.47       30.02        18.62         0.23         15.74
+                               spot DOGEUSDT validation sweep_N240_x10_k1  60    3111   499  10.01 -0.64   10.65      2.48           3.21       24.00     -13.99       14.37        12.59         4.75          8.31
+                                spot ETHUSDT validation sweep_N240_x10_k1 240    1799   466   2.37  0.49    1.89      0.26           0.26       22.00     -19.63        9.70         5.45        -8.92         -3.59
+                                spot ETHUSDT validation sweep_N240_x10_k1  60    1799   466   3.98 -0.39    4.38      1.41           1.53       22.00     -18.02        5.32         4.95         1.93          3.50
+                                spot SOLUSDT validation sweep_N240_x10_k1 240    2693   502  24.41 -1.60   26.01      3.92           4.29       24.00       0.41       41.62        36.89         0.16         10.68
+                                spot SOLUSDT validation sweep_N240_x10_k1  60    2693   502  12.56 -1.06   13.62      3.78           3.01       24.00     -11.44       21.39        21.51         0.13          2.51
+                                spot XRPUSDT validation sweep_N240_x10_k1 240    2143   460  38.02  0.92   37.10      3.83           4.36       24.00      14.02       81.37        60.91       -16.31          7.25
+                                spot XRPUSDT validation sweep_N240_x10_k1  60    2143   460  14.23 -0.19   14.42      2.32           2.56       24.00      -9.77       35.49        30.83       -12.41         -6.14
+researcher spot BTC+ETH design sweep_N240_x10_k1@240: events 13425 gross 15.4903 t 2.7824 | audit: events 13425 gross 15.4903 t 2.7824
+researcher spot BTC+ETH design sweep_N240_x10_k1@60: events 13443 gross 9.9237 t 3.7010 | audit: events 13443 gross 9.9237 t 3.7010
+researcher spot BTC+ETH design sweep_N30_x2_k3@5: events 241590 gross 1.1323 t 13.8507 | audit: events 241590 gross 1.1323 t 13.8507
+researcher spot BTC+ETH validation sweep_N240_x10_k1@240: events 2759 gross 4.2754 t 0.5768 | audit: events 2759 gross 4.2754 t 0.5768
+researcher spot BTC+ETH validation sweep_N240_x10_k1@60: events 2759 gross 4.3486 t 1.5093 | audit: events 2759 gross 4.3486 t 1.5093
+researcher spot BTC+ETH validation sweep_N30_x2_k3@5: events 85990 gross 0.2739 t 3.1920 | audit: events 85990 gross 0.2739 t 3.1920
+
+real	0m11.372s
+user	0m7.683s
+sys	0m6.480s

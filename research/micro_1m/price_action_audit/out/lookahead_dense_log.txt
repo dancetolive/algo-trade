@@ -1,0 +1,11 @@
+um BTCUSDT: stretches centred at ['2022-11-14 19:56:00+00:00', '2023-10-30 12:30:00+00:00', '2020-11-27 18:14:00+00:00', '2022-08-01 20:59:00+00:00']; comparisons 84560, failures 0, 104.9s
+um SOLUSDT: stretches centred at ['2020-11-18 22:59:00+00:00', '2023-09-11 00:46:00+00:00', '2021-11-02 09:40:00+00:00', '2021-02-10 12:39:00+00:00']; comparisons 84560, failures 0, 100.0s
+um XRPUSDT: stretches centred at ['2023-01-12 03:04:00+00:00', '2021-09-29 13:03:00+00:00', '2023-12-21 05:55:00+00:00', '2021-12-17 05:28:00+00:00']; comparisons 84560, failures 0, 100.3s
+spot ETHUSDT: stretches centred at ['2021-10-10 20:33:00+00:00', '2021-04-26 16:27:00+00:00', '2020-10-01 07:58:00+00:00', '2022-12-13 12:21:00+00:00']; comparisons 84560, failures 0, 100.8s
+events inside the densely cut stretches, per definition (all symbols): min 9 max 363
+definitions with fewer than 5 events in the stretches: {}
+total comparisons: 338240  failures: 0
+
+real	1m45.513s
+user	3m45.114s
+sys	0m13.920s

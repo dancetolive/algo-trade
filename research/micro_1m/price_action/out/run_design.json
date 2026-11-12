@@ -1,0 +1,796 @@
+{
+ "runs": [
+  {
+   "segment": "design",
+   "market": "um",
+   "symbol": "BTCUSDT",
+   "bars": 2103840,
+   "grid": 2103840,
+   "missing": 0,
+   "first": "2020-01-01 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 2102340,
+   "rows": 185744,
+   "seconds": 12.9
+  },
+  {
+   "segment": "design",
+   "market": "um",
+   "symbol": "ETHUSDT",
+   "bars": 2103840,
+   "grid": 2103840,
+   "missing": 0,
+   "first": "2020-01-01 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 2102340,
+   "rows": 186602,
+   "seconds": 13.1
+  },
+  {
+   "segment": "design",
+   "market": "um",
+   "symbol": "SOLUSDT",
+   "bars": 1726140,
+   "grid": 1733340,
+   "missing": 7200,
+   "first": "2020-09-14 07:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 1721640,
+   "rows": 154030,
+   "seconds": 10.7
+  },
+  {
+   "segment": "design",
+   "market": "um",
+   "symbol": "BNBUSDT",
+   "bars": 2045759,
+   "grid": 2045759,
+   "missing": 0,
+   "first": "2020-02-10 08:01:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 2044259,
+   "rows": 179896,
+   "seconds": 11.5
+  },
+  {
+   "segment": "design",
+   "market": "um",
+   "symbol": "XRPUSDT",
+   "bars": 2088939,
+   "grid": 2096139,
+   "missing": 7200,
+   "first": "2020-01-06 08:21:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 2084439,
+   "rows": 183381,
+   "seconds": 11.5
+  },
+  {
+   "segment": "design",
+   "market": "um",
+   "symbol": "DOGEUSDT",
+   "bars": 1828260,
+   "grid": 1828260,
+   "missing": 0,
+   "first": "2020-07-10 09:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 1826760,
+   "rows": 162336,
+   "seconds": 10.2
+  },
+  {
+   "segment": "design",
+   "market": "spot",
+   "symbol": "BTCUSDT",
+   "bars": 2101515,
+   "grid": 2103840,
+   "missing": 2325,
+   "first": "2020-01-01 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 2077515,
+   "rows": 183505,
+   "seconds": 11.9
+  },
+  {
+   "segment": "design",
+   "market": "spot",
+   "symbol": "ETHUSDT",
+   "bars": 2101514,
+   "grid": 2103840,
+   "missing": 2326,
+   "first": "2020-01-01 00:00:00+00:00",
+   "last": "2023-12-31 23:59:00+00:00",
+   "usable_bars": 2077514,
+   "rows": 184896,
+   "seconds": 11.7
+  }
+ ],
+ "definitions": {
+  "sweep_N30_x2_k1": {
+   "family": "sweep",
+   "params": {
+    "N": 30,
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N30_x2_k1": {
+   "family": "hold",
+   "params": {
+    "N": 30,
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N30_x2_k3": {
+   "family": "sweep",
+   "params": {
+    "N": 30,
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N30_x2_k3": {
+   "family": "hold",
+   "params": {
+    "N": 30,
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N30_x10_k1": {
+   "family": "sweep",
+   "params": {
+    "N": 30,
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N30_x10_k1": {
+   "family": "hold",
+   "params": {
+    "N": 30,
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N30_x10_k3": {
+   "family": "sweep",
+   "params": {
+    "N": 30,
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N30_x10_k3": {
+   "family": "hold",
+   "params": {
+    "N": 30,
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N60_x2_k1": {
+   "family": "sweep",
+   "params": {
+    "N": 60,
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N60_x2_k1": {
+   "family": "hold",
+   "params": {
+    "N": 60,
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N60_x2_k3": {
+   "family": "sweep",
+   "params": {
+    "N": 60,
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N60_x2_k3": {
+   "family": "hold",
+   "params": {
+    "N": 60,
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N60_x10_k1": {
+   "family": "sweep",
+   "params": {
+    "N": 60,
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N60_x10_k1": {
+   "family": "hold",
+   "params": {
+    "N": 60,
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N60_x10_k3": {
+   "family": "sweep",
+   "params": {
+    "N": 60,
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N60_x10_k3": {
+   "family": "hold",
+   "params": {
+    "N": 60,
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweepmat_N60_x2_k1": {
+   "family": "sweepmat",
+   "params": {
+    "N": 60,
+    "x_bp": 2,
+    "k": 1,
+    "age": 10
+   },
+   "hypothesis": "reversal after a sweep of an N-minute extreme that is at least 10 minutes old",
+   "fill": "next bar open"
+  },
+  "sweepmat_N60_x2_k3": {
+   "family": "sweepmat",
+   "params": {
+    "N": 60,
+    "x_bp": 2,
+    "k": 3,
+    "age": 10
+   },
+   "hypothesis": "reversal after a sweep of an N-minute extreme that is at least 10 minutes old",
+   "fill": "next bar open"
+  },
+  "sweep_N240_x2_k1": {
+   "family": "sweep",
+   "params": {
+    "N": 240,
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N240_x2_k1": {
+   "family": "hold",
+   "params": {
+    "N": 240,
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N240_x2_k3": {
+   "family": "sweep",
+   "params": {
+    "N": 240,
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N240_x2_k3": {
+   "family": "hold",
+   "params": {
+    "N": 240,
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N240_x10_k1": {
+   "family": "sweep",
+   "params": {
+    "N": 240,
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N240_x10_k1": {
+   "family": "hold",
+   "params": {
+    "N": 240,
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweep_N240_x10_k3": {
+   "family": "sweep",
+   "params": {
+    "N": 240,
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "hold_N240_x10_k3": {
+   "family": "hold",
+   "params": {
+    "N": 240,
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the prior N-minute extreme",
+   "fill": "next bar open"
+  },
+  "sweepmat_N240_x2_k1": {
+   "family": "sweepmat",
+   "params": {
+    "N": 240,
+    "x_bp": 2,
+    "k": 1,
+    "age": 10
+   },
+   "hypothesis": "reversal after a sweep of an N-minute extreme that is at least 10 minutes old",
+   "fill": "next bar open"
+  },
+  "sweepmat_N240_x2_k3": {
+   "family": "sweepmat",
+   "params": {
+    "N": 240,
+    "x_bp": 2,
+    "k": 3,
+    "age": 10
+   },
+   "hypothesis": "reversal after a sweep of an N-minute extreme that is at least 10 minutes old",
+   "fill": "next bar open"
+  },
+  "pdsweep_x2_k1": {
+   "family": "pdsweep",
+   "params": {
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "pdhold_x2_k1": {
+   "family": "pdhold",
+   "params": {
+    "x_bp": 2,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "pdsweep_x2_k3": {
+   "family": "pdsweep",
+   "params": {
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "pdhold_x2_k3": {
+   "family": "pdhold",
+   "params": {
+    "x_bp": 2,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "pdsweep_x10_k1": {
+   "family": "pdsweep",
+   "params": {
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "reversal after a sweep of the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "pdhold_x10_k1": {
+   "family": "pdhold",
+   "params": {
+    "x_bp": 10,
+    "k": 1
+   },
+   "hypothesis": "continuation after k closes beyond the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "pdsweep_x10_k3": {
+   "family": "pdsweep",
+   "params": {
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "reversal after a sweep of the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "pdhold_x10_k3": {
+   "family": "pdhold",
+   "params": {
+    "x_bp": 10,
+    "k": 3
+   },
+   "hypothesis": "continuation after k closes beyond the previous day's high / low",
+   "fill": "next bar open"
+  },
+  "bos_s3_all": {
+   "family": "bos",
+   "params": {
+    "left": 3,
+    "right": 3,
+    "kind": "all"
+   },
+   "hypothesis": "continuation after the first close beyond the latest confirmed swing",
+   "fill": "next bar open"
+  },
+  "bos_s3_with": {
+   "family": "bos",
+   "params": {
+    "left": 3,
+    "right": 3,
+    "kind": "with"
+   },
+   "hypothesis": "continuation after a break in the direction of the previous break (BOS)",
+   "fill": "next bar open"
+  },
+  "bos_s3_against": {
+   "family": "bos",
+   "params": {
+    "left": 3,
+    "right": 3,
+    "kind": "against"
+   },
+   "hypothesis": "continuation after a break against the previous break (change of character)",
+   "fill": "next bar open"
+  },
+  "bos_s5_all": {
+   "family": "bos",
+   "params": {
+    "left": 5,
+    "right": 5,
+    "kind": "all"
+   },
+   "hypothesis": "continuation after the first close beyond the latest confirmed swing",
+   "fill": "next bar open"
+  },
+  "bos_s5_with": {
+   "family": "bos",
+   "params": {
+    "left": 5,
+    "right": 5,
+    "kind": "with"
+   },
+   "hypothesis": "continuation after a break in the direction of the previous break (BOS)",
+   "fill": "next bar open"
+  },
+  "bos_s5_against": {
+   "family": "bos",
+   "params": {
+    "left": 5,
+    "right": 5,
+    "kind": "against"
+   },
+   "hypothesis": "continuation after a break against the previous break (change of character)",
+   "fill": "next bar open"
+  },
+  "ob_W60": {
+   "family": "ob",
+   "params": {
+    "swing": 5,
+    "wait": 60
+   },
+   "hypothesis": "bounce on the first return into the order block",
+   "fill": "next bar open"
+  },
+  "ob_W240": {
+   "family": "ob",
+   "params": {
+    "swing": 5,
+    "wait": 240
+   },
+   "hypothesis": "bounce on the first return into the order block",
+   "fill": "next bar open"
+  },
+  "oblimit_W60": {
+   "family": "oblimit",
+   "params": {
+    "swing": 5,
+    "wait": 60
+   },
+   "hypothesis": "bounce; resting limit order at the order-block edge",
+   "fill": "resting limit order at the zone edge"
+  },
+  "bos_s10_all": {
+   "family": "bos",
+   "params": {
+    "left": 10,
+    "right": 10,
+    "kind": "all"
+   },
+   "hypothesis": "continuation after the first close beyond the latest confirmed swing",
+   "fill": "next bar open"
+  },
+  "bos_s10_with": {
+   "family": "bos",
+   "params": {
+    "left": 10,
+    "right": 10,
+    "kind": "with"
+   },
+   "hypothesis": "continuation after a break in the direction of the previous break (BOS)",
+   "fill": "next bar open"
+  },
+  "bos_s10_against": {
+   "family": "bos",
+   "params": {
+    "left": 10,
+    "right": 10,
+    "kind": "against"
+   },
+   "hypothesis": "continuation after a break against the previous break (change of character)",
+   "fill": "next bar open"
+  },
+  "fvg_m0p5": {
+   "family": "fvg",
+   "params": {
+    "m": 0.5
+   },
+   "hypothesis": "continuation after a fair value gap",
+   "fill": "next bar open"
+  },
+  "fvgfill_m0p5_W60": {
+   "family": "fvgfill",
+   "params": {
+    "m": 0.5,
+    "wait": 60
+   },
+   "hypothesis": "bounce on the first return into the gap",
+   "fill": "next bar open"
+  },
+  "fvgfill_m0p5_W240": {
+   "family": "fvgfill",
+   "params": {
+    "m": 0.5,
+    "wait": 240
+   },
+   "hypothesis": "bounce on the first return into the gap",
+   "fill": "next bar open"
+  },
+  "fvglimit_m0p5_W60": {
+   "family": "fvglimit",
+   "params": {
+    "m": 0.5,
+    "wait": 60
+   },
+   "hypothesis": "bounce; resting limit order at the gap edge",
+   "fill": "resting limit order at the zone edge"
+  },
+  "fvg_m1": {
+   "family": "fvg",
+   "params": {
+    "m": 1.0
+   },
+   "hypothesis": "continuation after a fair value gap",
+   "fill": "next bar open"
+  },
+  "fvgfill_m1_W60": {
+   "family": "fvgfill",
+   "params": {
+    "m": 1.0,
+    "wait": 60
+   },
+   "hypothesis": "bounce on the first return into the gap",
+   "fill": "next bar open"
+  },
+  "fvgfill_m1_W240": {
+   "family": "fvgfill",
+   "params": {
+    "m": 1.0,
+    "wait": 240
+   },
+   "hypothesis": "bounce on the first return into the gap",
+   "fill": "next bar open"
+  },
+  "fvglimit_m1_W60": {
+   "family": "fvglimit",
+   "params": {
+    "m": 1.0,
+    "wait": 60
+   },
+   "hypothesis": "bounce; resting limit order at the gap edge",
+   "fill": "resting limit order at the zone edge"
+  },
+  "fvg_m2": {
+   "family": "fvg",
+   "params": {
+    "m": 2.0
+   },
+   "hypothesis": "continuation after a fair value gap",
+   "fill": "next bar open"
+  },
+  "fvgfill_m2_W60": {
+   "family": "fvgfill",
+   "params": {
+    "m": 2.0,
+    "wait": 60
+   },
+   "hypothesis": "bounce on the first return into the gap",
+   "fill": "next bar open"
+  },
+  "fvgfill_m2_W240": {
+   "family": "fvgfill",
+   "params": {
+    "m": 2.0,
+    "wait": 240
+   },
+   "hypothesis": "bounce on the first return into the gap",
+   "fill": "next bar open"
+  },
+  "fvglimit_m2_W60": {
+   "family": "fvglimit",
+   "params": {
+    "m": 2.0,
+    "wait": 60
+   },
+   "hypothesis": "bounce; resting limit order at the gap edge",
+   "fill": "resting limit order at the zone edge"
+  },
+  "squeeze_M30_q0p1_v0": {
+   "family": "squeeze",
+   "params": {
+    "M": 30,
+    "q": 0.1,
+    "vol_mult": null
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "squeeze_M30_q0p1_v2": {
+   "family": "squeeze",
+   "params": {
+    "M": 30,
+    "q": 0.1,
+    "vol_mult": 2.0
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "squeeze_M30_q0p25_v0": {
+   "family": "squeeze",
+   "params": {
+    "M": 30,
+    "q": 0.25,
+    "vol_mult": null
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "squeeze_M30_q0p25_v2": {
+   "family": "squeeze",
+   "params": {
+    "M": 30,
+    "q": 0.25,
+    "vol_mult": 2.0
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "squeeze_M120_q0p1_v0": {
+   "family": "squeeze",
+   "params": {
+    "M": 120,
+    "q": 0.1,
+    "vol_mult": null
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "squeeze_M120_q0p1_v2": {
+   "family": "squeeze",
+   "params": {
+    "M": 120,
+    "q": 0.1,
+    "vol_mult": 2.0
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "squeeze_M120_q0p25_v0": {
+   "family": "squeeze",
+   "params": {
+    "M": 120,
+    "q": 0.25,
+    "vol_mult": null
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "squeeze_M120_q0p25_v2": {
+   "family": "squeeze",
+   "params": {
+    "M": 120,
+    "q": 0.25,
+    "vol_mult": 2.0
+   },
+   "hypothesis": "continuation after a close outside a compressed range",
+   "fill": "next bar open"
+  },
+  "disp_m3": {
+   "family": "disp",
+   "params": {
+    "m": 3.0
+   },
+   "hypothesis": "continuation after a displacement candle",
+   "fill": "next bar open"
+  },
+  "disp_m6": {
+   "family": "disp",
+   "params": {
+    "m": 6.0
+   },
+   "hypothesis": "continuation after a displacement candle",
+   "fill": "next bar open"
+  },
+  "ctl_random": {
+   "family": "control",
+   "params": {},
+   "hypothesis": "random bars, random direction",
+   "fill": "next bar open"
+  },
+  "ctl_long": {
+   "family": "control",
+   "params": {},
+   "hypothesis": "random bars, always long",
+   "fill": "next bar open"
+  }
+ }
+}
