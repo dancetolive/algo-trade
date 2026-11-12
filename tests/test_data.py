@@ -238,3 +238,32 @@ def test_history_is_cut_into_instruments():
     pieces = vision.split_instruments(redenominated, "1d")
     assert [len(p) for p in pieces] == [6, 4]
     assert pieces[1]["close"].iloc[0] == 0.001
+
+
+def test_parser_rejects_unknown_time_units_and_handles_a_bom(tmp_path):
+    t0 = 1_704_067_200_000
+    rows = "\n".join(ROW.format(t=t0 + i * 86_400_000, c=0) for i in range(3))
+    with_bom = vision.read_kline_zip(write_zip(tmp_path / "bom.zip", "﻿" + rows))
+    assert len(with_bom) == 3 and with_bom["open_time"].iloc[0] == pd.Timestamp("2024-01-01", tz="UTC")
+    seconds = vision.read_kline_zip(write_zip(tmp_path / "s.zip", ROW.format(t=t0 // 1000, c=0)))
+    nanos = vision.read_kline_zip(write_zip(tmp_path / "ns.zip", ROW.format(t=t0 * 1_000_000, c=0)))
+    assert seconds["open_time"].iloc[0] == nanos["open_time"].iloc[0] == pd.Timestamp("2024-01-01", tz="UTC")
+    with pytest.raises(ValueError, match="outside 2017-2100"):
+        vision.read_kline_zip(write_zip(tmp_path / "bad.zip", ROW.format(t=123456, c=0)))
+    mixed = ROW.format(t=t0, c=0) + "\n" + ROW.format(t=(t0 + 86_400_000) * 1000, c=0)  # ms then us in one file
+    frame = vision.read_kline_zip(write_zip(tmp_path / "mixed.zip", mixed))
+    assert list(frame["open_time"]) == list(pd.date_range("2024-01-01", periods=2, freq="1D", tz="UTC"))
+
+
+def test_two_funding_records_in_one_minute_are_both_paid(tmp_path, monkeypatch):
+    monkeypatch.setenv("ALGOTRADE_DATA", str(tmp_path))
+    folder = tmp_path / "um" / "funding"
+    folder.mkdir(parents=True)
+    stamps = pd.to_datetime(["2024-05-11 08:00:00.001", "2024-05-11 08:00:00.004", "2024-05-11 16:00:00.002"], utc=True)
+    pd.DataFrame(
+        {"funding_interval_hours": 8, "funding_rate": [0.0001, -0.0009, 0.0001]},
+        index=pd.DatetimeIndex(stamps, name="calc_time"),
+    ).to_parquet(folder / "AAAUSDT.parquet")
+    rates = store.load_funding(["AAAUSDT"])["AAAUSDT"]
+    assert len(rates) == 2
+    assert rates.iloc[0] == pytest.approx(-0.0008) and rates.sum() == pytest.approx(-0.0007)

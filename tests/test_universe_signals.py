@@ -169,3 +169,20 @@ def test_earlier_instrument_segments_share_the_base_asset():
     assert table.loc["USDCUSDT__2", "kind"] == "stable"
     with pytest.raises(ValueError):
         signals.past_return(pd.DataFrame({"A": [1.0, 2.0]}), lookback=5, skip=-1)
+
+
+def test_stocks_commodities_and_indexes_are_not_coins():
+    names = ["BTCUSDT", "TSLAUSDT", "CLUSDT", "BTCDOMUSDT", "AAPLBUSDT", "MDTUSDT", "MDTUSDT__1", "FRAXUSDT", "KGSTUSDT", "XAUUSDT"]
+    table = universe.classify(names)
+    assert table.loc["TSLAUSDT", "kind"] == "tradfi"
+    assert table.loc["CLUSDT", "kind"] == "tradfi"
+    assert table.loc["AAPLBUSDT", "kind"] == "tradfi"
+    assert table.loc["BTCDOMUSDT", "kind"] == "index"
+    assert table.loc["MDTUSDT", "kind"] == "tradfi"  # the ticker now belongs to a stock...
+    assert table.loc["MDTUSDT__1", "kind"] == "coin"  # ...its earlier life was a coin
+    assert table.loc["FRAXUSDT", "kind"] == "coin"  # the renamed FXS, not a stablecoin
+    assert table.loc["KGSTUSDT", "kind"] == "stable"
+    assert table.loc["XAUUSDT", "kind"] == "gold"
+    assert universe.coin_symbols(names) == ["BTCUSDT", "FRAXUSDT", "MDTUSDT__1"]
+    # the lists are per market: a spot coin is not excluded because a perpetual shares its name
+    assert universe.classify(["TSLAUSDT"], market="spot").loc["TSLAUSDT", "kind"] == "coin"

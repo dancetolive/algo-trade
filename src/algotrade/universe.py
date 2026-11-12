@@ -7,7 +7,10 @@ is biased upwards (survivorship bias).
 
 from __future__ import annotations
 
+import json
 import re
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -18,7 +21,7 @@ QUOTE = "USDT"
 STABLE_OR_FIAT = {
     "USDC", "BUSD", "TUSD", "FDUSD", "DAI", "USDP", "PAX", "UST", "USTC", "SUSD", "USDS", "USDSB",
     "PYUSD", "EURI", "AEUR", "EUR", "GBP", "AUD", "TRY", "BRL", "RUB", "UAH", "NGN", "BIDR", "IDRT",
-    "BKRW", "VAI", "XUSD", "USD1", "BFUSD", "USDE", "RLUSD", "EURC", "USDD", "GUSD", "FRAX", "LUSD",
+    "BKRW", "VAI", "XUSD", "USD1", "BFUSD", "USDE", "RLUSD", "EURC", "USDD", "GUSD", "LUSD", "RWUSD", "KGST",
     "BVND", "ARS", "PLN", "RON", "ZAR", "JPY", "MXN", "CZK", "COP", "U",
 }
 
@@ -27,6 +30,19 @@ PEGGED = {"WBTC", "WBETH", "BETH", "BNSOL", "STETH", "WSTETH", "CBBTC", "TBTC", 
 
 # Tokenised gold is handled as its own asset class, not as a member of the coin universe.
 GOLD = {"PAXG", "XAUT", "XAU"}
+
+# FRAX is deliberately absent from the stable list: the only FRAXUSDT market is the
+# renamed FXS token (from January 2026), which is volatile.
+
+
+@lru_cache(maxsize=1)
+def _listed_kinds() -> dict[str, dict[str, frozenset[str]]]:
+    """Instruments that are not crypto at all, by market (see scripts/classify_instruments.py)."""
+    path = Path(__file__).resolve().parent / "data" / "instrument_kinds.json"
+    if not path.exists():
+        return {}
+    raw = json.loads(path.read_text())
+    return {kind: {market: frozenset(names) for market, names in raw[kind].items()} for kind in ("tradfi", "index") if kind in raw}
 
 _MULTIPLIER = re.compile(r"^(1000000|1000|1M)(?=[A-Z0-9])")
 
@@ -58,13 +74,32 @@ def is_leveraged_token(base: str, all_bases: set[str]) -> bool:
     return False
 
 
-def classify(symbols: list[str]) -> pd.DataFrame:
-    """One row per symbol with its base asset and exclusion category (or 'coin')."""
+def classify(symbols: list[str], market: str | None = None) -> pd.DataFrame:
+    """One row per symbol with its base asset and category.
+
+    Categories: ``coin`` (the only one that belongs in a crypto universe),
+    ``stable``, ``gold``, ``pegged``, ``leveraged``, ``tradfi`` (perpetuals and
+    tokens on stocks, ETFs, commodities and currencies) and ``index``. The last
+    two come from a list keyed by market; pass ``market`` ("spot" or "um") to
+    apply only that market's names, or leave it out to apply both.
+
+    A ticker that was reused keeps its earlier life as a separate instrument
+    (``MDTUSDT__1``); only the plain, latest name is matched against the list.
+    """
+    listed = _listed_kinds()
+    markets = [market] if market else ["spot", "um"]
+    special = {
+        kind: frozenset().union(*(listed.get(kind, {}).get(m, frozenset()) for m in markets)) for kind in ("tradfi", "index")
+    }
     bases = {s: base_asset(s) for s in symbols}
     all_bases = set(bases.values())
     rows = []
     for symbol, base in bases.items():
-        if base in STABLE_OR_FIAT:
+        if symbol in special["tradfi"]:
+            kind = "tradfi"
+        elif symbol in special["index"] or _SEGMENT.sub("", symbol) in special["index"]:
+            kind = "index"
+        elif base in STABLE_OR_FIAT:
             kind = "stable"
         elif base in GOLD:
             kind = "gold"
@@ -78,8 +113,8 @@ def classify(symbols: list[str]) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("symbol")
 
 
-def coin_symbols(symbols: list[str]) -> list[str]:
-    table = classify(symbols)
+def coin_symbols(symbols: list[str], market: str | None = None) -> list[str]:
+    table = classify(symbols, market)
     return sorted(table.index[table["kind"] == "coin"])
 
 

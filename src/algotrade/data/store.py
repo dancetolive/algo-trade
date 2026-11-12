@@ -165,7 +165,7 @@ def load_funding(symbols_: Iterable[str], start=None, end=None) -> pd.DataFrame:
         frame = pd.read_parquet(path, columns=["funding_rate"])
         rates = frame["funding_rate"]
         rates.index = rates.index.round("min")
-        rates = rates[~rates.index.duplicated(keep="last")]
+        rates = rates.groupby(level=0).sum()  # records sharing a minute are separate cash flows
         if start is not None:
             rates = rates[rates.index >= start]
         if limit is not None:

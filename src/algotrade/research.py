@@ -268,7 +268,7 @@ def liquid_membership(market: str, top_n: int, start=None, end=None, **universe_
     """
     from . import universe
 
-    names = universe.coin_symbols(store.symbols(market, "1d"))
+    names = universe.coin_symbols(store.symbols(market, "1d"), market)
     volume = store.load_panel(market, "1d", names, fields=("quote_volume",), start=start, end=end)["quote_volume"]
     member = universe.top_liquid(volume, top_n, **universe_kwargs)
     return member.loc[:, member.any()]
@@ -290,7 +290,9 @@ def perp_funding(index: pd.DatetimeIndex, symbols: list[str]) -> pd.DataFrame:
 
     Cells are NaN where the archive has no funding record for the symbol (before
     its first record, after its last, or no file at all). The simulator charges
-    nothing there and counts those position-bars in ``SimResult.funding_missing``.
+    nothing there and counts those position-bars in ``SimResult.funding_missing``,
+    so a strategy should not hold a perpetual on bars where this frame is NaN
+    (``funding.notna()`` is the mask to combine with the universe).
     """
     from .backtest import align_funding
 

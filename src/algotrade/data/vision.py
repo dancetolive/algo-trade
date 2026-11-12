@@ -341,19 +341,37 @@ def _read_single_member(path: Path) -> bytes:
             raise ValueError(f"{path.name}: expected one member, found {len(members)}")
         if members[0].file_size > MAX_UNCOMPRESSED_BYTES:
             raise ValueError(f"{path.name}: member is implausibly large")
-        return archive.read(members[0])
+        raw = archive.read(members[0])
+    return raw[len(_BOM) :] if raw.startswith(_BOM) else raw
+
+
+_BOM = b"\xef\xbb\xbf"
 
 
 def _has_header(raw: bytes) -> bool:
-    head = raw[:32].lstrip()
-    return bool(head) and not head[:1].isdigit()
+    """True if the first line is a header, i.e. its first field is not an integer."""
+    first_field = raw[:64].split(b"\n", 1)[0].split(b",", 1)[0].strip()
+    return not first_field.lstrip(b"-").isdigit()
 
 
 def _epoch_to_utc(values: pd.Series) -> pd.Series:
-    """Binance used milliseconds until 2025 and microseconds for spot afterwards."""
+    """Epoch stamps to UTC. The unit is read from the magnitude of each value.
+
+    The archive used milliseconds until 2025 and microseconds for spot afterwards
+    (one file mixes both). Anything that does not land between 2017 and 2100 in
+    one of the known units is rejected instead of being stored as a wrong date.
+    """
     values = values.astype("int64")
-    micro = values > 10**14
-    millis = values.where(~micro, values // 1000)
+    millis = values.copy()
+    seconds = values < 10**11
+    micro = (values >= 10**14) & (values < 10**17)
+    nano = values >= 10**17
+    millis[seconds] = values[seconds] * 1000
+    millis[micro] = values[micro] // 1000
+    millis[nano] = values[nano] // 1_000_000
+    low, high = 1_483_228_800_000, 4_102_444_800_000  # 2017-01-01 .. 2100-01-01
+    if len(millis) and ((millis < low) | (millis >= high)).any():
+        raise ValueError("timestamps outside 2017-2100: unknown time unit or corrupt file")
     return pd.to_datetime(millis, unit="ms", utc=True)
 
 
